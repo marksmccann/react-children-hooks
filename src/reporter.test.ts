@@ -63,4 +63,32 @@ describe("reporter", () => {
             "[DIALOG_ACTIONS_MINIMUM] Minimum children validation failed for DialogAction because only 1 direct child satisfied the provided predicate; expected at least 2."
         );
     });
+
+    it("resolves maximum-children validation messages without an internal code suffix", () => {
+        expect(
+            reporter.message("MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+                traceCodePrefix: "",
+                childNameSegment: "",
+                actualCount: 2,
+                actualCountPluralSuffix: "ren",
+                maximumCount: 1
+            })
+        ).toBe(
+            "Maximum children validation failed because 2 direct children satisfied the provided predicate; expected at most 1."
+        );
+    });
+
+    it("throws formatted maximum-children validation messages from fail", () => {
+        expect(() =>
+            reporter.fail("MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+                traceCodePrefix: "[DIALOG_ACTIONS_MAXIMUM] ",
+                childNameSegment: " for DialogAction",
+                actualCount: 2,
+                actualCountPluralSuffix: "ren",
+                maximumCount: 1
+            })
+        ).toThrow(
+            "[DIALOG_ACTIONS_MAXIMUM] Maximum children validation failed for DialogAction because 2 direct children satisfied the provided predicate; expected at most 1."
+        );
+    });
 });

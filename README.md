@@ -11,11 +11,15 @@
 - [`useChildrenByType`](./docs/api/useChildrenByType.md)
 - [`useChildrenWhere`](./docs/api/useChildrenWhere.md)
 
+### Validation + Query Hooks
+
+- [`useMaximumChildrenWhere`](./docs/api/useMaximumChildrenWhere.md)
+- [`useMinimumChildrenWhere`](./docs/api/useMinimumChildrenWhere.md)
+- [`useRequiredChildWhere`](./docs/api/useRequiredChildWhere.md)
+
 ### Validation Hooks
 
 - [`useHasChildWhere`](./docs/api/useHasChildWhere.md)
-- [`useMinimumChildrenWhere`](./docs/api/useMinimumChildrenWhere.md)
-- [`useRequiredChildWhere`](./docs/api/useRequiredChildWhere.md)
 
 ### Utilities
 
