@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.0 (2026-05-14)
+
+- feat: create useExactChildrenWhere hook + AGENTS.md file a441f78
+- feat: create useMaximumChildrenWhere hook 91f1892
+
 ## 0.1.0 (2026-05-14)
 
 - chore: add runtime reporter + update tab size formatting to 4 28294ee
