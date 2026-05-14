@@ -20,18 +20,18 @@ function useRequiredChildWhere(
 
 ## Parameters
 
-| Parameter   | Type                                       | Description                                                                                                                                    |
-| ----------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`  | `React.ReactNode`                          | The React children value to inspect.                                                                                                           |
-| `predicate` | `(element: React.ReactElement) => boolean` | A predicate that is called with each direct child element to determine whether it matches.                                                     |
-| `options`   | `UseRequiredChildWhereOptions`             | Optional reporting metadata used to derive the thrown validation message. See [`UseRequiredChildWhereOptions`](#userequiredchildwhereoptions). |
+| Parameter   | Type                                       | Required | Description                                                                                                                                    |
+| ----------- | ------------------------------------------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`  | `React.ReactNode`                          | Yes      | The React children value to inspect.                                                                                                           |
+| `predicate` | `(element: React.ReactElement) => boolean` | Yes      | A predicate that is called with each direct child element to determine whether it matches.                                                     |
+| `options`   | `UseRequiredChildWhereOptions`             | No       | Optional reporting metadata used to derive the thrown validation message. See [`UseRequiredChildWhereOptions`](#userequiredchildwhereoptions). |
 
 ## `UseRequiredChildWhereOptions`
 
-| Property    | Type     | Description                                                                                |
-| ----------- | -------- | ------------------------------------------------------------------------------------------ |
-| `traceCode` | `string` | An optional consumer-defined trace code that is prefixed to the thrown validation message. |
-| `childName` | `string` | An optional human-readable child name that is included in the thrown validation message.   |
+| Property    | Type     | Required | Description                                                                                |
+| ----------- | -------- | -------- | ------------------------------------------------------------------------------------------ |
+| `traceCode` | `string` | No       | An optional consumer-defined trace code that is prefixed to the thrown validation message. |
+| `childName` | `string` | No       | An optional human-readable child name that is included in the thrown validation message.   |
 
 ## Returns
 

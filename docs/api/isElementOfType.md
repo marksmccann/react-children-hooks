@@ -13,10 +13,10 @@ function isElementOfType<T extends React.ElementType>(
 
 ## Parameters
 
-| Parameter | Type                 | Description                             |
-| --------- | -------------------- | --------------------------------------- |
-| `element` | `React.ReactElement` | The React element to compare.           |
-| `type`    | `T`                  | The element or component type to match. |
+| Parameter | Type                 | Required | Description                             |
+| --------- | -------------------- | -------- | --------------------------------------- |
+| `element` | `React.ReactElement` | Yes      | The React element to compare.           |
+| `type`    | `React.ElementType`  | Yes      | The element or component type to match. |
 
 ## Returns
 

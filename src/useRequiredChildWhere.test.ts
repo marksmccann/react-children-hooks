@@ -8,6 +8,7 @@ import {
 } from "react";
 import { describe, expect, it } from "vitest";
 
+import reporter from "./reporter";
 import { useRequiredChildWhere } from "./useRequiredChildWhere";
 
 function ExampleComponent({
@@ -64,7 +65,10 @@ describe("useRequiredChildWhere", () => {
                 )
             )
         ).toThrow(
-            "Required child validation failed because no direct child satisfied the provided predicate."
+            reporter.message("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+                traceCodePrefix: "",
+                childNameSegment: ""
+            })
         );
     });
 
@@ -80,7 +84,10 @@ describe("useRequiredChildWhere", () => {
                 )
             )
         ).toThrow(
-            "[DIALOG_TRIGGER_MISSING] Required child validation failed because no direct child satisfied the provided predicate."
+            reporter.message("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+                traceCodePrefix: "[DIALOG_TRIGGER_MISSING] ",
+                childNameSegment: ""
+            })
         );
     });
 
@@ -96,7 +103,10 @@ describe("useRequiredChildWhere", () => {
                 )
             )
         ).toThrow(
-            "Required child validation failed for DialogTrigger because no direct child satisfied the provided predicate."
+            reporter.message("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+                traceCodePrefix: "",
+                childNameSegment: " for DialogTrigger"
+            })
         );
     });
 
@@ -115,7 +125,10 @@ describe("useRequiredChildWhere", () => {
                 )
             )
         ).toThrow(
-            "[DIALOG_TRIGGER_MISSING] Required child validation failed for DialogTrigger because no direct child satisfied the provided predicate."
+            reporter.message("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+                traceCodePrefix: "[DIALOG_TRIGGER_MISSING] ",
+                childNameSegment: " for DialogTrigger"
+            })
         );
     });
 
@@ -137,7 +150,10 @@ describe("useRequiredChildWhere", () => {
                 )
             )
         ).toThrow(
-            "Required child validation failed for DialogTrigger because no direct child satisfied the provided predicate."
+            reporter.message("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+                traceCodePrefix: "",
+                childNameSegment: " for DialogTrigger"
+            })
         );
     });
 

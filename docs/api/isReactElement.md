@@ -10,9 +10,9 @@ function isReactElement(node: React.ReactNode): node is React.ReactElement;
 
 ## Parameters
 
-| Parameter | Type              | Description              |
-| --------- | ----------------- | ------------------------ |
-| `node`    | `React.ReactNode` | The React node to check. |
+| Parameter | Type              | Required | Description              |
+| --------- | ----------------- | -------- | ------------------------ |
+| `node`    | `React.ReactNode` | Yes      | The React node to check. |
 
 ## Returns
 

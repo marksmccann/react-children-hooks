@@ -10,9 +10,9 @@ function childrenToElements(children: React.ReactNode): React.ReactElement[];
 
 ## Parameters
 
-| Parameter  | Type              | Description                            |
-| ---------- | ----------------- | -------------------------------------- |
-| `children` | `React.ReactNode` | The React children value to normalize. |
+| Parameter  | Type              | Required | Description                            |
+| ---------- | ----------------- | -------- | -------------------------------------- |
+| `children` | `React.ReactNode` | Yes      | The React children value to normalize. |
 
 ## Returns
 

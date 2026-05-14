@@ -13,10 +13,10 @@ function useChildByType<T extends React.ElementType>(
 
 ## Parameters
 
-| Parameter  | Type              | Description                                                               |
-| ---------- | ----------------- | ------------------------------------------------------------------------- |
-| `children` | `React.ReactNode` | The React children value to inspect.                                      |
-| `type`     | `T`               | The element or component type to match against each direct child element. |
+| Parameter  | Type                | Required | Description                                                               |
+| ---------- | ------------------- | -------- | ------------------------------------------------------------------------- |
+| `children` | `React.ReactNode`   | Yes      | The React children value to inspect.                                      |
+| `type`     | `React.ElementType` | Yes      | The element or component type to match against each direct child element. |
 
 ## Returns
 

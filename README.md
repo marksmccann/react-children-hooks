@@ -14,6 +14,7 @@
 ### Validation Hooks
 
 - [`useHasChildWhere`](./docs/api/useHasChildWhere.md)
+- [`useMinimumChildrenWhere`](./docs/api/useMinimumChildrenWhere.md)
 - [`useRequiredChildWhere`](./docs/api/useRequiredChildWhere.md)
 
 ### Utilities

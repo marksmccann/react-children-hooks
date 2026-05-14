@@ -1,12 +1,26 @@
 import { createReporter, type RuntimeReporterMessages } from "runtime-reporter";
 
-const messages: RuntimeReporterMessages<{
-    code: "REQUIRED_CHILD_WHERE_PREDICATE_FAILED";
-    template: "{{ traceCodePrefix }}Required child validation failed{{ childNameSegment }} because no direct child satisfied the provided predicate.";
-    tokens: "traceCodePrefix" | "childNameSegment";
-}> = {
+const messages: RuntimeReporterMessages<
+    | {
+          code: "REQUIRED_CHILD_WHERE_PREDICATE_FAILED";
+          template: "{{ traceCodePrefix }}Required child validation failed{{ childNameSegment }} because no direct child satisfied the provided predicate.";
+          tokens: "traceCodePrefix" | "childNameSegment";
+      }
+    | {
+          code: "MINIMUM_CHILDREN_WHERE_PREDICATE_FAILED";
+          template: "{{ traceCodePrefix }}Minimum children validation failed{{ childNameSegment }} because only {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected at least {{ minimumCount }}.";
+          tokens:
+              | "traceCodePrefix"
+              | "childNameSegment"
+              | "actualCount"
+              | "actualCountPluralSuffix"
+              | "minimumCount";
+      }
+> = {
     REQUIRED_CHILD_WHERE_PREDICATE_FAILED:
-        "{{ traceCodePrefix }}Required child validation failed{{ childNameSegment }} because no direct child satisfied the provided predicate."
+        "{{ traceCodePrefix }}Required child validation failed{{ childNameSegment }} because no direct child satisfied the provided predicate.",
+    MINIMUM_CHILDREN_WHERE_PREDICATE_FAILED:
+        "{{ traceCodePrefix }}Minimum children validation failed{{ childNameSegment }} because only {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected at least {{ minimumCount }}."
 };
 
 /** The runtime reporter for react-children-hooks */
