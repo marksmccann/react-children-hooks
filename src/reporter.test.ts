@@ -91,4 +91,32 @@ describe("reporter", () => {
             "[DIALOG_ACTIONS_MAXIMUM] Maximum children validation failed for DialogAction because 2 direct children satisfied the provided predicate; expected at most 1."
         );
     });
+
+    it("resolves exact-children validation messages without an internal code suffix", () => {
+        expect(
+            reporter.message("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+                traceCodePrefix: "",
+                childNameSegment: "",
+                actualCount: 2,
+                actualCountPluralSuffix: "ren",
+                exactCount: 1
+            })
+        ).toBe(
+            "Exact children validation failed because 2 direct children satisfied the provided predicate; expected exactly 1."
+        );
+    });
+
+    it("throws formatted exact-children validation messages from fail", () => {
+        expect(() =>
+            reporter.fail("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+                traceCodePrefix: "[DIALOG_ACTIONS_EXACT] ",
+                childNameSegment: " for DialogAction",
+                actualCount: 2,
+                actualCountPluralSuffix: "ren",
+                exactCount: 1
+            })
+        ).toThrow(
+            "[DIALOG_ACTIONS_EXACT] Exact children validation failed for DialogAction because 2 direct children satisfied the provided predicate; expected exactly 1."
+        );
+    });
 });

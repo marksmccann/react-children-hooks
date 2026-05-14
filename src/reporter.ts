@@ -26,13 +26,25 @@ const messages: RuntimeReporterMessages<
               | "actualCountPluralSuffix"
               | "maximumCount";
       }
+    | {
+          code: "EXACT_CHILDREN_WHERE_PREDICATE_FAILED";
+          template: "{{ traceCodePrefix }}Exact children validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected exactly {{ exactCount }}.";
+          tokens:
+              | "traceCodePrefix"
+              | "childNameSegment"
+              | "actualCount"
+              | "actualCountPluralSuffix"
+              | "exactCount";
+      }
 > = {
     REQUIRED_CHILD_WHERE_PREDICATE_FAILED:
         "{{ traceCodePrefix }}Required child validation failed{{ childNameSegment }} because no direct child satisfied the provided predicate.",
     MINIMUM_CHILDREN_WHERE_PREDICATE_FAILED:
         "{{ traceCodePrefix }}Minimum children validation failed{{ childNameSegment }} because only {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected at least {{ minimumCount }}.",
     MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED:
-        "{{ traceCodePrefix }}Maximum children validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected at most {{ maximumCount }}."
+        "{{ traceCodePrefix }}Maximum children validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected at most {{ maximumCount }}.",
+    EXACT_CHILDREN_WHERE_PREDICATE_FAILED:
+        "{{ traceCodePrefix }}Exact children validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected exactly {{ exactCount }}."
 };
 
 /** The runtime reporter for react-children-hooks */

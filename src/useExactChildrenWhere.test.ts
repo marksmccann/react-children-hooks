@@ -9,7 +9,7 @@ import {
 import { describe, expect, it } from "vitest";
 
 import reporter from "./reporter";
-import { useMaximumChildrenWhere } from "./useMaximumChildrenWhere";
+import { useExactChildrenWhere } from "./useExactChildrenWhere";
 
 function ExampleComponent({
     children,
@@ -24,8 +24,8 @@ function isButtonElement(
     return element.type === "button";
 }
 
-describe("useMaximumChildrenWhere", () => {
-    it("returns all matching direct children when the maximum count is not reached", () => {
+describe("useExactChildrenWhere", () => {
+    it("returns all matching direct children when the exact count is met", () => {
         const children = [
             createElement("button", { key: "button-1" }),
             createElement("span", { key: "span-1" }),
@@ -33,28 +33,7 @@ describe("useMaximumChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useMaximumChildrenWhere(
-                children,
-                (element) => element.type === "button",
-                3
-            )
-        );
-
-        expect(result.current).toHaveLength(2);
-        expect(
-            result.current.every((element) => element.type === "button")
-        ).toBe(true);
-    });
-
-    it("returns all matching direct children when the maximum count is exactly met", () => {
-        const children = [
-            createElement("button", { key: "button-1" }),
-            createElement("span", { key: "span-1" }),
-            createElement("button", { key: "button-2" })
-        ];
-
-        const { result } = renderHook(() =>
-            useMaximumChildrenWhere(
+            useExactChildrenWhere(
                 children,
                 (element) => element.type === "button",
                 2
@@ -75,14 +54,14 @@ describe("useMaximumChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useMaximumChildrenWhere(children, isButtonElement, 2)
+            useExactChildrenWhere(children, isButtonElement, 2)
         );
 
         expect(result.current).toHaveLength(2);
         expect(result.current[1]?.props.type).toBe("submit");
     });
 
-    it("returns matching custom component children when the maximum count is satisfied", () => {
+    it("returns matching custom component children when the exact count is satisfied", () => {
         const children = [
             createElement(ExampleComponent, {
                 key: "component-1",
@@ -96,7 +75,7 @@ describe("useMaximumChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useMaximumChildrenWhere(
+            useExactChildrenWhere(
                 children,
                 (element) => element.type === ExampleComponent,
                 2,
@@ -110,7 +89,29 @@ describe("useMaximumChildrenWhere", () => {
         ).toBe(true);
     });
 
-    it("throws the generic validation message when the maximum count is exceeded", () => {
+    it("throws the generic validation message when fewer matches than the exact count are found", () => {
+        const children = [createElement("button", { key: "button-1" })];
+
+        expect(() =>
+            renderHook(() =>
+                useExactChildrenWhere(
+                    children,
+                    (element) => element.type === "button",
+                    2
+                )
+            )
+        ).toThrow(
+            reporter.message("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+                traceCodePrefix: "",
+                childNameSegment: "",
+                actualCount: 1,
+                actualCountPluralSuffix: "",
+                exactCount: 2
+            })
+        );
+    });
+
+    it("throws the generic validation message when more matches than the exact count are found", () => {
         const children = [
             createElement("button", { key: "button-1" }),
             createElement("button", { key: "button-2" })
@@ -118,100 +119,91 @@ describe("useMaximumChildrenWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useMaximumChildrenWhere(
+                useExactChildrenWhere(
                     children,
                     (element) => element.type === "button",
                     1
                 )
             )
         ).toThrow(
-            reporter.message("MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 2,
                 actualCountPluralSuffix: "ren",
-                maximumCount: 1
+                exactCount: 1
             })
         );
     });
 
     it("throws the trace-prefixed generic validation message when only traceCode is provided", () => {
-        const children = [
-            createElement("button", { key: "button-1" }),
-            createElement("button", { key: "button-2" })
-        ];
+        const children = [createElement("button", { key: "button-1" })];
 
         expect(() =>
             renderHook(() =>
-                useMaximumChildrenWhere(
+                useExactChildrenWhere(
                     children,
                     (element) => element.type === "button",
-                    1,
-                    { traceCode: "DIALOG_ACTIONS_MAXIMUM" }
+                    2,
+                    { traceCode: "DIALOG_ACTIONS_EXACT" }
                 )
             )
         ).toThrow(
-            reporter.message("MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
-                traceCodePrefix: "[DIALOG_ACTIONS_MAXIMUM] ",
+            reporter.message("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+                traceCodePrefix: "[DIALOG_ACTIONS_EXACT] ",
                 childNameSegment: "",
-                actualCount: 2,
-                actualCountPluralSuffix: "ren",
-                maximumCount: 1
+                actualCount: 1,
+                actualCountPluralSuffix: "",
+                exactCount: 2
             })
         );
     });
 
     it("throws the named validation message when only childName is provided", () => {
-        const children = [
-            createElement("button", { key: "button-1" }),
-            createElement("button", { key: "button-2" })
-        ];
+        const children = [createElement("button", { key: "button-1" })];
 
         expect(() =>
             renderHook(() =>
-                useMaximumChildrenWhere(
+                useExactChildrenWhere(
                     children,
                     (element) => element.type === "button",
-                    1,
+                    2,
                     { childName: "DialogAction" }
                 )
             )
         ).toThrow(
-            reporter.message("MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: " for DialogAction",
-                actualCount: 2,
-                actualCountPluralSuffix: "ren",
-                maximumCount: 1
+                actualCount: 1,
+                actualCountPluralSuffix: "",
+                exactCount: 2
             })
         );
     });
 
     it("throws the trace-prefixed named validation message when both options are provided", () => {
-        const children = [
-            createElement("button", { key: "button-1" }),
-            createElement("button", { key: "button-2" })
-        ];
+        const children = [createElement("button", { key: "button-1" })];
 
         expect(() =>
             renderHook(() =>
-                useMaximumChildrenWhere(
+                useExactChildrenWhere(
                     children,
                     (element) => element.type === "button",
-                    1,
+                    2,
                     {
-                        traceCode: "DIALOG_ACTIONS_MAXIMUM",
+                        traceCode: "DIALOG_ACTIONS_EXACT",
                         childName: "DialogAction"
                     }
                 )
             )
         ).toThrow(
-            reporter.message("MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
-                traceCodePrefix: "[DIALOG_ACTIONS_MAXIMUM] ",
+            reporter.message("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+                traceCodePrefix: "[DIALOG_ACTIONS_EXACT] ",
                 childNameSegment: " for DialogAction",
-                actualCount: 2,
-                actualCountPluralSuffix: "ren",
-                maximumCount: 1
+                actualCount: 1,
+                actualCountPluralSuffix: "",
+                exactCount: 2
             })
         );
     });
@@ -229,7 +221,7 @@ describe("useMaximumChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useMaximumChildrenWhere(
+            useExactChildrenWhere(
                 children,
                 (element) => element.type === "button",
                 1,

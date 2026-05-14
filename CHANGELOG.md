@@ -5,6 +5,7 @@
 - chore: add runtime reporter + update tab size formatting to 4 28294ee
 - chore: gtt project ready for publishing 91f3e27
 - feat: add *ByType and *Where hooks along with some core utilities db456c8
+- feat: create useExactChildrenWhere hook
 - feat: add useHasChildWhere hook b35f839
 - feat: create useMinimumChildrenWhere hook f8d1d87
 - feat: create useRequiredChildWhere hook 2e4b3bf

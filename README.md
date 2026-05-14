@@ -13,6 +13,7 @@
 
 ### Validation + Query Hooks
 
+- [`useExactChildrenWhere`](./docs/api/useExactChildrenWhere.md)
 - [`useMaximumChildrenWhere`](./docs/api/useMaximumChildrenWhere.md)
 - [`useMinimumChildrenWhere`](./docs/api/useMinimumChildrenWhere.md)
 - [`useRequiredChildWhere`](./docs/api/useRequiredChildWhere.md)
