@@ -20,6 +20,7 @@ This package is currently in scaffold stage. The project foundation is in place,
 - [`useChildWhere`](./docs/api/useChildWhere.md)
 - [`useChildrenByType`](./docs/api/useChildrenByType.md)
 - [`useChildrenWhere`](./docs/api/useChildrenWhere.md)
+- [`useHasChildWhere`](./docs/api/useHasChildWhere.md)
 - [`childrenToElements`](./docs/api/childrenToElements.md)
 - [`isElementOfType`](./docs/api/isElementOfType.md)
 - [`isReactElement`](./docs/api/isReactElement.md)
