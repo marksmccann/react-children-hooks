@@ -5,33 +5,33 @@ import tseslint from "typescript-eslint";
 import eslintConfigPrettier from "eslint-config-prettier";
 
 export default tseslint.config(
-  {
-    ignores: ["dist/**", "coverage/**", "node_modules/**"]
-  },
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
-  {
-    files: ["**/*.cjs"],
-    languageOptions: {
-      sourceType: "commonjs"
-    }
-  },
-  {
-    files: ["**/*.{ts,tsx,js,jsx}"],
-    languageOptions: {
-      ecmaVersion: 2022,
-      sourceType: "module",
-      globals: {
-        ...globals.browser,
-        ...globals.node
-      }
+    {
+        ignores: ["dist/**", "coverage/**", "node_modules/**"]
     },
-    plugins: {
-      "react-hooks": reactHooks
+    js.configs.recommended,
+    ...tseslint.configs.recommended,
+    {
+        files: ["**/*.cjs"],
+        languageOptions: {
+            sourceType: "commonjs"
+        }
     },
-    rules: {
-      ...reactHooks.configs.recommended.rules
-    }
-  },
-  eslintConfigPrettier
+    {
+        files: ["**/*.{ts,tsx,js,jsx}"],
+        languageOptions: {
+            ecmaVersion: 2022,
+            sourceType: "module",
+            globals: {
+                ...globals.browser,
+                ...globals.node
+            }
+        },
+        plugins: {
+            "react-hooks": reactHooks
+        },
+        rules: {
+            ...reactHooks.configs.recommended.rules
+        }
+    },
+    eslintConfigPrettier
 );
