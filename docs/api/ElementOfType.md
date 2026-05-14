@@ -13,9 +13,9 @@ type ElementOfType<T extends React.ElementType> = React.ReactElement<
 
 ## Type Parameters
 
-### `T`
-
-The React element type used to narrow the element's props and type.
+| Type Parameter | Description                                                         |
+| -------------- | ------------------------------------------------------------------- |
+| `T`            | The React element type used to narrow the element's props and type. |
 
 ## Usage
 

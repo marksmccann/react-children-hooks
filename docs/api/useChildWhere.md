@@ -18,13 +18,10 @@ function useChildWhere(
 
 ## Parameters
 
-### `children`
-
-The React children value to inspect.
-
-### `predicate`
-
-A predicate that is called with each direct child element to determine whether it matches.
+| Parameter   | Type                                       | Description                                                                                |
+| ----------- | ------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `children`  | `React.ReactNode`                          | The React children value to inspect.                                                       |
+| `predicate` | `(element: React.ReactElement) => boolean` | A predicate that is called with each direct child element to determine whether it matches. |
 
 ## Returns
 
