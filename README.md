@@ -14,6 +14,17 @@ This package is currently in scaffold stage. The project foundation is in place,
 - Validate minimum and maximum child constraints
 - Recursively search nested children
 
+## API Reference
+
+- [`useChildByType`](./docs/api/useChildByType.md)
+- [`useChildWhere`](./docs/api/useChildWhere.md)
+- [`useChildrenByType`](./docs/api/useChildrenByType.md)
+- [`useChildrenWhere`](./docs/api/useChildrenWhere.md)
+- [`childrenToElements`](./docs/api/childrenToElements.md)
+- [`isElementOfType`](./docs/api/isElementOfType.md)
+- [`isReactElement`](./docs/api/isReactElement.md)
+- [`ElementOfType`](./docs/api/ElementOfType.md)
+
 ## Development
 
 ```bash
