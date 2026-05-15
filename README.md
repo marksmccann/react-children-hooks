@@ -6,12 +6,13 @@
 
 ### Query Hooks
 
+- [`useCallbackChild`](./docs/useCallbackChild.md)
 - [`useChildByType`](./docs/useChildByType.md)
 - [`useChildMatching`](./docs/useChildMatching.md)
 - [`useChildrenByType`](./docs/useChildrenByType.md)
 - [`useChildrenMatching`](./docs/useChildrenMatching.md)
 
-### Validation + Query Hooks
+### Query + Validation Hooks
 
 - [`useBoundedChildrenByType`](./docs/useBoundedChildrenByType.md)
 - [`useBoundedChildrenMatching`](./docs/useBoundedChildrenMatching.md)
@@ -23,6 +24,7 @@
 - [`useMinimumChildrenMatching`](./docs/useMinimumChildrenMatching.md)
 - [`useOptionalChildByType`](./docs/useOptionalChildByType.md)
 - [`useOptionalChildMatching`](./docs/useOptionalChildMatching.md)
+- [`useRequiredCallbackChild`](./docs/useRequiredCallbackChild.md)
 - [`useRequiredChildByType`](./docs/useRequiredChildByType.md)
 - [`useRequiredChildMatching`](./docs/useRequiredChildMatching.md)
 - [`useUniqueChildByType`](./docs/useUniqueChildByType.md)
@@ -40,6 +42,8 @@
 
 ### Types
 
+- [`CallbackChild`](./src/types.ts)
+- [`CallbackChildren`](./src/types.ts)
 - [`ChildrenCountBounds`](./src/types.ts)
 - [`ElementOfType`](./src/types.ts)
 - [`ValidationOptions`](./src/types.ts)

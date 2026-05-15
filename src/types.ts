@@ -25,6 +25,31 @@ export type ElementOfType<T extends React.ElementType> = React.ReactElement<
 >;
 
 /**
+ * A callback child, also known as a render-prop child.
+ *
+ * @typeParam TArguments The positional argument tuple accepted by the callback.
+ * @typeParam TResult The value returned by the callback.
+ */
+export type CallbackChild<
+    TArguments extends unknown[] = [],
+    TResult = React.ReactNode
+> = (...args: TArguments) => TResult;
+
+/**
+ * A direct-children value that may include callback children alongside regular React children.
+ *
+ * @typeParam TArguments The positional argument tuple accepted by callback children.
+ * @typeParam TResult The value returned by callback children.
+ */
+export type CallbackChildren<
+    TArguments extends unknown[] = [],
+    TResult = React.ReactNode
+> =
+    | React.ReactNode
+    | CallbackChild<TArguments, TResult>
+    | readonly CallbackChildren<TArguments, TResult>[];
+
+/**
  * Optional reporting metadata used by the validation hooks to derive thrown validation messages.
  */
 export type ValidationOptions = {

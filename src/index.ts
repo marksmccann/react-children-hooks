@@ -1,9 +1,5 @@
-/**
- * Public package entrypoint.
- *
- * Hooks and child utilities will be exported here as the API is defined.
- */
 export { useChildByType } from "./useChildByType";
+export { useCallbackChild } from "./useCallbackChild";
 export { useChildMatching } from "./useChildMatching";
 export { useBoundedChildrenByType } from "./useBoundedChildrenByType";
 export { useBoundedChildrenMatching } from "./useBoundedChildrenMatching";
@@ -19,14 +15,11 @@ export { useMinimumChildrenMatching } from "./useMinimumChildrenMatching";
 export { useOptionalChildByType } from "./useOptionalChildByType";
 export { useOptionalChildMatching } from "./useOptionalChildMatching";
 export { useRequiredChildByType } from "./useRequiredChildByType";
+export { useRequiredCallbackChild } from "./useRequiredCallbackChild";
 export { useRequiredChildMatching } from "./useRequiredChildMatching";
 export { useUniqueChildByType } from "./useUniqueChildByType";
 export { useUniqueChildMatching } from "./useUniqueChildMatching";
 export { childrenToElements } from "./childrenToElements";
 export { isElementOfType } from "./isElementOfType";
 export { isReactElement } from "./isReactElement";
-export type {
-    ChildrenCountBounds,
-    ElementOfType,
-    ValidationOptions
-} from "./types";
+export type * from "./types";
