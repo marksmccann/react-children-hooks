@@ -6,28 +6,32 @@
 
 ### Query Hooks
 
-- [`useChildByType`](./docs/api/useChildByType.md)
-- [`useChildWhere`](./docs/api/useChildWhere.md)
-- [`useChildrenByType`](./docs/api/useChildrenByType.md)
-- [`useChildrenWhere`](./docs/api/useChildrenWhere.md)
+- [`useChildByType`](./docs/useChildByType.md)
+- [`useChildWhere`](./docs/useChildWhere.md)
+- [`useChildrenByType`](./docs/useChildrenByType.md)
+- [`useChildrenWhere`](./docs/useChildrenWhere.md)
 
 ### Validation + Query Hooks
 
-- [`useExactChildrenWhere`](./docs/api/useExactChildrenWhere.md)
-- [`useMaximumChildrenWhere`](./docs/api/useMaximumChildrenWhere.md)
-- [`useMinimumChildrenWhere`](./docs/api/useMinimumChildrenWhere.md)
-- [`useRequiredChildWhere`](./docs/api/useRequiredChildWhere.md)
+- [`useExactChildrenByType`](./docs/useExactChildrenByType.md)
+- [`useExactChildrenWhere`](./docs/useExactChildrenWhere.md)
+- [`useMaximumChildrenByType`](./docs/useMaximumChildrenByType.md)
+- [`useMaximumChildrenWhere`](./docs/useMaximumChildrenWhere.md)
+- [`useMinimumChildrenByType`](./docs/useMinimumChildrenByType.md)
+- [`useMinimumChildrenWhere`](./docs/useMinimumChildrenWhere.md)
+- [`useRequiredChildByType`](./docs/useRequiredChildByType.md)
+- [`useRequiredChildWhere`](./docs/useRequiredChildWhere.md)
 
 ### Validation Hooks
 
-- [`useHasChildWhere`](./docs/api/useHasChildWhere.md)
+- [`useHasChildWhere`](./docs/useHasChildWhere.md)
 
 ### Utilities
 
-- [`childrenToElements`](./docs/api/childrenToElements.md)
-- [`isElementOfType`](./docs/api/isElementOfType.md)
-- [`isReactElement`](./docs/api/isReactElement.md)
+- [`childrenToElements`](./docs/childrenToElements.md)
+- [`isElementOfType`](./docs/isElementOfType.md)
+- [`isReactElement`](./docs/isReactElement.md)
 
 ### Types
 
-- [`ElementOfType`](./docs/api/ElementOfType.md)
+- [`ElementOfType`](./docs/ElementOfType.md)
