@@ -55,7 +55,7 @@ describe("useMaximumChildrenByType", () => {
         expect(() =>
             renderHook(() => useMaximumChildrenByType(children, "button", 1))
         ).toThrow(
-            reporter.message("MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("MAXIMUM_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 2,
@@ -79,7 +79,7 @@ describe("useMaximumChildrenByType", () => {
                 })
             )
         ).toThrow(
-            reporter.message("MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("MAXIMUM_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_ACTIONS_MAXIMUM] ",
                 childNameSegment: " for DialogAction",
                 actualCount: 2,

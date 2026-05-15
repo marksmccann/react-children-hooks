@@ -52,7 +52,7 @@ describe("useMinimumChildrenByType", () => {
         expect(() =>
             renderHook(() => useMinimumChildrenByType(children, "button", 2))
         ).toThrow(
-            reporter.message("MINIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("MINIMUM_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 0,
@@ -73,7 +73,7 @@ describe("useMinimumChildrenByType", () => {
                 })
             )
         ).toThrow(
-            reporter.message("MINIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("MINIMUM_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_ACTIONS_MINIMUM] ",
                 childNameSegment: " for DialogAction",
                 actualCount: 1,
@@ -102,7 +102,7 @@ describe("useMinimumChildrenByType", () => {
                 })
             )
         ).toThrow(
-            reporter.message("MINIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("MINIMUM_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: " for DialogAction",
                 actualCount: 1,

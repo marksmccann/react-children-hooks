@@ -2,7 +2,7 @@ import type { ElementType, ReactNode } from "react";
 
 import { isElementOfType } from "./isElementOfType";
 import type { ElementOfType, ValidationOptions } from "./types";
-import { useMinimumChildrenWhere } from "./useMinimumChildrenWhere";
+import { useMinimumChildrenMatching } from "./useMinimumChildrenMatching";
 
 /**
  * Returns the direct child elements whose React element type exactly matches the provided type, or throws when fewer than the minimum count are found.
@@ -19,7 +19,7 @@ export function useMinimumChildrenByType<T extends ElementType>(
     minimumCount: number,
     options?: ValidationOptions
 ): ElementOfType<T>[] {
-    return useMinimumChildrenWhere(
+    return useMinimumChildrenMatching(
         children,
         (element): element is ElementOfType<T> =>
             isElementOfType(element, type),

@@ -2,7 +2,7 @@ import type { ElementType, ReactNode } from "react";
 
 import { isElementOfType } from "./isElementOfType";
 import type { ElementOfType, ValidationOptions } from "./types";
-import { useExactChildrenWhere } from "./useExactChildrenWhere";
+import { useExactChildrenMatching } from "./useExactChildrenMatching";
 
 /**
  * Returns the direct child elements whose React element type exactly matches the provided type, or throws when the exact count is not met.
@@ -19,7 +19,7 @@ export function useExactChildrenByType<T extends ElementType>(
     exactCount: number,
     options?: ValidationOptions
 ): ElementOfType<T>[] {
-    return useExactChildrenWhere(
+    return useExactChildrenMatching(
         children,
         (element): element is ElementOfType<T> =>
             isElementOfType(element, type),

@@ -2,7 +2,7 @@ import type { ElementType, ReactNode } from "react";
 
 import { isElementOfType } from "./isElementOfType";
 import type { ElementOfType } from "./types";
-import { useChildWhere } from "./useChildWhere";
+import { useChildMatching } from "./useChildMatching";
 
 /**
  * Returns the first direct child element whose React element type exactly matches the provided type.
@@ -15,7 +15,7 @@ export function useChildByType<T extends ElementType>(
     children: ReactNode,
     type: T
 ): ElementOfType<T> | null {
-    return useChildWhere(children, (element): element is ElementOfType<T> =>
+    return useChildMatching(children, (element): element is ElementOfType<T> =>
         isElementOfType(element, type)
     );
 }

@@ -9,15 +9,15 @@ import { childrenToElements } from "./childrenToElements";
  * @param predicate A predicate that is called with each direct child element to determine whether it should be included in the result.
  * @returns An array of direct child elements that satisfy the provided predicate.
  */
-export function useChildrenWhere<T extends ReactElement>(
+export function useChildrenMatching<T extends ReactElement>(
     children: ReactNode,
     predicate: (element: ReactElement) => element is T
 ): T[];
-export function useChildrenWhere(
+export function useChildrenMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean
 ): ReactElement[];
-export function useChildrenWhere(
+export function useChildrenMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean
 ): ReactElement[] {

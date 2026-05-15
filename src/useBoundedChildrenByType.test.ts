@@ -61,7 +61,7 @@ describe("useBoundedChildrenByType", () => {
                 })
             )
         ).toThrow(
-            reporter.message("BOUNDED_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("BOUNDED_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 1,
@@ -92,7 +92,7 @@ describe("useBoundedChildrenByType", () => {
                 )
             )
         ).toThrow(
-            reporter.message("BOUNDED_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("BOUNDED_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_ACTIONS_BOUNDED] ",
                 childNameSegment: " for DialogAction",
                 actualCount: 3,
@@ -125,7 +125,7 @@ describe("useBoundedChildrenByType", () => {
                 )
             )
         ).toThrow(
-            reporter.message("BOUNDED_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("BOUNDED_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: " for DialogAction",
                 actualCount: 1,

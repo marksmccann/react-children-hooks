@@ -7,26 +7,26 @@
 ### Query Hooks
 
 - [`useChildByType`](./docs/useChildByType.md)
-- [`useChildWhere`](./docs/useChildWhere.md)
+- [`useChildMatching`](./docs/useChildMatching.md)
 - [`useChildrenByType`](./docs/useChildrenByType.md)
-- [`useChildrenWhere`](./docs/useChildrenWhere.md)
+- [`useChildrenMatching`](./docs/useChildrenMatching.md)
 
 ### Validation + Query Hooks
 
 - [`useBoundedChildrenByType`](./docs/useBoundedChildrenByType.md)
-- [`useBoundedChildrenWhere`](./docs/useBoundedChildrenWhere.md)
+- [`useBoundedChildrenMatching`](./docs/useBoundedChildrenMatching.md)
 - [`useExactChildrenByType`](./docs/useExactChildrenByType.md)
-- [`useExactChildrenWhere`](./docs/useExactChildrenWhere.md)
+- [`useExactChildrenMatching`](./docs/useExactChildrenMatching.md)
 - [`useMaximumChildrenByType`](./docs/useMaximumChildrenByType.md)
-- [`useMaximumChildrenWhere`](./docs/useMaximumChildrenWhere.md)
+- [`useMaximumChildrenMatching`](./docs/useMaximumChildrenMatching.md)
 - [`useMinimumChildrenByType`](./docs/useMinimumChildrenByType.md)
-- [`useMinimumChildrenWhere`](./docs/useMinimumChildrenWhere.md)
+- [`useMinimumChildrenMatching`](./docs/useMinimumChildrenMatching.md)
 - [`useRequiredChildByType`](./docs/useRequiredChildByType.md)
-- [`useRequiredChildWhere`](./docs/useRequiredChildWhere.md)
+- [`useRequiredChildMatching`](./docs/useRequiredChildMatching.md)
 
 ### Validation Hooks
 
-- [`useHasChildWhere`](./docs/useHasChildWhere.md)
+- [`useHasChildMatching`](./docs/useHasChildMatching.md)
 
 ### Utilities
 

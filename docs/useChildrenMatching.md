@@ -1,16 +1,16 @@
-# `useChildrenWhere`
+# `useChildrenMatching`
 
 Returns the direct child elements that satisfy the provided predicate.
 
 ## Signature
 
 ```ts
-function useChildrenWhere<T extends React.ReactElement>(
+function useChildrenMatching<T extends React.ReactElement>(
     children: React.ReactNode,
     predicate: (element: React.ReactElement) => element is T
 ): T[];
 
-function useChildrenWhere(
+function useChildrenMatching(
     children: React.ReactNode,
     predicate: (element: React.ReactElement) => boolean
 ): React.ReactElement[];
@@ -30,10 +30,10 @@ An array of direct child elements that satisfy the provided predicate.
 ## Usage
 
 ```tsx
-import { useChildrenWhere } from "react-children-hooks";
+import { useChildrenMatching } from "react-children-hooks";
 
 function Toolbar({ children }: { children: React.ReactNode }) {
-    const submitButtons = useChildrenWhere(
+    const submitButtons = useChildrenMatching(
         children,
         (element) =>
             element.type === "button" && element.props.type === "submit"

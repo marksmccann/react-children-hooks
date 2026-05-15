@@ -9,7 +9,7 @@ import {
 import { describe, expect, it } from "vitest";
 
 import reporter from "./reporter";
-import { useRequiredChildWhere } from "./useRequiredChildWhere";
+import { useRequiredChildMatching } from "./useRequiredChildMatching";
 
 function ExampleComponent({
     children,
@@ -24,7 +24,7 @@ function isButtonElement(
     return element.type === "button";
 }
 
-describe("useRequiredChildWhere", () => {
+describe("useRequiredChildMatching", () => {
     it("returns the matching direct child for a boolean predicate", () => {
         const children = [
             createElement("span", { key: "span-1" }),
@@ -32,7 +32,7 @@ describe("useRequiredChildWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useRequiredChildWhere(
+            useRequiredChildMatching(
                 children,
                 (element) => element.type === "button"
             )
@@ -48,7 +48,7 @@ describe("useRequiredChildWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useRequiredChildWhere(children, isButtonElement)
+            useRequiredChildMatching(children, isButtonElement)
         );
 
         expect(result.current.props.type).toBe("submit");
@@ -59,13 +59,13 @@ describe("useRequiredChildWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useRequiredChildWhere(
+                useRequiredChildMatching(
                     children,
                     (element) => element.type === "button"
                 )
             )
         ).toThrow(
-            reporter.message("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+            reporter.message("REQUIRED_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: ""
             })
@@ -77,14 +77,14 @@ describe("useRequiredChildWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useRequiredChildWhere(
+                useRequiredChildMatching(
                     children,
                     (element) => element.type === "button",
                     { traceCode: "DIALOG_TRIGGER_MISSING" }
                 )
             )
         ).toThrow(
-            reporter.message("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+            reporter.message("REQUIRED_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_TRIGGER_MISSING] ",
                 childNameSegment: ""
             })
@@ -96,14 +96,14 @@ describe("useRequiredChildWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useRequiredChildWhere(
+                useRequiredChildMatching(
                     children,
                     (element) => element.type === "button",
                     { childName: "DialogTrigger" }
                 )
             )
         ).toThrow(
-            reporter.message("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+            reporter.message("REQUIRED_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: " for DialogTrigger"
             })
@@ -115,7 +115,7 @@ describe("useRequiredChildWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useRequiredChildWhere(
+                useRequiredChildMatching(
                     children,
                     (element) => element.type === "button",
                     {
@@ -125,7 +125,7 @@ describe("useRequiredChildWhere", () => {
                 )
             )
         ).toThrow(
-            reporter.message("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+            reporter.message("REQUIRED_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_TRIGGER_MISSING] ",
                 childNameSegment: " for DialogTrigger"
             })
@@ -143,14 +143,14 @@ describe("useRequiredChildWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useRequiredChildWhere(
+                useRequiredChildMatching(
                     children,
                     (element) => element.type === "button",
                     { childName: "DialogTrigger" }
                 )
             )
         ).toThrow(
-            reporter.message("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+            reporter.message("REQUIRED_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: " for DialogTrigger"
             })
@@ -167,7 +167,7 @@ describe("useRequiredChildWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useRequiredChildWhere(
+            useRequiredChildMatching(
                 children,
                 (element) => element.type === ExampleComponent,
                 { childName: "ExampleComponent" }

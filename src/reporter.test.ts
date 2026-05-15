@@ -5,7 +5,7 @@ import reporter from "./reporter";
 describe("reporter", () => {
     it("resolves the generic required-child validation message without an internal code suffix", () => {
         expect(
-            reporter.message("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+            reporter.message("REQUIRED_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: ""
             })
@@ -16,7 +16,7 @@ describe("reporter", () => {
 
     it("resolves the named required-child validation message without an internal code suffix", () => {
         expect(
-            reporter.message("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+            reporter.message("REQUIRED_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: " for DialogTrigger"
             })
@@ -27,7 +27,7 @@ describe("reporter", () => {
 
     it("throws formatted required-child validation messages from fail", () => {
         expect(() =>
-            reporter.fail("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+            reporter.fail("REQUIRED_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_TRIGGER_MISSING] ",
                 childNameSegment: " for DialogTrigger"
             })
@@ -38,7 +38,7 @@ describe("reporter", () => {
 
     it("resolves minimum-children validation messages without an internal code suffix", () => {
         expect(
-            reporter.message("MINIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("MINIMUM_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 0,
@@ -52,7 +52,7 @@ describe("reporter", () => {
 
     it("throws formatted minimum-children validation messages from fail", () => {
         expect(() =>
-            reporter.fail("MINIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.fail("MINIMUM_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_ACTIONS_MINIMUM] ",
                 childNameSegment: " for DialogAction",
                 actualCount: 1,
@@ -66,7 +66,7 @@ describe("reporter", () => {
 
     it("resolves maximum-children validation messages without an internal code suffix", () => {
         expect(
-            reporter.message("MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("MAXIMUM_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 2,
@@ -80,7 +80,7 @@ describe("reporter", () => {
 
     it("throws formatted maximum-children validation messages from fail", () => {
         expect(() =>
-            reporter.fail("MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.fail("MAXIMUM_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_ACTIONS_MAXIMUM] ",
                 childNameSegment: " for DialogAction",
                 actualCount: 2,
@@ -94,7 +94,7 @@ describe("reporter", () => {
 
     it("resolves exact-children validation messages without an internal code suffix", () => {
         expect(
-            reporter.message("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("EXACT_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 2,
@@ -108,7 +108,7 @@ describe("reporter", () => {
 
     it("throws formatted exact-children validation messages from fail", () => {
         expect(() =>
-            reporter.fail("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.fail("EXACT_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_ACTIONS_EXACT] ",
                 childNameSegment: " for DialogAction",
                 actualCount: 2,
@@ -122,7 +122,7 @@ describe("reporter", () => {
 
     it("resolves bounded-children validation messages without an internal code suffix", () => {
         expect(
-            reporter.message("BOUNDED_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("BOUNDED_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 3,
@@ -137,7 +137,7 @@ describe("reporter", () => {
 
     it("throws formatted bounded-children validation messages from fail", () => {
         expect(() =>
-            reporter.fail("BOUNDED_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.fail("BOUNDED_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_ACTIONS_BOUNDED] ",
                 childNameSegment: " for DialogAction",
                 actualCount: 3,

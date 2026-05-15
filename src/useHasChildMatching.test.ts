@@ -8,7 +8,7 @@ import {
 } from "react";
 import { describe, expect, it } from "vitest";
 
-import { useChildrenWhere } from "./useChildrenWhere";
+import { useHasChildMatching } from "./useHasChildMatching";
 
 function ExampleComponent({
     children,
@@ -40,39 +40,37 @@ function isTriggerExampleComponent(
     );
 }
 
-describe("useChildrenWhere", () => {
-    it("returns all direct child elements that satisfy a boolean predicate", () => {
+describe("useHasChildMatching", () => {
+    it("returns true when a direct child matches a boolean predicate", () => {
         const children = [
-            createElement("button", { key: "button-1", type: "button" }),
             createElement("span", { key: "span-1" }),
-            createElement("button", { key: "button-2", type: "submit" })
+            createElement("button", { key: "button-1" })
         ];
 
         const { result } = renderHook(() =>
-            useChildrenWhere(children, (element) => element.type === "button")
+            useHasChildMatching(
+                children,
+                (element) => element.type === "button"
+            )
         );
 
-        expect(result.current).toHaveLength(2);
-        expect(
-            result.current.every((element) => element.type === "button")
-        ).toBe(true);
+        expect(result.current).toBe(true);
     });
 
-    it("supports type-guard predicates for narrowed return types", () => {
+    it("returns true when a direct child matches a type-guard predicate", () => {
         const children = [
             createElement("span", { key: "span-1" }),
             createElement("button", { key: "button-1", type: "submit" })
         ];
 
         const { result } = renderHook(() =>
-            useChildrenWhere(children, isButtonElement)
+            useHasChildMatching(children, isButtonElement)
         );
 
-        expect(result.current).toHaveLength(1);
-        expect(result.current[0]?.props.type).toBe("submit");
+        expect(result.current).toBe(true);
     });
 
-    it("can match by arbitrary props on custom components", () => {
+    it("returns true when a custom component matches an arbitrary prop-based predicate", () => {
         const children = [
             createElement(ExampleComponent, {
                 key: "component-1",
@@ -85,11 +83,26 @@ describe("useChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useChildrenWhere(children, isTriggerExampleComponent)
+            useHasChildMatching(children, isTriggerExampleComponent)
         );
 
-        expect(result.current).toHaveLength(1);
-        expect(result.current[0]?.key).toBe(".$component-1");
+        expect(result.current).toBe(true);
+    });
+
+    it("returns false when no direct child matches the predicate", () => {
+        const children = [
+            createElement("span", { key: "span-1" }),
+            createElement("div", { key: "div-1" })
+        ];
+
+        const { result } = renderHook(() =>
+            useHasChildMatching(
+                children,
+                (element) => element.type === "button"
+            )
+        );
+
+        expect(result.current).toBe(false);
     });
 
     it("only inspects direct children", () => {
@@ -98,14 +111,16 @@ describe("useChildrenWhere", () => {
                 key: "fragment",
                 children: createElement("button", { key: "nested-button" })
             }),
-            createElement("button", { key: "direct-button" })
+            createElement("span", { key: "span-1" })
         ];
 
         const { result } = renderHook(() =>
-            useChildrenWhere(children, (element) => element.type === "button")
+            useHasChildMatching(
+                children,
+                (element) => element.type === "button"
+            )
         );
 
-        expect(result.current).toHaveLength(1);
-        expect(result.current[0]?.key).toBe(".$direct-button");
+        expect(result.current).toBe(false);
     });
 });

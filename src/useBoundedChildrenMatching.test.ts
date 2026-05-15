@@ -9,7 +9,7 @@ import {
 import { describe, expect, it } from "vitest";
 
 import reporter from "./reporter";
-import { useMinimumChildrenWhere } from "./useMinimumChildrenWhere";
+import { useBoundedChildrenMatching } from "./useBoundedChildrenMatching";
 
 function ExampleComponent({
     children,
@@ -24,8 +24,8 @@ function isButtonElement(
     return element.type === "button";
 }
 
-describe("useMinimumChildrenWhere", () => {
-    it("returns all matching direct children when the minimum count is satisfied", () => {
+describe("useBoundedChildrenMatching", () => {
+    it("returns all matching direct children when the count is within the bounds", () => {
         const children = [
             createElement("button", { key: "button-1" }),
             createElement("span", { key: "span-1" }),
@@ -33,10 +33,10 @@ describe("useMinimumChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useMinimumChildrenWhere(
+            useBoundedChildrenMatching(
                 children,
                 (element) => element.type === "button",
-                2
+                { minimum: 1, maximum: 3 }
             )
         );
 
@@ -54,14 +54,17 @@ describe("useMinimumChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useMinimumChildrenWhere(children, isButtonElement, 2)
+            useBoundedChildrenMatching(children, isButtonElement, {
+                minimum: 2,
+                maximum: 2
+            })
         );
 
         expect(result.current).toHaveLength(2);
         expect(result.current[1]?.props.type).toBe("submit");
     });
 
-    it("returns matching custom component children when the minimum count is satisfied", () => {
+    it("returns matching custom component children when the count is within the bounds", () => {
         const children = [
             createElement(ExampleComponent, {
                 key: "component-1",
@@ -75,10 +78,10 @@ describe("useMinimumChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useMinimumChildrenWhere(
+            useBoundedChildrenMatching(
                 children,
                 (element) => element.type === ExampleComponent,
-                2,
+                { minimum: 1, maximum: 2 },
                 { childName: "ExampleComponent" }
             )
         );
@@ -89,96 +92,79 @@ describe("useMinimumChildrenWhere", () => {
         ).toBe(true);
     });
 
-    it("throws the generic validation message when the minimum count is not met", () => {
-        const children = [createElement("span", { key: "span-1" })];
+    it("throws the generic validation message when fewer matches than the minimum are found", () => {
+        const children = [createElement("button", { key: "button-1" })];
 
         expect(() =>
             renderHook(() =>
-                useMinimumChildrenWhere(
+                useBoundedChildrenMatching(
                     children,
                     (element) => element.type === "button",
-                    2
+                    { minimum: 2, maximum: 3 }
                 )
             )
         ).toThrow(
-            reporter.message("MINIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("BOUNDED_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
-                actualCount: 0,
+                actualCount: 1,
+                actualCountPluralSuffix: "",
+                minimumCount: 2,
+                maximumCount: 3
+            })
+        );
+    });
+
+    it("throws the generic validation message when more matches than the maximum are found", () => {
+        const children = [
+            createElement("button", { key: "button-1" }),
+            createElement("button", { key: "button-2" }),
+            createElement("button", { key: "button-3" })
+        ];
+
+        expect(() =>
+            renderHook(() =>
+                useBoundedChildrenMatching(
+                    children,
+                    (element) => element.type === "button",
+                    { minimum: 1, maximum: 2 }
+                )
+            )
+        ).toThrow(
+            reporter.message("BOUNDED_CHILDREN_MATCHING_PREDICATE_FAILED", {
+                traceCodePrefix: "",
+                childNameSegment: "",
+                actualCount: 3,
                 actualCountPluralSuffix: "ren",
-                minimumCount: 2
+                minimumCount: 1,
+                maximumCount: 2
             })
         );
     });
 
-    it("throws the trace-prefixed generic validation message when only traceCode is provided", () => {
+    it("throws the trace-prefixed named validation message when options are provided", () => {
         const children = [createElement("button", { key: "button-1" })];
 
         expect(() =>
             renderHook(() =>
-                useMinimumChildrenWhere(
+                useBoundedChildrenMatching(
                     children,
                     (element) => element.type === "button",
-                    2,
-                    { traceCode: "DIALOG_ACTIONS_MINIMUM" }
-                )
-            )
-        ).toThrow(
-            reporter.message("MINIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
-                traceCodePrefix: "[DIALOG_ACTIONS_MINIMUM] ",
-                childNameSegment: "",
-                actualCount: 1,
-                actualCountPluralSuffix: "",
-                minimumCount: 2
-            })
-        );
-    });
-
-    it("throws the named validation message when only childName is provided", () => {
-        const children = [createElement("button", { key: "button-1" })];
-
-        expect(() =>
-            renderHook(() =>
-                useMinimumChildrenWhere(
-                    children,
-                    (element) => element.type === "button",
-                    2,
-                    { childName: "DialogAction" }
-                )
-            )
-        ).toThrow(
-            reporter.message("MINIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
-                traceCodePrefix: "",
-                childNameSegment: " for DialogAction",
-                actualCount: 1,
-                actualCountPluralSuffix: "",
-                minimumCount: 2
-            })
-        );
-    });
-
-    it("throws the trace-prefixed named validation message when both options are provided", () => {
-        const children = [createElement("button", { key: "button-1" })];
-
-        expect(() =>
-            renderHook(() =>
-                useMinimumChildrenWhere(
-                    children,
-                    (element) => element.type === "button",
-                    2,
+                    { minimum: 2, maximum: 3 },
                     {
-                        traceCode: "DIALOG_ACTIONS_MINIMUM",
+                        traceCode: "DIALOG_ACTIONS_BOUNDED",
                         childName: "DialogAction"
                     }
                 )
             )
         ).toThrow(
-            reporter.message("MINIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
-                traceCodePrefix: "[DIALOG_ACTIONS_MINIMUM] ",
+            reporter.message("BOUNDED_CHILDREN_MATCHING_PREDICATE_FAILED", {
+                traceCodePrefix: "[DIALOG_ACTIONS_BOUNDED] ",
                 childNameSegment: " for DialogAction",
                 actualCount: 1,
                 actualCountPluralSuffix: "",
-                minimumCount: 2
+                minimumCount: 2,
+                maximumCount: 3
             })
         );
     });
@@ -197,20 +183,21 @@ describe("useMinimumChildrenWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useMinimumChildrenWhere(
+                useBoundedChildrenMatching(
                     children,
                     (element) => element.type === "button",
-                    2,
+                    { minimum: 2, maximum: 3 },
                     { childName: "DialogAction" }
                 )
             )
         ).toThrow(
-            reporter.message("MINIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("BOUNDED_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: " for DialogAction",
                 actualCount: 1,
                 actualCountPluralSuffix: "",
-                minimumCount: 2
+                minimumCount: 2,
+                maximumCount: 3
             })
         );
     });

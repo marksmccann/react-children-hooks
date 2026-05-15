@@ -49,7 +49,7 @@ describe("useRequiredChildByType", () => {
         expect(() =>
             renderHook(() => useRequiredChildByType(children, "button"))
         ).toThrow(
-            reporter.message("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+            reporter.message("REQUIRED_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: ""
             })
@@ -67,7 +67,7 @@ describe("useRequiredChildByType", () => {
                 })
             )
         ).toThrow(
-            reporter.message("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+            reporter.message("REQUIRED_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_TRIGGER_MISSING] ",
                 childNameSegment: " for DialogTrigger"
             })
@@ -90,7 +90,7 @@ describe("useRequiredChildByType", () => {
                 })
             )
         ).toThrow(
-            reporter.message("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+            reporter.message("REQUIRED_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: " for DialogTrigger"
             })

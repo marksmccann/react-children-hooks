@@ -1,16 +1,16 @@
-# `useChildWhere`
+# `useChildMatching`
 
 Returns the first direct child element that satisfies the provided predicate.
 
 ## Signature
 
 ```ts
-function useChildWhere<T extends React.ReactElement>(
+function useChildMatching<T extends React.ReactElement>(
     children: React.ReactNode,
     predicate: (element: React.ReactElement) => element is T
 ): T | null;
 
-function useChildWhere(
+function useChildMatching(
     children: React.ReactNode,
     predicate: (element: React.ReactElement) => boolean
 ): React.ReactElement | null;
@@ -30,10 +30,10 @@ The first direct child element that satisfies the provided predicate, or `null` 
 ## Usage
 
 ```tsx
-import { useChildWhere } from "react-children-hooks";
+import { useChildMatching } from "react-children-hooks";
 
 function Dialog({ children }: { children: React.ReactNode }) {
-    const trigger = useChildWhere(
+    const trigger = useChildMatching(
         children,
         (element) => element.props.slot === "trigger"
     );

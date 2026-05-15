@@ -9,7 +9,7 @@ import {
 import { describe, expect, it } from "vitest";
 
 import reporter from "./reporter";
-import { useMaximumChildrenWhere } from "./useMaximumChildrenWhere";
+import { useMaximumChildrenMatching } from "./useMaximumChildrenMatching";
 
 function ExampleComponent({
     children,
@@ -24,7 +24,7 @@ function isButtonElement(
     return element.type === "button";
 }
 
-describe("useMaximumChildrenWhere", () => {
+describe("useMaximumChildrenMatching", () => {
     it("returns all matching direct children when the maximum count is not reached", () => {
         const children = [
             createElement("button", { key: "button-1" }),
@@ -33,7 +33,7 @@ describe("useMaximumChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useMaximumChildrenWhere(
+            useMaximumChildrenMatching(
                 children,
                 (element) => element.type === "button",
                 3
@@ -54,7 +54,7 @@ describe("useMaximumChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useMaximumChildrenWhere(
+            useMaximumChildrenMatching(
                 children,
                 (element) => element.type === "button",
                 2
@@ -75,7 +75,7 @@ describe("useMaximumChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useMaximumChildrenWhere(children, isButtonElement, 2)
+            useMaximumChildrenMatching(children, isButtonElement, 2)
         );
 
         expect(result.current).toHaveLength(2);
@@ -96,7 +96,7 @@ describe("useMaximumChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useMaximumChildrenWhere(
+            useMaximumChildrenMatching(
                 children,
                 (element) => element.type === ExampleComponent,
                 2,
@@ -118,14 +118,14 @@ describe("useMaximumChildrenWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useMaximumChildrenWhere(
+                useMaximumChildrenMatching(
                     children,
                     (element) => element.type === "button",
                     1
                 )
             )
         ).toThrow(
-            reporter.message("MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("MAXIMUM_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 2,
@@ -143,7 +143,7 @@ describe("useMaximumChildrenWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useMaximumChildrenWhere(
+                useMaximumChildrenMatching(
                     children,
                     (element) => element.type === "button",
                     1,
@@ -151,7 +151,7 @@ describe("useMaximumChildrenWhere", () => {
                 )
             )
         ).toThrow(
-            reporter.message("MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("MAXIMUM_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_ACTIONS_MAXIMUM] ",
                 childNameSegment: "",
                 actualCount: 2,
@@ -169,7 +169,7 @@ describe("useMaximumChildrenWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useMaximumChildrenWhere(
+                useMaximumChildrenMatching(
                     children,
                     (element) => element.type === "button",
                     1,
@@ -177,7 +177,7 @@ describe("useMaximumChildrenWhere", () => {
                 )
             )
         ).toThrow(
-            reporter.message("MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("MAXIMUM_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: " for DialogAction",
                 actualCount: 2,
@@ -195,7 +195,7 @@ describe("useMaximumChildrenWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useMaximumChildrenWhere(
+                useMaximumChildrenMatching(
                     children,
                     (element) => element.type === "button",
                     1,
@@ -206,7 +206,7 @@ describe("useMaximumChildrenWhere", () => {
                 )
             )
         ).toThrow(
-            reporter.message("MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("MAXIMUM_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_ACTIONS_MAXIMUM] ",
                 childNameSegment: " for DialogAction",
                 actualCount: 2,
@@ -229,7 +229,7 @@ describe("useMaximumChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useMaximumChildrenWhere(
+            useMaximumChildrenMatching(
                 children,
                 (element) => element.type === "button",
                 1,

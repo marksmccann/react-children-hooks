@@ -1,18 +1,18 @@
-# `useExactChildrenWhere`
+# `useExactChildrenMatching`
 
 Returns the direct child elements that satisfy the provided predicate, or throws when the exact count is not met.
 
 ## Signature
 
 ```ts
-function useExactChildrenWhere<T extends React.ReactElement>(
+function useExactChildrenMatching<T extends React.ReactElement>(
     children: React.ReactNode,
     predicate: (element: React.ReactElement) => element is T,
     exactCount: number,
     options?: ValidationOptions
 ): T[];
 
-function useExactChildrenWhere(
+function useExactChildrenMatching(
     children: React.ReactNode,
     predicate: (element: React.ReactElement) => boolean,
     exactCount: number,
@@ -36,10 +36,10 @@ The direct child elements that satisfy the provided predicate.
 ## Usage
 
 ```tsx
-import { useExactChildrenWhere } from "react-children-hooks";
+import { useExactChildrenMatching } from "react-children-hooks";
 
 function DialogActions({ children }: { children: React.ReactNode }) {
-    const actions = useExactChildrenWhere(
+    const actions = useExactChildrenMatching(
         children,
         (element) => element.type === "button",
         2,

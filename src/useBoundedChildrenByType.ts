@@ -6,7 +6,7 @@ import type {
     ElementOfType,
     ValidationOptions
 } from "./types";
-import { useBoundedChildrenWhere } from "./useBoundedChildrenWhere";
+import { useBoundedChildrenMatching } from "./useBoundedChildrenMatching";
 
 /**
  * Returns the direct child elements whose React element type exactly matches the provided type, or throws when the count falls outside the inclusive bounds.
@@ -23,7 +23,7 @@ export function useBoundedChildrenByType<T extends ElementType>(
     bounds: ChildrenCountBounds,
     options?: ValidationOptions
 ): ElementOfType<T>[] {
-    return useBoundedChildrenWhere(
+    return useBoundedChildrenMatching(
         children,
         (element): element is ElementOfType<T> =>
             isElementOfType(element, type),

@@ -9,7 +9,7 @@ import {
 import { describe, expect, it } from "vitest";
 
 import reporter from "./reporter";
-import { useExactChildrenWhere } from "./useExactChildrenWhere";
+import { useExactChildrenMatching } from "./useExactChildrenMatching";
 
 function ExampleComponent({
     children,
@@ -24,7 +24,7 @@ function isButtonElement(
     return element.type === "button";
 }
 
-describe("useExactChildrenWhere", () => {
+describe("useExactChildrenMatching", () => {
     it("returns all matching direct children when the exact count is met", () => {
         const children = [
             createElement("button", { key: "button-1" }),
@@ -33,7 +33,7 @@ describe("useExactChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useExactChildrenWhere(
+            useExactChildrenMatching(
                 children,
                 (element) => element.type === "button",
                 2
@@ -54,7 +54,7 @@ describe("useExactChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useExactChildrenWhere(children, isButtonElement, 2)
+            useExactChildrenMatching(children, isButtonElement, 2)
         );
 
         expect(result.current).toHaveLength(2);
@@ -75,7 +75,7 @@ describe("useExactChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useExactChildrenWhere(
+            useExactChildrenMatching(
                 children,
                 (element) => element.type === ExampleComponent,
                 2,
@@ -94,14 +94,14 @@ describe("useExactChildrenWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useExactChildrenWhere(
+                useExactChildrenMatching(
                     children,
                     (element) => element.type === "button",
                     2
                 )
             )
         ).toThrow(
-            reporter.message("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("EXACT_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 1,
@@ -119,14 +119,14 @@ describe("useExactChildrenWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useExactChildrenWhere(
+                useExactChildrenMatching(
                     children,
                     (element) => element.type === "button",
                     1
                 )
             )
         ).toThrow(
-            reporter.message("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("EXACT_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 2,
@@ -141,7 +141,7 @@ describe("useExactChildrenWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useExactChildrenWhere(
+                useExactChildrenMatching(
                     children,
                     (element) => element.type === "button",
                     2,
@@ -149,7 +149,7 @@ describe("useExactChildrenWhere", () => {
                 )
             )
         ).toThrow(
-            reporter.message("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("EXACT_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_ACTIONS_EXACT] ",
                 childNameSegment: "",
                 actualCount: 1,
@@ -164,7 +164,7 @@ describe("useExactChildrenWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useExactChildrenWhere(
+                useExactChildrenMatching(
                     children,
                     (element) => element.type === "button",
                     2,
@@ -172,7 +172,7 @@ describe("useExactChildrenWhere", () => {
                 )
             )
         ).toThrow(
-            reporter.message("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("EXACT_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: " for DialogAction",
                 actualCount: 1,
@@ -187,7 +187,7 @@ describe("useExactChildrenWhere", () => {
 
         expect(() =>
             renderHook(() =>
-                useExactChildrenWhere(
+                useExactChildrenMatching(
                     children,
                     (element) => element.type === "button",
                     2,
@@ -198,7 +198,7 @@ describe("useExactChildrenWhere", () => {
                 )
             )
         ).toThrow(
-            reporter.message("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("EXACT_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_ACTIONS_EXACT] ",
                 childNameSegment: " for DialogAction",
                 actualCount: 1,
@@ -221,7 +221,7 @@ describe("useExactChildrenWhere", () => {
         ];
 
         const { result } = renderHook(() =>
-            useExactChildrenWhere(
+            useExactChildrenMatching(
                 children,
                 (element) => element.type === "button",
                 1,

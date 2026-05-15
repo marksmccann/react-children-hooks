@@ -1,16 +1,16 @@
-# `useHasChildWhere`
+# `useHasChildMatching`
 
 Determines whether any direct child element satisfies the provided predicate.
 
 ## Signature
 
 ```ts
-function useHasChildWhere<T extends React.ReactElement>(
+function useHasChildMatching<T extends React.ReactElement>(
     children: React.ReactNode,
     predicate: (element: React.ReactElement) => element is T
 ): boolean;
 
-function useHasChildWhere(
+function useHasChildMatching(
     children: React.ReactNode,
     predicate: (element: React.ReactElement) => boolean
 ): boolean;
@@ -30,10 +30,10 @@ function useHasChildWhere(
 ## Usage
 
 ```tsx
-import { useHasChildWhere } from "react-children-hooks";
+import { useHasChildMatching } from "react-children-hooks";
 
 function Dialog({ children }: { children: React.ReactNode }) {
-    const hasTrigger = useHasChildWhere(
+    const hasTrigger = useHasChildMatching(
         children,
         (element) => element.props.slot === "trigger"
     );

@@ -52,7 +52,7 @@ describe("useExactChildrenByType", () => {
         expect(() =>
             renderHook(() => useExactChildrenByType(children, "button", 2))
         ).toThrow(
-            reporter.message("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("EXACT_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 1,
@@ -71,7 +71,7 @@ describe("useExactChildrenByType", () => {
         expect(() =>
             renderHook(() => useExactChildrenByType(children, "button", 1))
         ).toThrow(
-            reporter.message("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("EXACT_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 2,
@@ -92,7 +92,7 @@ describe("useExactChildrenByType", () => {
                 })
             )
         ).toThrow(
-            reporter.message("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+            reporter.message("EXACT_CHILDREN_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_ACTIONS_EXACT] ",
                 childNameSegment: " for DialogAction",
                 actualCount: 1,

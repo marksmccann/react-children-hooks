@@ -2,7 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 
 import reporter from "./reporter";
 import type { ValidationOptions } from "./types";
-import { useChildWhere } from "./useChildWhere";
+import { useChildMatching } from "./useChildMatching";
 
 /**
  * Returns the first direct child element that satisfies the provided predicate, or throws when no match is found.
@@ -12,28 +12,28 @@ import { useChildWhere } from "./useChildWhere";
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The first direct child element that satisfies the provided predicate.
  */
-export function useRequiredChildWhere<T extends ReactElement>(
+export function useRequiredChildMatching<T extends ReactElement>(
     children: ReactNode,
     predicate: (element: ReactElement) => element is T,
     options?: ValidationOptions
 ): T;
-export function useRequiredChildWhere(
+export function useRequiredChildMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     options?: ValidationOptions
 ): ReactElement;
-export function useRequiredChildWhere(
+export function useRequiredChildMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     options?: ValidationOptions
 ): ReactElement {
-    const child = useChildWhere(children, predicate);
+    const child = useChildMatching(children, predicate);
 
     if (child !== null) {
         return child;
     }
 
-    return reporter.fail("REQUIRED_CHILD_WHERE_PREDICATE_FAILED", {
+    return reporter.fail("REQUIRED_CHILD_MATCHING_PREDICATE_FAILED", {
         traceCodePrefix: options?.traceCode ? `[${options.traceCode}] ` : "",
         childNameSegment: options?.childName ? ` for ${options.childName}` : ""
     });

@@ -4,20 +4,20 @@
  * Hooks and child utilities will be exported here as the API is defined.
  */
 export { useChildByType } from "./useChildByType";
-export { useChildWhere } from "./useChildWhere";
+export { useChildMatching } from "./useChildMatching";
 export { useBoundedChildrenByType } from "./useBoundedChildrenByType";
-export { useBoundedChildrenWhere } from "./useBoundedChildrenWhere";
+export { useBoundedChildrenMatching } from "./useBoundedChildrenMatching";
 export { useChildrenByType } from "./useChildrenByType";
-export { useChildrenWhere } from "./useChildrenWhere";
+export { useChildrenMatching } from "./useChildrenMatching";
 export { useExactChildrenByType } from "./useExactChildrenByType";
-export { useExactChildrenWhere } from "./useExactChildrenWhere";
-export { useHasChildWhere } from "./useHasChildWhere";
+export { useExactChildrenMatching } from "./useExactChildrenMatching";
+export { useHasChildMatching } from "./useHasChildMatching";
 export { useMaximumChildrenByType } from "./useMaximumChildrenByType";
-export { useMaximumChildrenWhere } from "./useMaximumChildrenWhere";
+export { useMaximumChildrenMatching } from "./useMaximumChildrenMatching";
 export { useMinimumChildrenByType } from "./useMinimumChildrenByType";
-export { useMinimumChildrenWhere } from "./useMinimumChildrenWhere";
+export { useMinimumChildrenMatching } from "./useMinimumChildrenMatching";
 export { useRequiredChildByType } from "./useRequiredChildByType";
-export { useRequiredChildWhere } from "./useRequiredChildWhere";
+export { useRequiredChildMatching } from "./useRequiredChildMatching";
 export { childrenToElements } from "./childrenToElements";
 export { isElementOfType } from "./isElementOfType";
 export { isReactElement } from "./isReactElement";

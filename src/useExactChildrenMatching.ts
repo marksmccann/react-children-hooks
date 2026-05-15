@@ -2,7 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 
 import reporter from "./reporter";
 import type { ValidationOptions } from "./types";
-import { useChildrenWhere } from "./useChildrenWhere";
+import { useChildrenMatching } from "./useChildrenMatching";
 
 /**
  * Returns the direct child elements that satisfy the provided predicate, or throws when the exact count is not met.
@@ -13,31 +13,31 @@ import { useChildrenWhere } from "./useChildrenWhere";
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The direct child elements that satisfy the provided predicate.
  */
-export function useExactChildrenWhere<T extends ReactElement>(
+export function useExactChildrenMatching<T extends ReactElement>(
     children: ReactNode,
     predicate: (element: ReactElement) => element is T,
     exactCount: number,
     options?: ValidationOptions
 ): T[];
-export function useExactChildrenWhere(
+export function useExactChildrenMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     exactCount: number,
     options?: ValidationOptions
 ): ReactElement[];
-export function useExactChildrenWhere(
+export function useExactChildrenMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     exactCount: number,
     options?: ValidationOptions
 ): ReactElement[] {
-    const matchingChildren = useChildrenWhere(children, predicate);
+    const matchingChildren = useChildrenMatching(children, predicate);
 
     if (matchingChildren.length === exactCount) {
         return matchingChildren;
     }
 
-    return reporter.fail("EXACT_CHILDREN_WHERE_PREDICATE_FAILED", {
+    return reporter.fail("EXACT_CHILDREN_MATCHING_PREDICATE_FAILED", {
         traceCodePrefix: options?.traceCode ? `[${options.traceCode}] ` : "",
         childNameSegment: options?.childName ? ` for ${options.childName}` : "",
         actualCount: matchingChildren.length,

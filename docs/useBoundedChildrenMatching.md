@@ -1,21 +1,23 @@
-# `useRequiredChildWhere`
+# `useBoundedChildrenMatching`
 
-Returns the first direct child element that satisfies the provided predicate, or throws when no match is found.
+Returns the direct child elements that satisfy the provided predicate, or throws when the count falls outside the inclusive bounds.
 
 ## Signature
 
 ```ts
-function useRequiredChildWhere<T extends React.ReactElement>(
+function useBoundedChildrenMatching<T extends React.ReactElement>(
     children: React.ReactNode,
     predicate: (element: React.ReactElement) => element is T,
+    bounds: ChildrenCountBounds,
     options?: ValidationOptions
-): T;
+): T[];
 
-function useRequiredChildWhere(
+function useBoundedChildrenMatching(
     children: React.ReactNode,
     predicate: (element: React.ReactElement) => boolean,
+    bounds: ChildrenCountBounds,
     options?: ValidationOptions
-): React.ReactElement;
+): React.ReactElement[];
 ```
 
 ## Parameters
@@ -24,24 +26,26 @@ function useRequiredChildWhere(
 | ----------- | ------------------------------------------ | -------- | ------------------------------------------------------------------------------------------ |
 | `children`  | `React.ReactNode`                          | Yes      | The React children value to inspect.                                                       |
 | `predicate` | `(element: React.ReactElement) => boolean` | Yes      | A predicate that is called with each direct child element to determine whether it matches. |
+| `bounds`    | `ChildrenCountBounds`                      | Yes      | The inclusive minimum and maximum number of matching direct child elements allowed.        |
 | `options`   | `ValidationOptions`                        | No       | Optional reporting metadata used to derive the thrown validation message.                  |
 
 ## Returns
 
-The first direct child element that satisfies the provided predicate.
+The direct child elements that satisfy the provided predicate.
 
 ## Usage
 
 ```tsx
-import { useRequiredChildWhere } from "react-children-hooks";
+import { useBoundedChildrenMatching } from "react-children-hooks";
 
-function Dialog({ children }: { children: React.ReactNode }) {
-    const trigger = useRequiredChildWhere(
+function DialogActions({ children }: { children: React.ReactNode }) {
+    const actions = useBoundedChildrenMatching(
         children,
-        (element) => element.props.slot === "trigger",
-        { traceCode: "DIALOG_TRIGGER_MISSING", childName: "DialogTrigger" }
+        (element) => element.type === "button",
+        { minimum: 1, maximum: 3 },
+        { traceCode: "DIALOG_ACTIONS_BOUNDED", childName: "DialogAction" }
     );
 
-    return <div>{trigger}</div>;
+    return <div>{actions}</div>;
 }
 ```
