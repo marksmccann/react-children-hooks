@@ -21,8 +21,12 @@
 - [`useMaximumChildrenMatching`](./docs/useMaximumChildrenMatching.md)
 - [`useMinimumChildrenByType`](./docs/useMinimumChildrenByType.md)
 - [`useMinimumChildrenMatching`](./docs/useMinimumChildrenMatching.md)
+- [`useOptionalChildByType`](./docs/useOptionalChildByType.md)
+- [`useOptionalChildMatching`](./docs/useOptionalChildMatching.md)
 - [`useRequiredChildByType`](./docs/useRequiredChildByType.md)
 - [`useRequiredChildMatching`](./docs/useRequiredChildMatching.md)
+- [`useUniqueChildByType`](./docs/useUniqueChildByType.md)
+- [`useUniqueChildMatching`](./docs/useUniqueChildMatching.md)
 
 ### Validation Hooks
 
@@ -36,6 +40,6 @@
 
 ### Types
 
-- `ChildrenCountBounds`
-- `ElementOfType`
-- `ValidationOptions`
+- [`ChildrenCountBounds`](./src/types.ts)
+- [`ElementOfType`](./src/types.ts)
+- [`ValidationOptions`](./src/types.ts)

@@ -2,6 +2,24 @@ import { createReporter, type RuntimeReporterMessages } from "runtime-reporter";
 
 const messages: RuntimeReporterMessages<
     | {
+          code: "OPTIONAL_CHILD_MATCHING_PREDICATE_FAILED";
+          template: "{{ traceCodePrefix }}Optional child validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected at most 1.";
+          tokens:
+              | "traceCodePrefix"
+              | "childNameSegment"
+              | "actualCount"
+              | "actualCountPluralSuffix";
+      }
+    | {
+          code: "UNIQUE_CHILD_MATCHING_PREDICATE_FAILED";
+          template: "{{ traceCodePrefix }}Unique child validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected exactly 1.";
+          tokens:
+              | "traceCodePrefix"
+              | "childNameSegment"
+              | "actualCount"
+              | "actualCountPluralSuffix";
+      }
+    | {
           code: "REQUIRED_CHILD_MATCHING_PREDICATE_FAILED";
           template: "{{ traceCodePrefix }}Required child validation failed{{ childNameSegment }} because no direct child satisfied the provided predicate.";
           tokens: "traceCodePrefix" | "childNameSegment";
@@ -48,6 +66,10 @@ const messages: RuntimeReporterMessages<
               | "maximumCount";
       }
 > = {
+    OPTIONAL_CHILD_MATCHING_PREDICATE_FAILED:
+        "{{ traceCodePrefix }}Optional child validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected at most 1.",
+    UNIQUE_CHILD_MATCHING_PREDICATE_FAILED:
+        "{{ traceCodePrefix }}Unique child validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected exactly 1.",
     REQUIRED_CHILD_MATCHING_PREDICATE_FAILED:
         "{{ traceCodePrefix }}Required child validation failed{{ childNameSegment }} because no direct child satisfied the provided predicate.",
     MINIMUM_CHILDREN_MATCHING_PREDICATE_FAILED:

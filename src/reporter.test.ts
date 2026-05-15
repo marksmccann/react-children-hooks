@@ -3,6 +3,58 @@ import { describe, expect, it } from "vitest";
 import reporter from "./reporter";
 
 describe("reporter", () => {
+    it("resolves optional-child validation messages without an internal code suffix", () => {
+        expect(
+            reporter.message("OPTIONAL_CHILD_MATCHING_PREDICATE_FAILED", {
+                traceCodePrefix: "",
+                childNameSegment: "",
+                actualCount: 2,
+                actualCountPluralSuffix: "ren"
+            })
+        ).toBe(
+            "Optional child validation failed because 2 direct children satisfied the provided predicate; expected at most 1."
+        );
+    });
+
+    it("throws formatted optional-child validation messages from fail", () => {
+        expect(() =>
+            reporter.fail("OPTIONAL_CHILD_MATCHING_PREDICATE_FAILED", {
+                traceCodePrefix: "[DIALOG_ICON_OPTIONAL] ",
+                childNameSegment: " for DialogIcon",
+                actualCount: 2,
+                actualCountPluralSuffix: "ren"
+            })
+        ).toThrow(
+            "[DIALOG_ICON_OPTIONAL] Optional child validation failed for DialogIcon because 2 direct children satisfied the provided predicate; expected at most 1."
+        );
+    });
+
+    it("resolves unique-child validation messages without an internal code suffix", () => {
+        expect(
+            reporter.message("UNIQUE_CHILD_MATCHING_PREDICATE_FAILED", {
+                traceCodePrefix: "",
+                childNameSegment: "",
+                actualCount: 2,
+                actualCountPluralSuffix: "ren"
+            })
+        ).toBe(
+            "Unique child validation failed because 2 direct children satisfied the provided predicate; expected exactly 1."
+        );
+    });
+
+    it("throws formatted unique-child validation messages from fail", () => {
+        expect(() =>
+            reporter.fail("UNIQUE_CHILD_MATCHING_PREDICATE_FAILED", {
+                traceCodePrefix: "[DIALOG_TRIGGER_UNIQUE] ",
+                childNameSegment: " for DialogTrigger",
+                actualCount: 0,
+                actualCountPluralSuffix: "ren"
+            })
+        ).toThrow(
+            "[DIALOG_TRIGGER_UNIQUE] Unique child validation failed for DialogTrigger because 0 direct children satisfied the provided predicate; expected exactly 1."
+        );
+    });
+
     it("resolves the generic required-child validation message without an internal code suffix", () => {
         expect(
             reporter.message("REQUIRED_CHILD_MATCHING_PREDICATE_FAILED", {
