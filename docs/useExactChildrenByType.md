@@ -9,18 +9,18 @@ function useExactChildrenByType<T extends React.ElementType>(
     children: React.ReactNode,
     type: T,
     exactCount: number,
-    options?: UseExactChildrenWhereOptions
+    options?: ValidationOptions
 ): ElementOfType<T>[];
 ```
 
 ## Parameters
 
-| Parameter    | Type                           | Required | Description                                                                                                                                                              |
-| ------------ | ------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `children`   | `React.ReactNode`              | Yes      | The React children value to inspect.                                                                                                                                     |
-| `type`       | `React.ElementType`            | Yes      | The element or component type to match against each direct child element.                                                                                                |
-| `exactCount` | `number`                       | Yes      | The exact number of matching direct child elements required.                                                                                                             |
-| `options`    | `UseExactChildrenWhereOptions` | No       | Optional reporting metadata used to derive the thrown validation message. See [`UseExactChildrenWhereOptions`](./useExactChildrenWhere.md#useexactchildrenwhereoptions). |
+| Parameter    | Type                | Required | Description                                                               |
+| ------------ | ------------------- | -------- | ------------------------------------------------------------------------- |
+| `children`   | `React.ReactNode`   | Yes      | The React children value to inspect.                                      |
+| `type`       | `React.ElementType` | Yes      | The element or component type to match against each direct child element. |
+| `exactCount` | `number`            | Yes      | The exact number of matching direct child elements required.              |
+| `options`    | `ValidationOptions` | No       | Optional reporting metadata used to derive the thrown validation message. |
 
 ## Returns
 

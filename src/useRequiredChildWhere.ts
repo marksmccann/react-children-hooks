@@ -1,18 +1,8 @@
 import type { ReactElement, ReactNode } from "react";
 
 import reporter from "./reporter";
+import type { ValidationOptions } from "./types";
 import { useChildWhere } from "./useChildWhere";
-
-export type UseRequiredChildWhereOptions = {
-    /**
-     * An optional consumer-defined trace code that is prefixed to the thrown validation message.
-     */
-    traceCode?: string;
-    /**
-     * An optional human-readable child name that is included in the thrown validation message.
-     */
-    childName?: string;
-};
 
 /**
  * Returns the first direct child element that satisfies the provided predicate, or throws when no match is found.
@@ -25,17 +15,17 @@ export type UseRequiredChildWhereOptions = {
 export function useRequiredChildWhere<T extends ReactElement>(
     children: ReactNode,
     predicate: (element: ReactElement) => element is T,
-    options?: UseRequiredChildWhereOptions
+    options?: ValidationOptions
 ): T;
 export function useRequiredChildWhere(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
-    options?: UseRequiredChildWhereOptions
+    options?: ValidationOptions
 ): ReactElement;
 export function useRequiredChildWhere(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
-    options?: UseRequiredChildWhereOptions
+    options?: ValidationOptions
 ): ReactElement {
     const child = useChildWhere(children, predicate);
 

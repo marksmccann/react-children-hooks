@@ -1,8 +1,8 @@
 import type { ElementType, ReactNode } from "react";
 
 import { isElementOfType } from "./isElementOfType";
-import { useChildWhere } from "./useChildWhere";
 import type { ElementOfType } from "./types";
+import { useChildWhere } from "./useChildWhere";
 
 /**
  * Returns the first direct child element whose React element type exactly matches the provided type.

@@ -5,6 +5,8 @@
  */
 export { useChildByType } from "./useChildByType";
 export { useChildWhere } from "./useChildWhere";
+export { useBoundedChildrenByType } from "./useBoundedChildrenByType";
+export { useBoundedChildrenWhere } from "./useBoundedChildrenWhere";
 export { useChildrenByType } from "./useChildrenByType";
 export { useChildrenWhere } from "./useChildrenWhere";
 export { useExactChildrenByType } from "./useExactChildrenByType";
@@ -19,8 +21,8 @@ export { useRequiredChildWhere } from "./useRequiredChildWhere";
 export { childrenToElements } from "./childrenToElements";
 export { isElementOfType } from "./isElementOfType";
 export { isReactElement } from "./isReactElement";
-export type { ElementOfType } from "./types";
-export type { UseExactChildrenWhereOptions } from "./useExactChildrenWhere";
-export type { UseMaximumChildrenWhereOptions } from "./useMaximumChildrenWhere";
-export type { UseMinimumChildrenWhereOptions } from "./useMinimumChildrenWhere";
-export type { UseRequiredChildWhereOptions } from "./useRequiredChildWhere";
+export type {
+    ChildrenCountBounds,
+    ElementOfType,
+    ValidationOptions
+} from "./types";

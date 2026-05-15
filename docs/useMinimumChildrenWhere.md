@@ -9,32 +9,25 @@ function useMinimumChildrenWhere<T extends React.ReactElement>(
     children: React.ReactNode,
     predicate: (element: React.ReactElement) => element is T,
     minimumCount: number,
-    options?: UseMinimumChildrenWhereOptions
+    options?: ValidationOptions
 ): T[];
 
 function useMinimumChildrenWhere(
     children: React.ReactNode,
     predicate: (element: React.ReactElement) => boolean,
     minimumCount: number,
-    options?: UseMinimumChildrenWhereOptions
+    options?: ValidationOptions
 ): React.ReactElement[];
 ```
 
 ## Parameters
 
-| Parameter      | Type                                       | Required | Description                                                                                                                                        |
-| -------------- | ------------------------------------------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`     | `React.ReactNode`                          | Yes      | The React children value to inspect.                                                                                                               |
-| `predicate`    | `(element: React.ReactElement) => boolean` | Yes      | A predicate that is called with each direct child element to determine whether it matches.                                                         |
-| `minimumCount` | `number`                                   | Yes      | The minimum number of matching direct child elements required.                                                                                     |
-| `options`      | `UseMinimumChildrenWhereOptions`           | No       | Optional reporting metadata used to derive the thrown validation message. See [`UseMinimumChildrenWhereOptions`](#useminimumchildrenwhereoptions). |
-
-## `UseMinimumChildrenWhereOptions`
-
-| Property    | Type     | Required | Description                                                                                |
-| ----------- | -------- | -------- | ------------------------------------------------------------------------------------------ |
-| `traceCode` | `string` | No       | An optional consumer-defined trace code that is prefixed to the thrown validation message. |
-| `childName` | `string` | No       | An optional human-readable child name that is included in the thrown validation message.   |
+| Parameter      | Type                                       | Required | Description                                                                                |
+| -------------- | ------------------------------------------ | -------- | ------------------------------------------------------------------------------------------ |
+| `children`     | `React.ReactNode`                          | Yes      | The React children value to inspect.                                                       |
+| `predicate`    | `(element: React.ReactElement) => boolean` | Yes      | A predicate that is called with each direct child element to determine whether it matches. |
+| `minimumCount` | `number`                                   | Yes      | The minimum number of matching direct child elements required.                             |
+| `options`      | `ValidationOptions`                        | No       | Optional reporting metadata used to derive the thrown validation message.                  |
 
 ## Returns
 

@@ -8,17 +8,17 @@ Returns the first direct child element whose React element type exactly matches 
 function useRequiredChildByType<T extends React.ElementType>(
     children: React.ReactNode,
     type: T,
-    options?: UseRequiredChildWhereOptions
+    options?: ValidationOptions
 ): ElementOfType<T>;
 ```
 
 ## Parameters
 
-| Parameter  | Type                           | Required | Description                                                                                                                                                              |
-| ---------- | ------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `children` | `React.ReactNode`              | Yes      | The React children value to inspect.                                                                                                                                     |
-| `type`     | `React.ElementType`            | Yes      | The element or component type to match against each direct child element.                                                                                                |
-| `options`  | `UseRequiredChildWhereOptions` | No       | Optional reporting metadata used to derive the thrown validation message. See [`UseRequiredChildWhereOptions`](./useRequiredChildWhere.md#userequiredchildwhereoptions). |
+| Parameter  | Type                | Required | Description                                                               |
+| ---------- | ------------------- | -------- | ------------------------------------------------------------------------- |
+| `children` | `React.ReactNode`   | Yes      | The React children value to inspect.                                      |
+| `type`     | `React.ElementType` | Yes      | The element or component type to match against each direct child element. |
+| `options`  | `ValidationOptions` | No       | Optional reporting metadata used to derive the thrown validation message. |
 
 ## Returns
 

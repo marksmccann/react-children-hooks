@@ -9,18 +9,18 @@ function useMaximumChildrenByType<T extends React.ElementType>(
     children: React.ReactNode,
     type: T,
     maximumCount: number,
-    options?: UseMaximumChildrenWhereOptions
+    options?: ValidationOptions
 ): ElementOfType<T>[];
 ```
 
 ## Parameters
 
-| Parameter      | Type                             | Required | Description                                                                                                                                                                    |
-| -------------- | -------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `children`     | `React.ReactNode`                | Yes      | The React children value to inspect.                                                                                                                                           |
-| `type`         | `React.ElementType`              | Yes      | The element or component type to match against each direct child element.                                                                                                      |
-| `maximumCount` | `number`                         | Yes      | The maximum number of matching direct child elements allowed.                                                                                                                  |
-| `options`      | `UseMaximumChildrenWhereOptions` | No       | Optional reporting metadata used to derive the thrown validation message. See [`UseMaximumChildrenWhereOptions`](./useMaximumChildrenWhere.md#usemaximumchildrenwhereoptions). |
+| Parameter      | Type                | Required | Description                                                               |
+| -------------- | ------------------- | -------- | ------------------------------------------------------------------------- |
+| `children`     | `React.ReactNode`   | Yes      | The React children value to inspect.                                      |
+| `type`         | `React.ElementType` | Yes      | The element or component type to match against each direct child element. |
+| `maximumCount` | `number`            | Yes      | The maximum number of matching direct child elements allowed.             |
+| `options`      | `ValidationOptions` | No       | Optional reporting metadata used to derive the thrown validation message. |
 
 ## Returns
 

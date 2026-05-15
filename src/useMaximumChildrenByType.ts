@@ -1,11 +1,8 @@
 import type { ElementType, ReactNode } from "react";
 
 import { isElementOfType } from "./isElementOfType";
-import {
-    useMaximumChildrenWhere,
-    type UseMaximumChildrenWhereOptions
-} from "./useMaximumChildrenWhere";
-import type { ElementOfType } from "./types";
+import type { ElementOfType, ValidationOptions } from "./types";
+import { useMaximumChildrenWhere } from "./useMaximumChildrenWhere";
 
 /**
  * Returns the direct child elements whose React element type exactly matches the provided type, or throws when more than the maximum count are found.
@@ -20,7 +17,7 @@ export function useMaximumChildrenByType<T extends ElementType>(
     children: ReactNode,
     type: T,
     maximumCount: number,
-    options?: UseMaximumChildrenWhereOptions
+    options?: ValidationOptions
 ): ElementOfType<T>[] {
     return useMaximumChildrenWhere(
         children,

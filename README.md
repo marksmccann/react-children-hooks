@@ -13,6 +13,8 @@
 
 ### Validation + Query Hooks
 
+- [`useBoundedChildrenByType`](./docs/useBoundedChildrenByType.md)
+- [`useBoundedChildrenWhere`](./docs/useBoundedChildrenWhere.md)
 - [`useExactChildrenByType`](./docs/useExactChildrenByType.md)
 - [`useExactChildrenWhere`](./docs/useExactChildrenWhere.md)
 - [`useMaximumChildrenByType`](./docs/useMaximumChildrenByType.md)
@@ -34,4 +36,6 @@
 
 ### Types
 
-- [`ElementOfType`](./docs/ElementOfType.md)
+- `ChildrenCountBounds`
+- `ElementOfType`
+- `ValidationOptions`

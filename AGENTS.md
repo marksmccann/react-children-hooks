@@ -38,6 +38,7 @@
 ## Codebase Conventions
 
 - Follow the existing TypeScript style in `src/`: named exports, explicit React type imports, and concise JSDoc on public hooks and utilities.
+- Put shared public API types in `src/types.ts` rather than creating standalone source files for each type.
 - Preserve the library's direct-children semantics unless a task explicitly requires changing that behavior.
 - Prefer small focused utilities and hooks over broad abstractions.
 - Keep React as an external dependency and avoid introducing unnecessary runtime dependencies.
@@ -57,6 +58,7 @@
 ## Documentation Conventions
 
 - Keep README and `docs/*.md` terminology aligned with the implementation.
+- Do not create standalone docs pages for individual public API types unless the user explicitly asks for them.
 - When adding a new hook or utility, add:
     - the implementation in `src/`
     - tests in `src/`

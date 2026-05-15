@@ -36,6 +36,17 @@ const messages: RuntimeReporterMessages<
               | "actualCountPluralSuffix"
               | "exactCount";
       }
+    | {
+          code: "BOUNDED_CHILDREN_WHERE_PREDICATE_FAILED";
+          template: "{{ traceCodePrefix }}Bounded children validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected between {{ minimumCount }} and {{ maximumCount }} inclusive.";
+          tokens:
+              | "traceCodePrefix"
+              | "childNameSegment"
+              | "actualCount"
+              | "actualCountPluralSuffix"
+              | "minimumCount"
+              | "maximumCount";
+      }
 > = {
     REQUIRED_CHILD_WHERE_PREDICATE_FAILED:
         "{{ traceCodePrefix }}Required child validation failed{{ childNameSegment }} because no direct child satisfied the provided predicate.",
@@ -44,7 +55,9 @@ const messages: RuntimeReporterMessages<
     MAXIMUM_CHILDREN_WHERE_PREDICATE_FAILED:
         "{{ traceCodePrefix }}Maximum children validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected at most {{ maximumCount }}.",
     EXACT_CHILDREN_WHERE_PREDICATE_FAILED:
-        "{{ traceCodePrefix }}Exact children validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected exactly {{ exactCount }}."
+        "{{ traceCodePrefix }}Exact children validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected exactly {{ exactCount }}.",
+    BOUNDED_CHILDREN_WHERE_PREDICATE_FAILED:
+        "{{ traceCodePrefix }}Bounded children validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected between {{ minimumCount }} and {{ maximumCount }} inclusive."
 };
 
 /** The runtime reporter for react-children-hooks */

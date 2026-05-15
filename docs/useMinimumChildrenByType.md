@@ -9,18 +9,18 @@ function useMinimumChildrenByType<T extends React.ElementType>(
     children: React.ReactNode,
     type: T,
     minimumCount: number,
-    options?: UseMinimumChildrenWhereOptions
+    options?: ValidationOptions
 ): ElementOfType<T>[];
 ```
 
 ## Parameters
 
-| Parameter      | Type                             | Required | Description                                                                                                                                                                    |
-| -------------- | -------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `children`     | `React.ReactNode`                | Yes      | The React children value to inspect.                                                                                                                                           |
-| `type`         | `React.ElementType`              | Yes      | The element or component type to match against each direct child element.                                                                                                      |
-| `minimumCount` | `number`                         | Yes      | The minimum number of matching direct child elements required.                                                                                                                 |
-| `options`      | `UseMinimumChildrenWhereOptions` | No       | Optional reporting metadata used to derive the thrown validation message. See [`UseMinimumChildrenWhereOptions`](./useMinimumChildrenWhere.md#useminimumchildrenwhereoptions). |
+| Parameter      | Type                | Required | Description                                                               |
+| -------------- | ------------------- | -------- | ------------------------------------------------------------------------- |
+| `children`     | `React.ReactNode`   | Yes      | The React children value to inspect.                                      |
+| `type`         | `React.ElementType` | Yes      | The element or component type to match against each direct child element. |
+| `minimumCount` | `number`            | Yes      | The minimum number of matching direct child elements required.            |
+| `options`      | `ValidationOptions` | No       | Optional reporting metadata used to derive the thrown validation message. |
 
 ## Returns
 

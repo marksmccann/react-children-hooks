@@ -1,18 +1,8 @@
 import type { ReactElement, ReactNode } from "react";
 
 import reporter from "./reporter";
+import type { ValidationOptions } from "./types";
 import { useChildrenWhere } from "./useChildrenWhere";
-
-export type UseExactChildrenWhereOptions = {
-    /**
-     * An optional consumer-defined trace code that is prefixed to the thrown validation message.
-     */
-    traceCode?: string;
-    /**
-     * An optional human-readable child name that is included in the thrown validation message.
-     */
-    childName?: string;
-};
 
 /**
  * Returns the direct child elements that satisfy the provided predicate, or throws when the exact count is not met.
@@ -27,19 +17,19 @@ export function useExactChildrenWhere<T extends ReactElement>(
     children: ReactNode,
     predicate: (element: ReactElement) => element is T,
     exactCount: number,
-    options?: UseExactChildrenWhereOptions
+    options?: ValidationOptions
 ): T[];
 export function useExactChildrenWhere(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     exactCount: number,
-    options?: UseExactChildrenWhereOptions
+    options?: ValidationOptions
 ): ReactElement[];
 export function useExactChildrenWhere(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     exactCount: number,
-    options?: UseExactChildrenWhereOptions
+    options?: ValidationOptions
 ): ReactElement[] {
     const matchingChildren = useChildrenWhere(children, predicate);
 

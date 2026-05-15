@@ -1,11 +1,8 @@
 import type { ElementType, ReactNode } from "react";
 
 import { isElementOfType } from "./isElementOfType";
-import {
-    useRequiredChildWhere,
-    type UseRequiredChildWhereOptions
-} from "./useRequiredChildWhere";
-import type { ElementOfType } from "./types";
+import type { ElementOfType, ValidationOptions } from "./types";
+import { useRequiredChildWhere } from "./useRequiredChildWhere";
 
 /**
  * Returns the first direct child element whose React element type exactly matches the provided type, or throws when no match is found.
@@ -18,7 +15,7 @@ import type { ElementOfType } from "./types";
 export function useRequiredChildByType<T extends ElementType>(
     children: ReactNode,
     type: T,
-    options?: UseRequiredChildWhereOptions
+    options?: ValidationOptions
 ): ElementOfType<T> {
     return useRequiredChildWhere(
         children,

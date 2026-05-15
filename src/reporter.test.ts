@@ -119,4 +119,34 @@ describe("reporter", () => {
             "[DIALOG_ACTIONS_EXACT] Exact children validation failed for DialogAction because 2 direct children satisfied the provided predicate; expected exactly 1."
         );
     });
+
+    it("resolves bounded-children validation messages without an internal code suffix", () => {
+        expect(
+            reporter.message("BOUNDED_CHILDREN_WHERE_PREDICATE_FAILED", {
+                traceCodePrefix: "",
+                childNameSegment: "",
+                actualCount: 3,
+                actualCountPluralSuffix: "ren",
+                minimumCount: 1,
+                maximumCount: 2
+            })
+        ).toBe(
+            "Bounded children validation failed because 3 direct children satisfied the provided predicate; expected between 1 and 2 inclusive."
+        );
+    });
+
+    it("throws formatted bounded-children validation messages from fail", () => {
+        expect(() =>
+            reporter.fail("BOUNDED_CHILDREN_WHERE_PREDICATE_FAILED", {
+                traceCodePrefix: "[DIALOG_ACTIONS_BOUNDED] ",
+                childNameSegment: " for DialogAction",
+                actualCount: 3,
+                actualCountPluralSuffix: "ren",
+                minimumCount: 1,
+                maximumCount: 2
+            })
+        ).toThrow(
+            "[DIALOG_ACTIONS_BOUNDED] Bounded children validation failed for DialogAction because 3 direct children satisfied the provided predicate; expected between 1 and 2 inclusive."
+        );
+    });
 });
