@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0 (2026-05-15)
+
+- feat: create \*ByType variants for all validation+query hooks ae39d37
+- feat: create useBoundedChildren\* hooks + reforganized options types c742be7
+- feat: rename *Where hooks to *Matching ddcd491
+
 ## 0.2.0 (2026-05-14)
 
 - feat: create useExactChildrenWhere hook + AGENTS.md file a441f78
