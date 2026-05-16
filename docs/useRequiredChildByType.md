@@ -1,6 +1,6 @@
 # `useRequiredChildByType`
 
-Returns the first direct child element whose React element type exactly matches the provided type, or throws when no match is found.
+Returns the first child element whose React element type exactly matches the provided type, or throws when no match is found.
 
 ## Signature
 
@@ -14,15 +14,15 @@ function useRequiredChildByType<T extends React.ElementType>(
 
 ## Parameters
 
-| Parameter  | Type                | Required | Description                                                               |
-| ---------- | ------------------- | -------- | ------------------------------------------------------------------------- |
-| `children` | `React.ReactNode`   | Yes      | The React children value to inspect.                                      |
-| `type`     | `React.ElementType` | Yes      | The element or component type to match against each direct child element. |
-| `options`  | `ValidationOptions` | No       | Optional reporting metadata used to derive the thrown validation message. |
+| Parameter  | Type                | Required | Description                                                                                                                            |
+| ---------- | ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `children` | `React.ReactNode`   | Yes      | The React children value to inspect.                                                                                                   |
+| `type`     | `React.ElementType` | Yes      | The element or component type to match against each direct child element.                                                              |
+| `options`  | `ValidationOptions` | No       | Optional reporting and traversal metadata used to derive the thrown validation message and configure how child elements are inspected. |
 
 ## Returns
 
-The first direct child element whose type matches the provided element type.
+The first child element whose type matches the provided element type.
 
 ## Usage
 

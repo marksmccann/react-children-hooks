@@ -1,6 +1,6 @@
 # `useRequiredChildMatching`
 
-Returns the first direct child element that satisfies the provided predicate, or throws when no match is found.
+Returns the first child element that satisfies the provided predicate, or throws when no match is found.
 
 ## Signature
 
@@ -20,15 +20,15 @@ function useRequiredChildMatching(
 
 ## Parameters
 
-| Parameter   | Type                                       | Required | Description                                                                                |
-| ----------- | ------------------------------------------ | -------- | ------------------------------------------------------------------------------------------ |
-| `children`  | `React.ReactNode`                          | Yes      | The React children value to inspect.                                                       |
-| `predicate` | `(element: React.ReactElement) => boolean` | Yes      | A predicate that is called with each direct child element to determine whether it matches. |
-| `options`   | `ValidationOptions`                        | No       | Optional reporting metadata used to derive the thrown validation message.                  |
+| Parameter   | Type                                       | Required | Description                                                                                                                            |
+| ----------- | ------------------------------------------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`  | `React.ReactNode`                          | Yes      | The React children value to inspect.                                                                                                   |
+| `predicate` | `(element: React.ReactElement) => boolean` | Yes      | A predicate that is called with each direct child element to determine whether it matches.                                             |
+| `options`   | `ValidationOptions`                        | No       | Optional reporting and traversal metadata used to derive the thrown validation message and configure how child elements are inspected. |
 
 ## Returns
 
-The first direct child element that satisfies the provided predicate.
+The first child element that satisfies the provided predicate.
 
 ## Usage
 

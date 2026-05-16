@@ -96,4 +96,23 @@ describe("useRequiredChildByType", () => {
             })
         );
     });
+
+    it("returns a nested match when maximumDepth includes descendants", () => {
+        const children = [
+            createElement(Fragment, {
+                key: "fragment",
+                children: createElement("button", { key: "nested-button" })
+            }),
+            createElement("span", { key: "span-1" })
+        ];
+
+        const { result } = renderHook(() =>
+            useRequiredChildByType(children, "button", {
+                maximumDepth: 1,
+                childName: "DialogTrigger"
+            })
+        );
+
+        expect(result.current.key).toBe(".$nested-button");
+    });
 });

@@ -1,18 +1,20 @@
 # `useHasChildMatching`
 
-Determines whether any direct child element satisfies the provided predicate.
+Determines whether any child element satisfies the provided predicate.
 
 ## Signature
 
 ```ts
 function useHasChildMatching<T extends React.ReactElement>(
     children: React.ReactNode,
-    predicate: (element: React.ReactElement) => element is T
+    predicate: (element: React.ReactElement) => element is T,
+    options?: QueryOptions
 ): boolean;
 
 function useHasChildMatching(
     children: React.ReactNode,
-    predicate: (element: React.ReactElement) => boolean
+    predicate: (element: React.ReactElement) => boolean,
+    options?: QueryOptions
 ): boolean;
 ```
 
@@ -22,10 +24,11 @@ function useHasChildMatching(
 | ----------- | ------------------------------------------ | -------- | ------------------------------------------------------------------------------------------ |
 | `children`  | `React.ReactNode`                          | Yes      | The React children value to inspect.                                                       |
 | `predicate` | `(element: React.ReactElement) => boolean` | Yes      | A predicate that is called with each direct child element to determine whether it matches. |
+| `options`   | `QueryOptions`                             | No       | Optional query metadata used to configure how child elements are inspected.                |
 
 ## Returns
 
-`true` when at least one direct child element satisfies the provided predicate; otherwise `false`.
+`true` when at least one child element satisfies the provided predicate; otherwise `false`.
 
 ## Usage
 

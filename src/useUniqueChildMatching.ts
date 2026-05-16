@@ -27,7 +27,7 @@ export function useUniqueChildMatching(
     predicate: (element: ReactElement) => boolean,
     options?: ValidationOptions
 ): ReactElement {
-    const matchingChildren = useChildrenMatching(children, predicate);
+    const matchingChildren = useChildrenMatching(children, predicate, options);
 
     if (matchingChildren.length === 1) {
         return matchingChildren[0] as ReactElement;

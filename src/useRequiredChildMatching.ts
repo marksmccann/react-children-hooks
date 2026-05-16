@@ -27,7 +27,7 @@ export function useRequiredChildMatching(
     predicate: (element: ReactElement) => boolean,
     options?: ValidationOptions
 ): ReactElement {
-    const child = useChildMatching(children, predicate);
+    const child = useChildMatching(children, predicate, options);
 
     if (child !== null) {
         return child;

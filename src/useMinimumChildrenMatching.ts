@@ -31,7 +31,7 @@ export function useMinimumChildrenMatching(
     minimumCount: number,
     options?: ValidationOptions
 ): ReactElement[] {
-    const matchingChildren = useChildrenMatching(children, predicate);
+    const matchingChildren = useChildrenMatching(children, predicate, options);
 
     if (matchingChildren.length >= minimumCount) {
         return matchingChildren;

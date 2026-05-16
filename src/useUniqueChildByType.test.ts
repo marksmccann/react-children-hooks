@@ -104,4 +104,24 @@ describe("useUniqueChildByType", () => {
             })
         );
     });
+
+    it("returns a nested unique match when depth excludes direct children", () => {
+        const children = [
+            createElement("button", { key: "direct-button" }),
+            createElement(Fragment, {
+                key: "fragment",
+                children: createElement("button", { key: "nested-button" })
+            })
+        ];
+
+        const { result } = renderHook(() =>
+            useUniqueChildByType(children, "button", {
+                depth: 1,
+                maximumDepth: 1,
+                childName: "DialogTrigger"
+            })
+        );
+
+        expect(result.current.key).toBe(".$nested-button");
+    });
 });

@@ -1,6 +1,6 @@
 # `useOptionalChildMatching`
 
-Returns the optional direct child element that satisfies the provided predicate, or throws when more than one match is found.
+Returns the optional child element that satisfies the provided predicate, or throws when more than one match is found.
 
 ## Signature
 
@@ -20,15 +20,15 @@ function useOptionalChildMatching(
 
 ## Parameters
 
-| Parameter   | Type                                       | Required | Description                                                                                |
-| ----------- | ------------------------------------------ | -------- | ------------------------------------------------------------------------------------------ |
-| `children`  | `React.ReactNode`                          | Yes      | The React children value to inspect.                                                       |
-| `predicate` | `(element: React.ReactElement) => boolean` | Yes      | A predicate that is called with each direct child element to determine whether it matches. |
-| `options`   | `ValidationOptions`                        | No       | Optional reporting metadata used to derive the thrown validation message.                  |
+| Parameter   | Type                                       | Required | Description                                                                                                                            |
+| ----------- | ------------------------------------------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`  | `React.ReactNode`                          | Yes      | The React children value to inspect.                                                                                                   |
+| `predicate` | `(element: React.ReactElement) => boolean` | Yes      | A predicate that is called with each direct child element to determine whether it matches.                                             |
+| `options`   | `ValidationOptions`                        | No       | Optional reporting and traversal metadata used to derive the thrown validation message and configure how child elements are inspected. |
 
 ## Returns
 
-The optional direct child element that satisfies the provided predicate, or `null` when no match is found.
+The optional child element that satisfies the provided predicate, or `null` when no match is found.
 
 ## Usage
 

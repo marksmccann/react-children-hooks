@@ -232,4 +232,98 @@ describe("useExactChildrenMatching", () => {
         expect(result.current).toHaveLength(1);
         expect(result.current[0]?.type).toBe("button");
     });
+
+    it("includes nested matches through the provided maximumDepth when the exact count is met", () => {
+        const children = [
+            createElement(Fragment, {
+                key: "fragment",
+                children: [
+                    createElement("button", { key: "nested-button-1" }),
+                    createElement("button", { key: "nested-button-2" })
+                ]
+            }),
+            createElement("button", { key: "direct-button-1" })
+        ];
+
+        const { result } = renderHook(() =>
+            useExactChildrenMatching(
+                children,
+                (element) => element.type === "button",
+                3,
+                { maximumDepth: 1, childName: "DialogAction" }
+            )
+        );
+
+        expect(result.current.map((element) => element.key)).toEqual([
+            ".$direct-button-1",
+            ".$nested-button-1",
+            ".$nested-button-2"
+        ]);
+    });
+
+    it("excludes direct matches when depth starts at descendants", () => {
+        const children = [
+            createElement("button", { key: "direct-button-1" }),
+            createElement(Fragment, {
+                key: "fragment",
+                children: [
+                    createElement("button", { key: "nested-button-1" }),
+                    createElement("button", { key: "nested-button-2" })
+                ]
+            })
+        ];
+
+        const { result } = renderHook(() =>
+            useExactChildrenMatching(
+                children,
+                (element) => element.type === "button",
+                2,
+                { depth: 1, maximumDepth: 1, childName: "DialogAction" }
+            )
+        );
+
+        expect(result.current.map((element) => element.key)).toEqual([
+            ".$nested-button-1",
+            ".$nested-button-2"
+        ]);
+    });
+
+    it("throws the public reporter error when depth is invalid", () => {
+        expect(() =>
+            renderHook(() =>
+                useExactChildrenMatching(
+                    null,
+                    (element) => element.type === "button",
+                    1,
+                    { depth: -1 }
+                )
+            )
+        ).toThrow(reporter.message("RCH001"));
+    });
+
+    it("throws the public reporter error when maximumDepth is invalid", () => {
+        expect(() =>
+            renderHook(() =>
+                useExactChildrenMatching(
+                    null,
+                    (element) => element.type === "button",
+                    1,
+                    { maximumDepth: -1 }
+                )
+            )
+        ).toThrow(reporter.message("RCH002"));
+    });
+
+    it("throws the public reporter error when depth exceeds maximumDepth", () => {
+        expect(() =>
+            renderHook(() =>
+                useExactChildrenMatching(
+                    null,
+                    (element) => element.type === "button",
+                    1,
+                    { depth: 2, maximumDepth: 1 }
+                )
+            )
+        ).toThrow(reporter.message("RCH003"));
+    });
 });

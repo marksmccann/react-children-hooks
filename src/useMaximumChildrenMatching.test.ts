@@ -240,4 +240,38 @@ describe("useMaximumChildrenMatching", () => {
         expect(result.current).toHaveLength(1);
         expect(result.current[0]?.type).toBe("button");
     });
+
+    it("counts nested matches through the provided maximumDepth", () => {
+        const children = [
+            createElement(Fragment, {
+                key: "fragment",
+                children: createElement("button", { key: "nested-button" })
+            }),
+            createElement("button", { key: "direct-button-1" })
+        ];
+
+        const { result } = renderHook(() =>
+            useMaximumChildrenMatching(
+                children,
+                (element) => element.type === "button",
+                2,
+                { maximumDepth: 1, childName: "DialogAction" }
+            )
+        );
+
+        expect(result.current).toHaveLength(2);
+    });
+
+    it("throws the public reporter error when depth is invalid", () => {
+        expect(() =>
+            renderHook(() =>
+                useMaximumChildrenMatching(
+                    null,
+                    (element) => element.type === "button",
+                    1,
+                    { depth: -1 }
+                )
+            )
+        ).toThrow(reporter.message("RCH001"));
+    });
 });

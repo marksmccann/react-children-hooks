@@ -26,8 +26,10 @@ The first direct callback child, or `null` when no callback child is found.
 ## Usage
 
 ```tsx
-import type { CallbackChildren } from "react-children-hooks";
+import type { CallbackChild, CallbackChildren } from "react-children-hooks";
 import { useCallbackChild } from "react-children-hooks";
+
+type ToggleRenderChild = CallbackChild<[boolean], React.ReactNode>;
 
 function Toggle({
     children,
@@ -38,6 +40,10 @@ function Toggle({
 }) {
     const render = useCallbackChild<[boolean]>(children);
 
-    return <div>{render ? render(isOpen) : children}</div>;
+    if (!render) {
+        return <div>Missing toggle render child.</div>;
+    }
+
+    return <div>{render(isOpen)}</div>;
 }
 ```

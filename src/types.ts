@@ -15,6 +15,25 @@ export type ChildrenCountBounds = {
 };
 
 /**
+ * Optional traversal bounds used by the element-based query and validation hooks.
+ */
+export type TraversalOptions = {
+    /**
+     * The minimum inclusive child depth to include in results, where `0` represents direct children.
+     */
+    depth?: number;
+    /**
+     * The maximum inclusive child depth to include in results, where `0` represents direct children.
+     */
+    maximumDepth?: number;
+};
+
+/**
+ * Optional traversal metadata used by the element-based query hooks.
+ */
+export type QueryOptions = TraversalOptions;
+
+/**
  * Represents a React element whose props and element type are narrowed to the provided React element type.
  *
  * @typeParam T The React element type used to narrow the element's props and type.
@@ -52,7 +71,7 @@ export type CallbackChildren<
 /**
  * Optional reporting metadata used by the validation hooks to derive thrown validation messages.
  */
-export type ValidationOptions = {
+type ValidationMessageOptions = {
     /**
      * An optional consumer-defined trace code that is prefixed to the thrown validation message.
      */
@@ -62,3 +81,8 @@ export type ValidationOptions = {
      */
     childName?: string;
 };
+
+/**
+ * Optional reporting and traversal metadata used by the validation hooks.
+ */
+export type ValidationOptions = ValidationMessageOptions & TraversalOptions;

@@ -176,4 +176,36 @@ describe("useRequiredChildMatching", () => {
 
         expect(result.current.type).toBe(ExampleComponent);
     });
+
+    it("returns a nested match when maximumDepth includes descendants", () => {
+        const children = [
+            createElement(Fragment, {
+                key: "fragment",
+                children: createElement("button", { key: "nested-button" })
+            }),
+            createElement("span", { key: "span-1" })
+        ];
+
+        const { result } = renderHook(() =>
+            useRequiredChildMatching(
+                children,
+                (element) => element.type === "button",
+                { maximumDepth: 1, childName: "DialogTrigger" }
+            )
+        );
+
+        expect(result.current.key).toBe(".$nested-button");
+    });
+
+    it("throws the public reporter error when depth is invalid", () => {
+        expect(() =>
+            renderHook(() =>
+                useRequiredChildMatching(
+                    null,
+                    (element) => element.type === "button",
+                    { depth: -1 }
+                )
+            )
+        ).toThrow(reporter.message("RCH001"));
+    });
 });

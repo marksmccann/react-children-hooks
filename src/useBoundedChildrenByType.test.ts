@@ -135,4 +135,34 @@ describe("useBoundedChildrenByType", () => {
             })
         );
     });
+
+    it("counts nested matches through the provided maximumDepth", () => {
+        const children = [
+            createElement(Fragment, {
+                key: "fragment",
+                children: [
+                    createElement("button", { key: "nested-button-1" }),
+                    createElement("button", { key: "nested-button-2" })
+                ]
+            }),
+            createElement("button", { key: "direct-button-1" })
+        ];
+
+        const { result } = renderHook(() =>
+            useBoundedChildrenByType(
+                children,
+                "button",
+                {
+                    minimum: 2,
+                    maximum: 3
+                },
+                {
+                    maximumDepth: 1,
+                    childName: "DialogAction"
+                }
+            )
+        );
+
+        expect(result.current).toHaveLength(3);
+    });
 });

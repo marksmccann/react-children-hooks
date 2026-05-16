@@ -8,6 +8,7 @@ import {
 } from "react";
 import { describe, expect, it } from "vitest";
 
+import reporter from "./reporter";
 import { useChildrenMatching } from "./useChildrenMatching";
 
 function ExampleComponent({
@@ -113,5 +114,120 @@ describe("useChildrenMatching", () => {
 
         expect(result.current).toHaveLength(1);
         expect(result.current[0]?.key).toBe(".$direct-button");
+    });
+
+    it("includes nested matches through the provided maximumDepth", () => {
+        const children = [
+            createElement(Fragment, {
+                key: "fragment",
+                children: [
+                    createElement("button", { key: "nested-button-1" }),
+                    createElement("button", { key: "nested-button-2" })
+                ]
+            }),
+            createElement("button", { key: "direct-button" })
+        ];
+
+        const { result } = renderHook(() =>
+            useChildrenMatching(
+                children,
+                (element) => element.type === "button",
+                { maximumDepth: 1 }
+            )
+        );
+
+        expect(result.current.map((element) => element.key)).toEqual([
+            ".$direct-button",
+            ".$nested-button-1",
+            ".$nested-button-2"
+        ]);
+    });
+
+    it("excludes direct matches when depth starts at descendants", () => {
+        const children = [
+            createElement("button", { key: "direct-button" }),
+            createElement(Fragment, {
+                key: "fragment",
+                children: [
+                    createElement("button", { key: "nested-button-1" }),
+                    createElement("button", { key: "nested-button-2" })
+                ]
+            })
+        ];
+
+        const { result } = renderHook(() =>
+            useChildrenMatching(
+                children,
+                (element) => element.type === "button",
+                { depth: 1, maximumDepth: 1 }
+            )
+        );
+
+        expect(result.current.map((element) => element.key)).toEqual([
+            ".$nested-button-1",
+            ".$nested-button-2"
+        ]);
+    });
+
+    it("returns matches in traversal order across nested levels", () => {
+        const children = [
+            createElement(Fragment, {
+                key: "fragment-1",
+                children: createElement("button", { key: "nested-button-1" })
+            }),
+            createElement(Fragment, {
+                key: "fragment-2",
+                children: createElement("button", { key: "nested-button-2" })
+            })
+        ];
+
+        const { result } = renderHook(() =>
+            useChildrenMatching(
+                children,
+                (element) => element.type === "button",
+                { depth: 1, maximumDepth: 1 }
+            )
+        );
+
+        expect(result.current.map((element) => element.key)).toEqual([
+            ".$nested-button-1",
+            ".$nested-button-2"
+        ]);
+    });
+
+    it("throws the public reporter error when depth is invalid", () => {
+        expect(() =>
+            renderHook(() =>
+                useChildrenMatching(
+                    null,
+                    (element) => element.type === "button",
+                    { depth: -1 }
+                )
+            )
+        ).toThrow(reporter.message("RCH001"));
+    });
+
+    it("throws the public reporter error when maximumDepth is invalid", () => {
+        expect(() =>
+            renderHook(() =>
+                useChildrenMatching(
+                    null,
+                    (element) => element.type === "button",
+                    { maximumDepth: -1 }
+                )
+            )
+        ).toThrow(reporter.message("RCH002"));
+    });
+
+    it("throws the public reporter error when depth exceeds maximumDepth", () => {
+        expect(() =>
+            renderHook(() =>
+                useChildrenMatching(
+                    null,
+                    (element) => element.type === "button",
+                    { depth: 2, maximumDepth: 1 }
+                )
+            )
+        ).toThrow(reporter.message("RCH003"));
     });
 });

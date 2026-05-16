@@ -2,6 +2,8 @@
 
 `react-children-hooks` is a TypeScript-first React library for inspecting, traversing, querying, and validating `props.children`.
 
+Element-based query and validation hooks inspect direct children by default, and can optionally traverse deeper descendant levels through `QueryOptions`, `TraversalOptions`, and `ValidationOptions`.
+
 ## API Reference
 
 ### Query Hooks
@@ -46,4 +48,6 @@
 - [`CallbackChildren`](./src/types.ts)
 - [`ChildrenCountBounds`](./src/types.ts)
 - [`ElementOfType`](./src/types.ts)
+- [`QueryOptions`](./src/types.ts)
+- [`TraversalOptions`](./src/types.ts)
 - [`ValidationOptions`](./src/types.ts)

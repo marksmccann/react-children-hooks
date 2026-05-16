@@ -1,6 +1,6 @@
 # `useExactChildrenByType`
 
-Returns the direct child elements whose React element type exactly matches the provided type, or throws when the exact count is not met.
+Returns the child elements whose React element type exactly matches the provided type, or throws when the exact count is not met.
 
 ## Signature
 
@@ -15,16 +15,16 @@ function useExactChildrenByType<T extends React.ElementType>(
 
 ## Parameters
 
-| Parameter    | Type                | Required | Description                                                               |
-| ------------ | ------------------- | -------- | ------------------------------------------------------------------------- |
-| `children`   | `React.ReactNode`   | Yes      | The React children value to inspect.                                      |
-| `type`       | `React.ElementType` | Yes      | The element or component type to match against each direct child element. |
-| `exactCount` | `number`            | Yes      | The exact number of matching direct child elements required.              |
-| `options`    | `ValidationOptions` | No       | Optional reporting metadata used to derive the thrown validation message. |
+| Parameter    | Type                | Required | Description                                                                                                                            |
+| ------------ | ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`   | `React.ReactNode`   | Yes      | The React children value to inspect.                                                                                                   |
+| `type`       | `React.ElementType` | Yes      | The element or component type to match against each direct child element.                                                              |
+| `exactCount` | `number`            | Yes      | The exact number of matching direct child elements required.                                                                           |
+| `options`    | `ValidationOptions` | No       | Optional reporting and traversal metadata used to derive the thrown validation message and configure how child elements are inspected. |
 
 ## Returns
 
-The direct child elements whose type matches the provided element type.
+The child elements whose type matches the provided element type.
 
 ## Usage
 

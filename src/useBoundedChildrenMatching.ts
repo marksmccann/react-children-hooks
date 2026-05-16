@@ -31,7 +31,7 @@ export function useBoundedChildrenMatching(
     bounds: ChildrenCountBounds,
     options?: ValidationOptions
 ): ReactElement[] {
-    const matchingChildren = useChildrenMatching(children, predicate);
+    const matchingChildren = useChildrenMatching(children, predicate, options);
 
     if (
         matchingChildren.length >= bounds.minimum &&

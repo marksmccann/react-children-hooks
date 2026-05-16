@@ -1,22 +1,26 @@
 # `childrenToElements`
 
-Normalizes a React children value into an array containing only valid direct child elements.
+Normalizes a React children value into an array containing valid child elements within the configured depth range.
 
 ## Signature
 
 ```ts
-function childrenToElements(children: React.ReactNode): React.ReactElement[];
+function childrenToElements(
+    children: React.ReactNode,
+    options?: TraversalOptions
+): React.ReactElement[];
 ```
 
 ## Parameters
 
-| Parameter  | Type              | Required | Description                            |
-| ---------- | ----------------- | -------- | -------------------------------------- |
-| `children` | `React.ReactNode` | Yes      | The React children value to normalize. |
+| Parameter  | Type               | Required | Description                                                             |
+| ---------- | ------------------ | -------- | ----------------------------------------------------------------------- |
+| `children` | `React.ReactNode`  | Yes      | The React children value to normalize.                                  |
+| `options`  | `TraversalOptions` | No       | Optional traversal bounds that control which child depths are included. |
 
 ## Returns
 
-An array of valid React elements from the provided direct children.
+An array of valid React elements from the provided child depths.
 
 ## Usage
 

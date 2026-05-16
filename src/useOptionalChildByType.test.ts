@@ -92,4 +92,23 @@ describe("useOptionalChildByType", () => {
 
         expect(result.current).toBeNull();
     });
+
+    it("returns a nested match when maximumDepth includes descendants", () => {
+        const children = [
+            createElement(Fragment, {
+                key: "fragment",
+                children: createElement("button", { key: "nested-button" })
+            }),
+            createElement("span", { key: "span-1" })
+        ];
+
+        const { result } = renderHook(() =>
+            useOptionalChildByType(children, "button", {
+                maximumDepth: 1,
+                childName: "DialogIcon"
+            })
+        );
+
+        expect(result.current?.key).toBe(".$nested-button");
+    });
 });

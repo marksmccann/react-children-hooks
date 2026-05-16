@@ -31,7 +31,7 @@ export function useMaximumChildrenMatching(
     maximumCount: number,
     options?: ValidationOptions
 ): ReactElement[] {
-    const matchingChildren = useChildrenMatching(children, predicate);
+    const matchingChildren = useChildrenMatching(children, predicate, options);
 
     if (matchingChildren.length <= maximumCount) {
         return matchingChildren;

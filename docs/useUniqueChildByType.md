@@ -1,6 +1,6 @@
 # `useUniqueChildByType`
 
-Returns the only direct child element whose React element type exactly matches the provided type, or throws when the match is not unique.
+Returns the only child element whose React element type exactly matches the provided type, or throws when the match is not unique.
 
 ## Signature
 
@@ -14,15 +14,15 @@ function useUniqueChildByType<T extends React.ElementType>(
 
 ## Parameters
 
-| Parameter  | Type                | Required | Description                                                               |
-| ---------- | ------------------- | -------- | ------------------------------------------------------------------------- |
-| `children` | `React.ReactNode`   | Yes      | The React children value to inspect.                                      |
-| `type`     | `React.ElementType` | Yes      | The element or component type to match against each direct child element. |
-| `options`  | `ValidationOptions` | No       | Optional reporting metadata used to derive the thrown validation message. |
+| Parameter  | Type                | Required | Description                                                                                                                            |
+| ---------- | ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `children` | `React.ReactNode`   | Yes      | The React children value to inspect.                                                                                                   |
+| `type`     | `React.ElementType` | Yes      | The element or component type to match against each direct child element.                                                              |
+| `options`  | `ValidationOptions` | No       | Optional reporting and traversal metadata used to derive the thrown validation message and configure how child elements are inspected. |
 
 ## Returns
 
-The only direct child element whose type matches the provided element type.
+The only child element whose type matches the provided element type.
 
 ## Usage
 

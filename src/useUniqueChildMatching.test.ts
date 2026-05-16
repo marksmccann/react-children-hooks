@@ -170,4 +170,36 @@ describe("useUniqueChildMatching", () => {
         expect(result.current.type).toBe("button");
         expect(result.current.key).toBe(".$direct-button-1");
     });
+
+    it("returns a nested unique match when depth excludes direct children", () => {
+        const children = [
+            createElement("button", { key: "direct-button" }),
+            createElement(Fragment, {
+                key: "fragment",
+                children: createElement("button", { key: "nested-button" })
+            })
+        ];
+
+        const { result } = renderHook(() =>
+            useUniqueChildMatching(
+                children,
+                (element) => element.type === "button",
+                { depth: 1, maximumDepth: 1, childName: "DialogTrigger" }
+            )
+        );
+
+        expect(result.current.key).toBe(".$nested-button");
+    });
+
+    it("throws the public reporter error when depth is invalid", () => {
+        expect(() =>
+            renderHook(() =>
+                useUniqueChildMatching(
+                    null,
+                    (element) => element.type === "button",
+                    { depth: -1 }
+                )
+            )
+        ).toThrow(reporter.message("RCH001"));
+    });
 });

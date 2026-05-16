@@ -8,6 +8,7 @@ import {
 } from "react";
 import { describe, expect, it } from "vitest";
 
+import reporter from "./reporter";
 import { useChildMatching } from "./useChildMatching";
 
 function ExampleComponent({
@@ -115,5 +116,97 @@ describe("useChildMatching", () => {
         );
 
         expect(result.current).toBeNull();
+    });
+
+    it("matches nested descendants through the provided maximumDepth", () => {
+        const children = [
+            createElement(Fragment, {
+                key: "fragment",
+                children: createElement("button", { key: "nested-button" })
+            }),
+            createElement("span", { key: "span-1" })
+        ];
+
+        const { result } = renderHook(() =>
+            useChildMatching(children, (element) => element.type === "button", {
+                maximumDepth: 1
+            })
+        );
+
+        expect(result.current?.type).toBe("button");
+        expect(result.current?.key).toBe(".$nested-button");
+    });
+
+    it("skips direct children when depth excludes them", () => {
+        const children = [
+            createElement("button", { key: "direct-button" }),
+            createElement(Fragment, {
+                key: "fragment",
+                children: createElement("button", { key: "nested-button" })
+            })
+        ];
+
+        const { result } = renderHook(() =>
+            useChildMatching(children, (element) => element.type === "button", {
+                depth: 1,
+                maximumDepth: 1
+            })
+        );
+
+        expect(result.current?.type).toBe("button");
+        expect(result.current?.key).toBe(".$nested-button");
+    });
+
+    it("returns the first matching element in traversal order across nested levels", () => {
+        const children = [
+            createElement(Fragment, {
+                key: "fragment-1",
+                children: createElement("button", { key: "nested-button-1" })
+            }),
+            createElement(Fragment, {
+                key: "fragment-2",
+                children: createElement("button", { key: "nested-button-2" })
+            })
+        ];
+
+        const { result } = renderHook(() =>
+            useChildMatching(children, (element) => element.type === "button", {
+                depth: 1,
+                maximumDepth: 1
+            })
+        );
+
+        expect(result.current?.key).toBe(".$nested-button-1");
+    });
+
+    it("throws the public reporter error when depth is invalid", () => {
+        expect(() =>
+            renderHook(() =>
+                useChildMatching(null, (element) => element.type === "button", {
+                    depth: -1
+                })
+            )
+        ).toThrow(reporter.message("RCH001"));
+    });
+
+    it("throws the public reporter error when maximumDepth is invalid", () => {
+        expect(() =>
+            renderHook(() =>
+                useChildMatching(null, (element) => element.type === "button", {
+                    maximumDepth: -1
+                })
+            )
+        ).toThrow(reporter.message("RCH002"));
+    });
+
+    it("throws the public reporter error when depth exceeds maximumDepth", () => {
+        expect(() =>
+            renderHook(() =>
+                useChildMatching(null, (element) => element.type === "button", {
+                    depth: 2,
+                    maximumDepth: 1
+                })
+            )
+        ).toThrow(reporter.message("RCH003"));
     });
 });

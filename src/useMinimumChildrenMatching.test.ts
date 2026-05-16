@@ -214,4 +214,41 @@ describe("useMinimumChildrenMatching", () => {
             })
         );
     });
+
+    it("counts nested matches through the provided maximumDepth", () => {
+        const children = [
+            createElement(Fragment, {
+                key: "fragment",
+                children: [
+                    createElement("button", { key: "nested-button-1" }),
+                    createElement("button", { key: "nested-button-2" })
+                ]
+            }),
+            createElement("button", { key: "direct-button-1" })
+        ];
+
+        const { result } = renderHook(() =>
+            useMinimumChildrenMatching(
+                children,
+                (element) => element.type === "button",
+                3,
+                { maximumDepth: 1, childName: "DialogAction" }
+            )
+        );
+
+        expect(result.current).toHaveLength(3);
+    });
+
+    it("throws the public reporter error when depth is invalid", () => {
+        expect(() =>
+            renderHook(() =>
+                useMinimumChildrenMatching(
+                    null,
+                    (element) => element.type === "button",
+                    1,
+                    { depth: -1 }
+                )
+            )
+        ).toThrow(reporter.message("RCH001"));
+    });
 });

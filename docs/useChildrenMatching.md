@@ -1,18 +1,20 @@
 # `useChildrenMatching`
 
-Returns the direct child elements that satisfy the provided predicate.
+Returns the child elements that satisfy the provided predicate.
 
 ## Signature
 
 ```ts
 function useChildrenMatching<T extends React.ReactElement>(
     children: React.ReactNode,
-    predicate: (element: React.ReactElement) => element is T
+    predicate: (element: React.ReactElement) => element is T,
+    options?: QueryOptions
 ): T[];
 
 function useChildrenMatching(
     children: React.ReactNode,
-    predicate: (element: React.ReactElement) => boolean
+    predicate: (element: React.ReactElement) => boolean,
+    options?: QueryOptions
 ): React.ReactElement[];
 ```
 
@@ -22,10 +24,11 @@ function useChildrenMatching(
 | ----------- | ------------------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------- |
 | `children`  | `React.ReactNode`                          | Yes      | The React children value to inspect.                                                                                |
 | `predicate` | `(element: React.ReactElement) => boolean` | Yes      | A predicate that is called with each direct child element to determine whether it should be included in the result. |
+| `options`   | `QueryOptions`                             | No       | Optional query metadata used to configure how child elements are inspected.                                         |
 
 ## Returns
 
-An array of direct child elements that satisfy the provided predicate.
+An array of child elements that satisfy the provided predicate.
 
 ## Usage
 

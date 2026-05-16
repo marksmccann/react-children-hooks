@@ -1,6 +1,6 @@
 # `useOptionalChildByType`
 
-Returns the optional direct child element whose React element type exactly matches the provided type, or throws when more than one match is found.
+Returns the optional child element whose React element type exactly matches the provided type, or throws when more than one match is found.
 
 ## Signature
 
@@ -14,15 +14,15 @@ function useOptionalChildByType<T extends React.ElementType>(
 
 ## Parameters
 
-| Parameter  | Type                | Required | Description                                                               |
-| ---------- | ------------------- | -------- | ------------------------------------------------------------------------- |
-| `children` | `React.ReactNode`   | Yes      | The React children value to inspect.                                      |
-| `type`     | `React.ElementType` | Yes      | The element or component type to match against each direct child element. |
-| `options`  | `ValidationOptions` | No       | Optional reporting metadata used to derive the thrown validation message. |
+| Parameter  | Type                | Required | Description                                                                                                                            |
+| ---------- | ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `children` | `React.ReactNode`   | Yes      | The React children value to inspect.                                                                                                   |
+| `type`     | `React.ElementType` | Yes      | The element or component type to match against each direct child element.                                                              |
+| `options`  | `ValidationOptions` | No       | Optional reporting and traversal metadata used to derive the thrown validation message and configure how child elements are inspected. |
 
 ## Returns
 
-The optional direct child element whose type matches the provided element type, or `null` when no match is found.
+The optional child element whose type matches the provided element type, or `null` when no match is found.
 
 ## Usage
 

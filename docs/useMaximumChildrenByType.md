@@ -1,6 +1,6 @@
 # `useMaximumChildrenByType`
 
-Returns the direct child elements whose React element type exactly matches the provided type, or throws when more than the maximum count are found.
+Returns the child elements whose React element type exactly matches the provided type, or throws when more than the maximum count are found.
 
 ## Signature
 
@@ -15,16 +15,16 @@ function useMaximumChildrenByType<T extends React.ElementType>(
 
 ## Parameters
 
-| Parameter      | Type                | Required | Description                                                               |
-| -------------- | ------------------- | -------- | ------------------------------------------------------------------------- |
-| `children`     | `React.ReactNode`   | Yes      | The React children value to inspect.                                      |
-| `type`         | `React.ElementType` | Yes      | The element or component type to match against each direct child element. |
-| `maximumCount` | `number`            | Yes      | The maximum number of matching direct child elements allowed.             |
-| `options`      | `ValidationOptions` | No       | Optional reporting metadata used to derive the thrown validation message. |
+| Parameter      | Type                | Required | Description                                                                                                                            |
+| -------------- | ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`     | `React.ReactNode`   | Yes      | The React children value to inspect.                                                                                                   |
+| `type`         | `React.ElementType` | Yes      | The element or component type to match against each direct child element.                                                              |
+| `maximumCount` | `number`            | Yes      | The maximum number of matching direct child elements allowed.                                                                          |
+| `options`      | `ValidationOptions` | No       | Optional reporting and traversal metadata used to derive the thrown validation message and configure how child elements are inspected. |
 
 ## Returns
 
-The direct child elements whose type matches the provided element type.
+The child elements whose type matches the provided element type.
 
 ## Usage
 
