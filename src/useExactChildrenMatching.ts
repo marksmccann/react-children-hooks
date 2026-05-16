@@ -2,7 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 
 import reporter from "./reporter";
 import type { ValidationOptions } from "./types";
-import { useChildrenMatching } from "./useChildrenMatching";
+import useChildrenMatching from "./useChildrenMatching";
 
 /**
  * Returns the direct child elements that satisfy the provided predicate, or throws when the exact count is not met.
@@ -13,19 +13,19 @@ import { useChildrenMatching } from "./useChildrenMatching";
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The direct child elements that satisfy the provided predicate.
  */
-export function useExactChildrenMatching<T extends ReactElement>(
+function useExactChildrenMatching<T extends ReactElement>(
     children: ReactNode,
     predicate: (element: ReactElement) => element is T,
     exactCount: number,
     options?: ValidationOptions
 ): T[];
-export function useExactChildrenMatching(
+function useExactChildrenMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     exactCount: number,
     options?: ValidationOptions
 ): ReactElement[];
-export function useExactChildrenMatching(
+function useExactChildrenMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     exactCount: number,
@@ -45,3 +45,5 @@ export function useExactChildrenMatching(
         exactCount
     });
 }
+
+export default useExactChildrenMatching;

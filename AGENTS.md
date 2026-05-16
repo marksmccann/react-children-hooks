@@ -38,9 +38,16 @@
 ## Codebase Conventions
 
 - Follow the existing TypeScript style in `src/`: named exports, explicit React type imports, and concise JSDoc on public hooks and utilities.
+- In `src/`, prefer one default export per file.
+- Name each `src/` file after its default export.
+- Exceptions:
+    - `src/index.ts` remains the public named-export barrel.
+    - `src/types.ts` can continue to export multiple shared public types.
+    - Test files can keep named helpers when that makes tests clearer.
 - Put shared public API types in `src/types.ts` rather than creating standalone source files for each type.
 - Preserve the library's direct-children semantics unless a task explicitly requires changing that behavior.
 - Prefer small focused utilities and hooks over broad abstractions.
+- Keep utility functions private by default for MVP footprint. Only export a utility from `src/index.ts` and document it publicly when the user explicitly wants it to be part of the package API.
 - Keep React as an external dependency and avoid introducing unnecessary runtime dependencies.
 - Match the existing formatting style:
     - double quotes

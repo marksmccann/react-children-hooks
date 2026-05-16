@@ -2,7 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 
 import reporter from "./reporter";
 import type { ValidationOptions } from "./types";
-import { useChildrenMatching } from "./useChildrenMatching";
+import useChildrenMatching from "./useChildrenMatching";
 
 /**
  * Returns the direct child elements that satisfy the provided predicate, or throws when fewer than the minimum count are found.
@@ -13,19 +13,19 @@ import { useChildrenMatching } from "./useChildrenMatching";
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The direct child elements that satisfy the provided predicate.
  */
-export function useMinimumChildrenMatching<T extends ReactElement>(
+function useMinimumChildrenMatching<T extends ReactElement>(
     children: ReactNode,
     predicate: (element: ReactElement) => element is T,
     minimumCount: number,
     options?: ValidationOptions
 ): T[];
-export function useMinimumChildrenMatching(
+function useMinimumChildrenMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     minimumCount: number,
     options?: ValidationOptions
 ): ReactElement[];
-export function useMinimumChildrenMatching(
+function useMinimumChildrenMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     minimumCount: number,
@@ -45,3 +45,5 @@ export function useMinimumChildrenMatching(
         minimumCount
     });
 }
+
+export default useMinimumChildrenMatching;

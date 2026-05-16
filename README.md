@@ -2,8 +2,6 @@
 
 `react-children-hooks` is a TypeScript-first React library for inspecting, traversing, querying, and validating `props.children`.
 
-Element-based query and validation hooks inspect direct children by default, and can optionally traverse deeper descendant levels through `QueryOptions`, `TraversalOptions`, and `ValidationOptions`.
-
 ## API Reference
 
 ### Query Hooks
@@ -24,23 +22,19 @@ Element-based query and validation hooks inspect direct children by default, and
 - [`useMaximumChildrenMatching`](./docs/useMaximumChildrenMatching.md)
 - [`useMinimumChildrenByType`](./docs/useMinimumChildrenByType.md)
 - [`useMinimumChildrenMatching`](./docs/useMinimumChildrenMatching.md)
+- [`useOptionalCallbackChild`](./docs/useOptionalCallbackChild.md)
 - [`useOptionalChildByType`](./docs/useOptionalChildByType.md)
 - [`useOptionalChildMatching`](./docs/useOptionalChildMatching.md)
 - [`useRequiredCallbackChild`](./docs/useRequiredCallbackChild.md)
 - [`useRequiredChildByType`](./docs/useRequiredChildByType.md)
 - [`useRequiredChildMatching`](./docs/useRequiredChildMatching.md)
+- [`useUniqueCallbackChild`](./docs/useUniqueCallbackChild.md)
 - [`useUniqueChildByType`](./docs/useUniqueChildByType.md)
 - [`useUniqueChildMatching`](./docs/useUniqueChildMatching.md)
 
 ### Validation Hooks
 
 - [`useHasChildMatching`](./docs/useHasChildMatching.md)
-
-### Utilities
-
-- [`childrenToElements`](./docs/childrenToElements.md)
-- [`isElementOfType`](./docs/isElementOfType.md)
-- [`isReactElement`](./docs/isReactElement.md)
 
 ### Types
 

@@ -33,7 +33,7 @@ import { useMaximumChildrenByType } from "react-children-hooks";
 
 function DialogActions({ children }: { children: React.ReactNode }) {
     const actions = useMaximumChildrenByType(children, "button", 2, {
-        traceCode: "DIALOG_ACTIONS_MAXIMUM",
+        traceCode: "TC015",
         childName: "DialogAction"
     });
 

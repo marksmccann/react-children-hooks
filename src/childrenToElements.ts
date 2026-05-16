@@ -1,6 +1,6 @@
 import { Children, type ReactElement, type ReactNode } from "react";
 
-import { isReactElement } from "./isReactElement";
+import isReactElement from "./isReactElement";
 import reporter from "./reporter";
 import type { TraversalOptions } from "./types";
 
@@ -76,7 +76,7 @@ function collectElementsAtDepth(
  * @param options Optional traversal bounds that control which child depths are included.
  * @returns An array of valid React elements from the provided child depths.
  */
-export function childrenToElements(
+export default function childrenToElements(
     children: ReactNode,
     options?: TraversalOptions
 ): ReactElement[] {

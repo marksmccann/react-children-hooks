@@ -9,7 +9,7 @@ import type { ElementOfType } from "./types";
  * @param type The element or component type to match.
  * @returns `true` when the element's type exactly matches the provided type; otherwise `false`.
  */
-export function isElementOfType<T extends ElementType>(
+export default function isElementOfType<T extends ElementType>(
     element: ReactElement,
     type: T
 ): element is ElementOfType<T> {

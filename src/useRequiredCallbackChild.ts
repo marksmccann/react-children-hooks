@@ -6,7 +6,7 @@ import type {
     CallbackChildren,
     ValidationOptions
 } from "./types";
-import { useCallbackChild } from "./useCallbackChild";
+import useCallbackChild from "./useCallbackChild";
 
 /**
  * Returns the first direct callback child from the provided children value, or throws when none is found.
@@ -15,7 +15,7 @@ import { useCallbackChild } from "./useCallbackChild";
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The first direct callback child from the provided children value.
  */
-export function useRequiredCallbackChild<
+export default function useRequiredCallbackChild<
     TArguments extends unknown[] = [],
     TResult = ReactNode
 >(

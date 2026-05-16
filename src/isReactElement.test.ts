@@ -1,7 +1,7 @@
 import { createElement } from "react";
 import { describe, expect, it } from "vitest";
 
-import { isReactElement } from "./isReactElement";
+import isReactElement from "./isReactElement";
 
 describe("isReactElement", () => {
     it("returns true for valid React elements", () => {

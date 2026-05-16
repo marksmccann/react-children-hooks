@@ -3,7 +3,7 @@ import { createElement, Fragment, type ReactNode } from "react";
 import { describe, expect, it } from "vitest";
 
 import reporter from "./reporter";
-import { useRequiredCallbackChild } from "./useRequiredCallbackChild";
+import useRequiredCallbackChild from "./useRequiredCallbackChild";
 
 describe("useRequiredCallbackChild", () => {
     it("returns the direct callback child when present", () => {

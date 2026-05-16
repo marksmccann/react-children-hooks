@@ -1,8 +1,8 @@
 import type { ElementType, ReactNode } from "react";
 
-import { isElementOfType } from "./isElementOfType";
+import isElementOfType from "./isElementOfType";
 import type { ElementOfType, QueryOptions } from "./types";
-import { useChildrenMatching } from "./useChildrenMatching";
+import useChildrenMatching from "./useChildrenMatching";
 
 /**
  * Returns the direct child elements whose React element type exactly matches the provided type.
@@ -12,7 +12,7 @@ import { useChildrenMatching } from "./useChildrenMatching";
  * @param options Optional query metadata used to configure how child elements are inspected.
  * @returns An array of direct child elements whose type matches the provided element type.
  */
-export function useChildrenByType<T extends ElementType>(
+export default function useChildrenByType<T extends ElementType>(
     children: ReactNode,
     type: T,
     options?: QueryOptions

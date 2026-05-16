@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react";
 import { createElement, Fragment, type ReactNode } from "react";
 import { describe, expect, it } from "vitest";
 
-import { useCallbackChild } from "./useCallbackChild";
+import useCallbackChild from "./useCallbackChild";
 
 describe("useCallbackChild", () => {
     it("returns a callback child when the direct child is a function", () => {

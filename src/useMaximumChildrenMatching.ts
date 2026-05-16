@@ -2,7 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 
 import reporter from "./reporter";
 import type { ValidationOptions } from "./types";
-import { useChildrenMatching } from "./useChildrenMatching";
+import useChildrenMatching from "./useChildrenMatching";
 
 /**
  * Returns the direct child elements that satisfy the provided predicate, or throws when more than the maximum count are found.
@@ -13,19 +13,19 @@ import { useChildrenMatching } from "./useChildrenMatching";
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The direct child elements that satisfy the provided predicate.
  */
-export function useMaximumChildrenMatching<T extends ReactElement>(
+function useMaximumChildrenMatching<T extends ReactElement>(
     children: ReactNode,
     predicate: (element: ReactElement) => element is T,
     maximumCount: number,
     options?: ValidationOptions
 ): T[];
-export function useMaximumChildrenMatching(
+function useMaximumChildrenMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     maximumCount: number,
     options?: ValidationOptions
 ): ReactElement[];
-export function useMaximumChildrenMatching(
+function useMaximumChildrenMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     maximumCount: number,
@@ -45,3 +45,5 @@ export function useMaximumChildrenMatching(
         maximumCount
     });
 }
+
+export default useMaximumChildrenMatching;

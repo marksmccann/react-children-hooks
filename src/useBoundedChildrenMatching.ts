@@ -2,7 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 
 import reporter from "./reporter";
 import type { ChildrenCountBounds, ValidationOptions } from "./types";
-import { useChildrenMatching } from "./useChildrenMatching";
+import useChildrenMatching from "./useChildrenMatching";
 
 /**
  * Returns the direct child elements that satisfy the provided predicate, or throws when the count falls outside the inclusive bounds.
@@ -13,19 +13,19 @@ import { useChildrenMatching } from "./useChildrenMatching";
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The direct child elements that satisfy the provided predicate.
  */
-export function useBoundedChildrenMatching<T extends ReactElement>(
+function useBoundedChildrenMatching<T extends ReactElement>(
     children: ReactNode,
     predicate: (element: ReactElement) => element is T,
     bounds: ChildrenCountBounds,
     options?: ValidationOptions
 ): T[];
-export function useBoundedChildrenMatching(
+function useBoundedChildrenMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     bounds: ChildrenCountBounds,
     options?: ValidationOptions
 ): ReactElement[];
-export function useBoundedChildrenMatching(
+function useBoundedChildrenMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     bounds: ChildrenCountBounds,
@@ -49,3 +49,5 @@ export function useBoundedChildrenMatching(
         maximumCount: bounds.maximum
     });
 }
+
+export default useBoundedChildrenMatching;

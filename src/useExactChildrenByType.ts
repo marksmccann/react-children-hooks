@@ -1,8 +1,8 @@
 import type { ElementType, ReactNode } from "react";
 
-import { isElementOfType } from "./isElementOfType";
+import isElementOfType from "./isElementOfType";
 import type { ElementOfType, ValidationOptions } from "./types";
-import { useExactChildrenMatching } from "./useExactChildrenMatching";
+import useExactChildrenMatching from "./useExactChildrenMatching";
 
 /**
  * Returns the direct child elements whose React element type exactly matches the provided type, or throws when the exact count is not met.
@@ -13,7 +13,7 @@ import { useExactChildrenMatching } from "./useExactChildrenMatching";
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The direct child elements whose type matches the provided element type.
  */
-export function useExactChildrenByType<T extends ElementType>(
+export default function useExactChildrenByType<T extends ElementType>(
     children: ReactNode,
     type: T,
     exactCount: number,

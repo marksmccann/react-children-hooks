@@ -1,6 +1,6 @@
 import { useMemo, type ReactElement, type ReactNode } from "react";
 
-import { childrenToElements } from "./childrenToElements";
+import childrenToElements from "./childrenToElements";
 import type { QueryOptions } from "./types";
 
 /**
@@ -11,17 +11,17 @@ import type { QueryOptions } from "./types";
  * @param options Optional query metadata used to configure how child elements are inspected.
  * @returns An array of direct child elements that satisfy the provided predicate.
  */
-export function useChildrenMatching<T extends ReactElement>(
+function useChildrenMatching<T extends ReactElement>(
     children: ReactNode,
     predicate: (element: ReactElement) => element is T,
     options?: QueryOptions
 ): T[];
-export function useChildrenMatching(
+function useChildrenMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     options?: QueryOptions
 ): ReactElement[];
-export function useChildrenMatching(
+function useChildrenMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     options?: QueryOptions
@@ -31,3 +31,5 @@ export function useChildrenMatching(
         [children, options, predicate]
     );
 }
+
+export default useChildrenMatching;

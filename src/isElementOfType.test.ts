@@ -1,7 +1,7 @@
 import { createElement, type PropsWithChildren } from "react";
 import { describe, expect, it } from "vitest";
 
-import { isElementOfType } from "./isElementOfType";
+import isElementOfType from "./isElementOfType";
 
 function ExampleComponent({ children }: PropsWithChildren) {
     return createElement("div", null, children);

@@ -1,8 +1,8 @@
 import type { ElementType, ReactNode } from "react";
 
-import { isElementOfType } from "./isElementOfType";
+import isElementOfType from "./isElementOfType";
 import type { ElementOfType, ValidationOptions } from "./types";
-import { useMaximumChildrenMatching } from "./useMaximumChildrenMatching";
+import useMaximumChildrenMatching from "./useMaximumChildrenMatching";
 
 /**
  * Returns the direct child elements whose React element type exactly matches the provided type, or throws when more than the maximum count are found.
@@ -13,7 +13,7 @@ import { useMaximumChildrenMatching } from "./useMaximumChildrenMatching";
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The direct child elements whose type matches the provided element type.
  */
-export function useMaximumChildrenByType<T extends ElementType>(
+export default function useMaximumChildrenByType<T extends ElementType>(
     children: ReactNode,
     type: T,
     maximumCount: number,

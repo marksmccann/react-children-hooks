@@ -31,7 +31,7 @@ import { useRequiredChildByType } from "react-children-hooks";
 
 function Dialog({ children }: { children: React.ReactNode }) {
     const trigger = useRequiredChildByType(children, "button", {
-        traceCode: "DIALOG_TRIGGER_MISSING",
+        traceCode: "TC008",
         childName: "DialogTrigger"
     });
 

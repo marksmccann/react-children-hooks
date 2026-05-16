@@ -2,7 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 
 import reporter from "./reporter";
 import type { ValidationOptions } from "./types";
-import { useChildrenMatching } from "./useChildrenMatching";
+import useChildrenMatching from "./useChildrenMatching";
 
 /**
  * Returns the optional direct child element that satisfies the provided predicate, or throws when more than one match is found.
@@ -12,17 +12,17 @@ import { useChildrenMatching } from "./useChildrenMatching";
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The optional direct child element that satisfies the provided predicate, or `null` when no match is found.
  */
-export function useOptionalChildMatching<T extends ReactElement>(
+function useOptionalChildMatching<T extends ReactElement>(
     children: ReactNode,
     predicate: (element: ReactElement) => element is T,
     options?: ValidationOptions
 ): T | null;
-export function useOptionalChildMatching(
+function useOptionalChildMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     options?: ValidationOptions
 ): ReactElement | null;
-export function useOptionalChildMatching(
+function useOptionalChildMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     options?: ValidationOptions
@@ -40,3 +40,5 @@ export function useOptionalChildMatching(
         actualCountPluralSuffix: matchingChildren.length === 1 ? "" : "ren"
     });
 }
+
+export default useOptionalChildMatching;

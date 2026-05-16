@@ -43,7 +43,7 @@ function DialogActions({ children }: { children: React.ReactNode }) {
         children,
         (element) => element.type === "button",
         2,
-        { traceCode: "DIALOG_ACTIONS_MAXIMUM", childName: "DialogAction" }
+        { traceCode: "TC006", childName: "DialogAction" }
     );
 
     return <div>{actions}</div>;

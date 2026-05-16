@@ -39,7 +39,7 @@ function Dialog({ children }: { children: React.ReactNode }) {
     const trigger = useUniqueChildMatching(
         children,
         (element) => element.props.slot === "trigger",
-        { traceCode: "DIALOG_TRIGGER_UNIQUE", childName: "DialogTrigger" }
+        { traceCode: "TC002", childName: "DialogTrigger" }
     );
 
     return <div>{trigger}</div>;

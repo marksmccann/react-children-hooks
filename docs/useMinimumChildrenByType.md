@@ -33,7 +33,7 @@ import { useMinimumChildrenByType } from "react-children-hooks";
 
 function DialogActions({ children }: { children: React.ReactNode }) {
     const actions = useMinimumChildrenByType(children, "button", 2, {
-        traceCode: "DIALOG_ACTIONS_MINIMUM",
+        traceCode: "TC010",
         childName: "DialogAction"
     });
 

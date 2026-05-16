@@ -36,7 +36,7 @@ function DialogActions({ children }: { children: React.ReactNode }) {
         children,
         "button",
         { minimum: 1, maximum: 3 },
-        { traceCode: "DIALOG_ACTIONS_BOUNDED", childName: "DialogAction" }
+        { traceCode: "TC016", childName: "DialogAction" }
     );
 
     return <div>{actions}</div>;

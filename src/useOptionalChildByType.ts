@@ -1,8 +1,8 @@
 import type { ElementType, ReactNode } from "react";
 
-import { isElementOfType } from "./isElementOfType";
+import isElementOfType from "./isElementOfType";
 import type { ElementOfType, ValidationOptions } from "./types";
-import { useOptionalChildMatching } from "./useOptionalChildMatching";
+import useOptionalChildMatching from "./useOptionalChildMatching";
 
 /**
  * Returns the optional direct child element whose React element type exactly matches the provided type, or throws when more than one match is found.
@@ -12,7 +12,7 @@ import { useOptionalChildMatching } from "./useOptionalChildMatching";
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The optional direct child element whose type matches the provided element type, or `null` when no match is found.
  */
-export function useOptionalChildByType<T extends ElementType>(
+export default function useOptionalChildByType<T extends ElementType>(
     children: ReactNode,
     type: T,
     options?: ValidationOptions

@@ -1,8 +1,8 @@
 import type { ElementType, ReactNode } from "react";
 
-import { isElementOfType } from "./isElementOfType";
+import isElementOfType from "./isElementOfType";
 import type { ElementOfType, ValidationOptions } from "./types";
-import { useMinimumChildrenMatching } from "./useMinimumChildrenMatching";
+import useMinimumChildrenMatching from "./useMinimumChildrenMatching";
 
 /**
  * Returns the direct child elements whose React element type exactly matches the provided type, or throws when fewer than the minimum count are found.
@@ -13,7 +13,7 @@ import { useMinimumChildrenMatching } from "./useMinimumChildrenMatching";
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The direct child elements whose type matches the provided element type.
  */
-export function useMinimumChildrenByType<T extends ElementType>(
+export default function useMinimumChildrenByType<T extends ElementType>(
     children: ReactNode,
     type: T,
     minimumCount: number,

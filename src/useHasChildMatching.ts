@@ -1,6 +1,6 @@
 import { useMemo, type ReactElement, type ReactNode } from "react";
 
-import { childrenToElements } from "./childrenToElements";
+import childrenToElements from "./childrenToElements";
 import type { QueryOptions } from "./types";
 
 /**
@@ -11,17 +11,17 @@ import type { QueryOptions } from "./types";
  * @param options Optional query metadata used to configure how child elements are inspected.
  * @returns `true` when at least one direct child element satisfies the provided predicate; otherwise `false`.
  */
-export function useHasChildMatching<T extends ReactElement>(
+function useHasChildMatching<T extends ReactElement>(
     children: ReactNode,
     predicate: (element: ReactElement) => element is T,
     options?: QueryOptions
 ): boolean;
-export function useHasChildMatching(
+function useHasChildMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     options?: QueryOptions
 ): boolean;
-export function useHasChildMatching(
+function useHasChildMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     options?: QueryOptions
@@ -31,3 +31,5 @@ export function useHasChildMatching(
         [children, options, predicate]
     );
 }
+
+export default useHasChildMatching;

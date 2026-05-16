@@ -2,7 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 
 import reporter from "./reporter";
 import type { ValidationOptions } from "./types";
-import { useChildrenMatching } from "./useChildrenMatching";
+import useChildrenMatching from "./useChildrenMatching";
 
 /**
  * Returns the only direct child element that satisfies the provided predicate, or throws when the match is not unique.
@@ -12,17 +12,17 @@ import { useChildrenMatching } from "./useChildrenMatching";
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The only direct child element that satisfies the provided predicate.
  */
-export function useUniqueChildMatching<T extends ReactElement>(
+function useUniqueChildMatching<T extends ReactElement>(
     children: ReactNode,
     predicate: (element: ReactElement) => element is T,
     options?: ValidationOptions
 ): T;
-export function useUniqueChildMatching(
+function useUniqueChildMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     options?: ValidationOptions
 ): ReactElement;
-export function useUniqueChildMatching(
+function useUniqueChildMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     options?: ValidationOptions
@@ -40,3 +40,5 @@ export function useUniqueChildMatching(
         actualCountPluralSuffix: matchingChildren.length === 1 ? "" : "ren"
     });
 }
+
+export default useUniqueChildMatching;

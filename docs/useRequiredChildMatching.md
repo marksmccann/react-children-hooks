@@ -39,7 +39,7 @@ function Dialog({ children }: { children: React.ReactNode }) {
     const trigger = useRequiredChildMatching(
         children,
         (element) => element.props.slot === "trigger",
-        { traceCode: "DIALOG_TRIGGER_MISSING", childName: "DialogTrigger" }
+        { traceCode: "TC001", childName: "DialogTrigger" }
     );
 
     return <div>{trigger}</div>;

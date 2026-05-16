@@ -9,7 +9,7 @@ import {
 import { describe, expect, it } from "vitest";
 
 import reporter from "./reporter";
-import { useUniqueChildMatching } from "./useUniqueChildMatching";
+import useUniqueChildMatching from "./useUniqueChildMatching";
 
 function ExampleComponent({
     children,

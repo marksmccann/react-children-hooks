@@ -1,7 +1,7 @@
 import { createElement, Fragment } from "react";
 import { describe, expect, it } from "vitest";
 
-import { childrenToElements } from "./childrenToElements";
+import childrenToElements from "./childrenToElements";
 import reporter from "./reporter";
 
 describe("childrenToElements", () => {

@@ -3,7 +3,7 @@ import { createElement, Fragment, type PropsWithChildren } from "react";
 import { describe, expect, it } from "vitest";
 
 import reporter from "./reporter";
-import { useMaximumChildrenByType } from "./useMaximumChildrenByType";
+import useMaximumChildrenByType from "./useMaximumChildrenByType";
 
 function ExampleComponent({ children }: PropsWithChildren) {
     return createElement("section", null, children);

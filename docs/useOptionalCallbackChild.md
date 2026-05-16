@@ -1,17 +1,17 @@
-# `useRequiredCallbackChild`
+# `useOptionalCallbackChild`
 
-Returns the first direct callback child from the provided children value, or throws when none is found.
+Returns the optional direct callback child from the provided children value, or throws when more than one is found.
 
 ## Signature
 
 ```ts
-function useRequiredCallbackChild<
+function useOptionalCallbackChild<
     TArguments extends unknown[] = [],
     TResult = React.ReactNode
 >(
     children: CallbackChildren<TArguments, TResult>,
     options?: ValidationOptions
-): CallbackChild<TArguments, TResult>;
+): CallbackChild<TArguments, TResult> | null;
 ```
 
 ## Parameters
@@ -23,13 +23,13 @@ function useRequiredCallbackChild<
 
 ## Returns
 
-The first direct callback child from the provided children value.
+The optional direct callback child from the provided children value, or `null` when none is found.
 
 ## Usage
 
 ```tsx
 import type { CallbackChildren } from "react-children-hooks";
-import { useRequiredCallbackChild } from "react-children-hooks";
+import { useOptionalCallbackChild } from "react-children-hooks";
 
 function Toggle({
     children,
@@ -38,11 +38,11 @@ function Toggle({
     children: CallbackChildren<[boolean], React.ReactNode>;
     isOpen: boolean;
 }) {
-    const render = useRequiredCallbackChild<[boolean]>(children, {
-        traceCode: "TC005",
+    const render = useOptionalCallbackChild<[boolean]>(children, {
+        traceCode: "TC013",
         childName: "ToggleRenderChild"
     });
 
-    return <div>{render(isOpen)}</div>;
+    return <div>{render ? render(isOpen) : "Closed"}</div>;
 }
 ```

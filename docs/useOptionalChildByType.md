@@ -31,7 +31,7 @@ import { useOptionalChildByType } from "react-children-hooks";
 
 function Dialog({ children }: { children: React.ReactNode }) {
     const icon = useOptionalChildByType(children, "button", {
-        traceCode: "DIALOG_ICON_OPTIONAL",
+        traceCode: "TC009",
         childName: "DialogIcon"
     });
 

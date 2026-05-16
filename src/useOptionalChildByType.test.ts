@@ -3,7 +3,7 @@ import { createElement, Fragment, type PropsWithChildren } from "react";
 import { describe, expect, it } from "vitest";
 
 import reporter from "./reporter";
-import { useOptionalChildByType } from "./useOptionalChildByType";
+import useOptionalChildByType from "./useOptionalChildByType";
 
 function ExampleComponent({ children }: PropsWithChildren) {
     return createElement("section", null, children);

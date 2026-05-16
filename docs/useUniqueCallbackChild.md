@@ -1,11 +1,11 @@
-# `useRequiredCallbackChild`
+# `useUniqueCallbackChild`
 
-Returns the first direct callback child from the provided children value, or throws when none is found.
+Returns the only direct callback child from the provided children value, or throws when the match is not unique.
 
 ## Signature
 
 ```ts
-function useRequiredCallbackChild<
+function useUniqueCallbackChild<
     TArguments extends unknown[] = [],
     TResult = React.ReactNode
 >(
@@ -23,13 +23,13 @@ function useRequiredCallbackChild<
 
 ## Returns
 
-The first direct callback child from the provided children value.
+The only direct callback child from the provided children value.
 
 ## Usage
 
 ```tsx
 import type { CallbackChildren } from "react-children-hooks";
-import { useRequiredCallbackChild } from "react-children-hooks";
+import { useUniqueCallbackChild } from "react-children-hooks";
 
 function Toggle({
     children,
@@ -38,8 +38,8 @@ function Toggle({
     children: CallbackChildren<[boolean], React.ReactNode>;
     isOpen: boolean;
 }) {
-    const render = useRequiredCallbackChild<[boolean]>(children, {
-        traceCode: "TC005",
+    const render = useUniqueCallbackChild<[boolean]>(children, {
+        traceCode: "TC011",
         childName: "ToggleRenderChild"
     });
 

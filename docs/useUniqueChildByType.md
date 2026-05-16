@@ -31,7 +31,7 @@ import { useUniqueChildByType } from "react-children-hooks";
 
 function Dialog({ children }: { children: React.ReactNode }) {
     const trigger = useUniqueChildByType(children, "button", {
-        traceCode: "DIALOG_TRIGGER_UNIQUE",
+        traceCode: "TC017",
         childName: "DialogTrigger"
     });
 

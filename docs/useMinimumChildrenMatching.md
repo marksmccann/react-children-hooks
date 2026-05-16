@@ -43,7 +43,7 @@ function DialogActions({ children }: { children: React.ReactNode }) {
         children,
         (element) => element.type === "button",
         2,
-        { traceCode: "DIALOG_ACTIONS_MINIMUM", childName: "DialogAction" }
+        { traceCode: "TC007", childName: "DialogAction" }
     );
 
     return <div>{actions}</div>;

@@ -33,7 +33,7 @@ import { useExactChildrenByType } from "react-children-hooks";
 
 function DialogActions({ children }: { children: React.ReactNode }) {
     const actions = useExactChildrenByType(children, "button", 2, {
-        traceCode: "DIALOG_ACTIONS_EXACT",
+        traceCode: "TC012",
         childName: "DialogAction"
     });
 

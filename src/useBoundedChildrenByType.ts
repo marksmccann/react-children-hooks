@@ -1,12 +1,12 @@
 import type { ElementType, ReactNode } from "react";
 
-import { isElementOfType } from "./isElementOfType";
+import isElementOfType from "./isElementOfType";
 import type {
     ChildrenCountBounds,
     ElementOfType,
     ValidationOptions
 } from "./types";
-import { useBoundedChildrenMatching } from "./useBoundedChildrenMatching";
+import useBoundedChildrenMatching from "./useBoundedChildrenMatching";
 
 /**
  * Returns the direct child elements whose React element type exactly matches the provided type, or throws when the count falls outside the inclusive bounds.
@@ -17,7 +17,7 @@ import { useBoundedChildrenMatching } from "./useBoundedChildrenMatching";
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The direct child elements whose type matches the provided element type.
  */
-export function useBoundedChildrenByType<T extends ElementType>(
+export default function useBoundedChildrenByType<T extends ElementType>(
     children: ReactNode,
     type: T,
     bounds: ChildrenCountBounds,

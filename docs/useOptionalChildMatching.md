@@ -39,7 +39,7 @@ function Dialog({ children }: { children: React.ReactNode }) {
     const icon = useOptionalChildMatching(
         children,
         (element) => element.props.slot === "icon",
-        { traceCode: "DIALOG_ICON_OPTIONAL", childName: "DialogIcon" }
+        { traceCode: "TC004", childName: "DialogIcon" }
     );
 
     return <div>{icon}</div>;
