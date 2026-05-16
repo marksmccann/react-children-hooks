@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0 (2026-05-16)
+
+- feat: expand callback hooks and trim public api 645a2ae
+
 ## 0.4.0 (2026-05-16)
 
 - feat: add bounded children traversal support 0549a80
