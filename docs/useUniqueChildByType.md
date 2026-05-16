@@ -14,11 +14,11 @@ function useUniqueChildByType<T extends React.ElementType>(
 
 ## Parameters
 
-| Parameter  | Type                | Required | Description                                                                                                                            |
-| ---------- | ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `children` | `React.ReactNode`   | Yes      | The React children value to inspect.                                                                                                   |
-| `type`     | `React.ElementType` | Yes      | The element or component type to match against each direct child element.                                                              |
-| `options`  | `ValidationOptions` | No       | Optional reporting and traversal metadata used to derive the thrown validation message and configure how child elements are inspected. |
+| Parameter  | Type                                                | Required | Description                                                                                                                            |
+| ---------- | --------------------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `children` | `React.ReactNode`                                   | Yes      | The React children value to inspect.                                                                                                   |
+| `type`     | `React.ElementType`                                 | Yes      | The element or component type to match against each direct child element.                                                              |
+| `options`  | [`ValidationOptions`](./types.md#validationoptions) | No       | Optional reporting and traversal metadata used to derive the thrown validation message and configure how child elements are inspected. |
 
 ## Returns
 

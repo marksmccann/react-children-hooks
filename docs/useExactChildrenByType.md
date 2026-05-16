@@ -15,12 +15,12 @@ function useExactChildrenByType<T extends React.ElementType>(
 
 ## Parameters
 
-| Parameter    | Type                | Required | Description                                                                                                                            |
-| ------------ | ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`   | `React.ReactNode`   | Yes      | The React children value to inspect.                                                                                                   |
-| `type`       | `React.ElementType` | Yes      | The element or component type to match against each direct child element.                                                              |
-| `exactCount` | `number`            | Yes      | The exact number of matching direct child elements required.                                                                           |
-| `options`    | `ValidationOptions` | No       | Optional reporting and traversal metadata used to derive the thrown validation message and configure how child elements are inspected. |
+| Parameter    | Type                                                | Required | Description                                                                                                                            |
+| ------------ | --------------------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`   | `React.ReactNode`                                   | Yes      | The React children value to inspect.                                                                                                   |
+| `type`       | `React.ElementType`                                 | Yes      | The element or component type to match against each direct child element.                                                              |
+| `exactCount` | `number`                                            | Yes      | The exact number of matching direct child elements required.                                                                           |
+| `options`    | [`ValidationOptions`](./types.md#validationoptions) | No       | Optional reporting and traversal metadata used to derive the thrown validation message and configure how child elements are inspected. |
 
 ## Returns
 

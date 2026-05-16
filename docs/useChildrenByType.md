@@ -14,11 +14,11 @@ function useChildrenByType<T extends React.ElementType>(
 
 ## Parameters
 
-| Parameter  | Type                | Required | Description                                                                 |
-| ---------- | ------------------- | -------- | --------------------------------------------------------------------------- |
-| `children` | `React.ReactNode`   | Yes      | The React children value to inspect.                                        |
-| `type`     | `React.ElementType` | Yes      | The element or component type to match against each direct child element.   |
-| `options`  | `QueryOptions`      | No       | Optional query metadata used to configure how child elements are inspected. |
+| Parameter  | Type                                      | Required | Description                                                                 |
+| ---------- | ----------------------------------------- | -------- | --------------------------------------------------------------------------- |
+| `children` | `React.ReactNode`                         | Yes      | The React children value to inspect.                                        |
+| `type`     | `React.ElementType`                       | Yes      | The element or component type to match against each direct child element.   |
+| `options`  | [`QueryOptions`](./types.md#queryoptions) | No       | Optional query metadata used to configure how child elements are inspected. |
 
 ## Returns
 

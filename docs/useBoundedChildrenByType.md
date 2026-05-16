@@ -15,12 +15,12 @@ function useBoundedChildrenByType<T extends React.ElementType>(
 
 ## Parameters
 
-| Parameter  | Type                  | Required | Description                                                                                                                            |
-| ---------- | --------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `children` | `React.ReactNode`     | Yes      | The React children value to inspect.                                                                                                   |
-| `type`     | `React.ElementType`   | Yes      | The element or component type to match against each direct child element.                                                              |
-| `bounds`   | `ChildrenCountBounds` | Yes      | The inclusive minimum and maximum number of matching direct child elements allowed.                                                    |
-| `options`  | `ValidationOptions`   | No       | Optional reporting and traversal metadata used to derive the thrown validation message and configure how child elements are inspected. |
+| Parameter  | Type                                                    | Required | Description                                                                                                                            |
+| ---------- | ------------------------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `children` | `React.ReactNode`                                       | Yes      | The React children value to inspect.                                                                                                   |
+| `type`     | `React.ElementType`                                     | Yes      | The element or component type to match against each direct child element.                                                              |
+| `bounds`   | [`ChildrenCountBounds`](./types.md#childrencountbounds) | Yes      | The inclusive minimum and maximum number of matching direct child elements allowed.                                                    |
+| `options`  | [`ValidationOptions`](./types.md#validationoptions)     | No       | Optional reporting and traversal metadata used to derive the thrown validation message and configure how child elements are inspected. |
 
 ## Returns
 

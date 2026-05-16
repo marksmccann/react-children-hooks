@@ -38,10 +38,10 @@
 
 ### Types
 
-- [`CallbackChild`](./src/types.ts)
-- [`CallbackChildren`](./src/types.ts)
-- [`ChildrenCountBounds`](./src/types.ts)
-- [`ElementOfType`](./src/types.ts)
-- [`QueryOptions`](./src/types.ts)
-- [`TraversalOptions`](./src/types.ts)
-- [`ValidationOptions`](./src/types.ts)
+- [`CallbackChild`](./docs/types.md#callbackchild)
+- [`CallbackChildren`](./docs/types.md#callbackchildren)
+- [`ChildrenCountBounds`](./docs/types.md#childrencountbounds)
+- [`ElementOfType`](./docs/types.md#elementoftype)
+- [`QueryOptions`](./docs/types.md#queryoptions)
+- [`TraversalOptions`](./docs/types.md#traversaloptions)
+- [`ValidationOptions`](./docs/types.md#validationoptions)

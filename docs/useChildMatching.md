@@ -24,7 +24,7 @@ function useChildMatching(
 | ----------- | ------------------------------------------ | -------- | ------------------------------------------------------------------------------------------ |
 | `children`  | `React.ReactNode`                          | Yes      | The React children value to inspect.                                                       |
 | `predicate` | `(element: React.ReactElement) => boolean` | Yes      | A predicate that is called with each direct child element to determine whether it matches. |
-| `options`   | `QueryOptions`                             | No       | Optional query metadata used to configure how child elements are inspected.                |
+| `options`   | [`QueryOptions`](./types.md#queryoptions)  | No       | Optional query metadata used to configure how child elements are inspected.                |
 
 ## Returns
 

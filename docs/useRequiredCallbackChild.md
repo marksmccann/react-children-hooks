@@ -16,10 +16,10 @@ function useRequiredCallbackChild<
 
 ## Parameters
 
-| Parameter  | Type                               | Required | Description                                                          |
-| ---------- | ---------------------------------- | -------- | -------------------------------------------------------------------- |
-| `children` | `CallbackChildren<TArgs, TResult>` | Yes      | The direct children value to inspect for callback children.          |
-| `options`  | `ValidationOptions`                | No       | Optional reporting metadata used to derive the thrown error message. |
+| Parameter  | Type                                                              | Required | Description                                                          |
+| ---------- | ----------------------------------------------------------------- | -------- | -------------------------------------------------------------------- |
+| `children` | [`CallbackChildren<TArgs, TResult>`](./types.md#callbackchildren) | Yes      | The direct children value to inspect for callback children.          |
+| `options`  | [`ValidationOptions`](./types.md#validationoptions)               | No       | Optional reporting metadata used to derive the thrown error message. |
 
 ## Returns
 

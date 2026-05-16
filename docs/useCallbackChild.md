@@ -15,9 +15,9 @@ function useCallbackChild<
 
 ## Parameters
 
-| Parameter  | Type                               | Required | Description                                                 |
-| ---------- | ---------------------------------- | -------- | ----------------------------------------------------------- |
-| `children` | `CallbackChildren<TArgs, TResult>` | Yes      | The direct children value to inspect for callback children. |
+| Parameter  | Type                                                              | Required | Description                                                 |
+| ---------- | ----------------------------------------------------------------- | -------- | ----------------------------------------------------------- |
+| `children` | [`CallbackChildren<TArgs, TResult>`](./types.md#callbackchildren) | Yes      | The direct children value to inspect for callback children. |
 
 ## Returns
 
