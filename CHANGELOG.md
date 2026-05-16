@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0 (2026-05-16)
+
+- feat: add bounded children traversal support 0549a80
+- feat: create useCallbackChild and useRequiredCallbackChild hooks c0d0716
+- feat: create useOptionalChild* and useUniqueChild* hooks 960e291
+
 ## 0.3.0 (2026-05-15)
 
 - feat: create \*ByType variants for all validation+query hooks ae39d37
