@@ -6,7 +6,7 @@
 
 ### Query Hooks
 
-Find and retrieve matching children without enforcing count constraints.
+Find and retrieve matching children.
 
 - [`useCallbackChild`](./docs/useCallbackChild.md): first direct callback child, or `null`.
 - [`useChildByType`](./docs/useChildByType.md): first matching child by type, or `null`.
@@ -14,16 +14,23 @@ Find and retrieve matching children without enforcing count constraints.
 - [`useChildrenByType`](./docs/useChildrenByType.md): all matching children by type.
 - [`useChildrenMatching`](./docs/useChildrenMatching.md): all matching children.
 
+### Quantity Hooks
+
+Count matching children.
+
+- [`useChildrenCountByType`](./docs/useChildrenCountByType.md): number of matching children by type.
+- [`useChildrenCountMatching`](./docs/useChildrenCountMatching.md): number of matching children.
+
 ### Existence Hooks
 
-Answer whether a matching child exists without returning child references.
+Answer whether a child exists.
 
 - [`useHasChildByType`](./docs/useHasChildByType.md): whether any matching child by type exists.
 - [`useHasChildMatching`](./docs/useHasChildMatching.md): whether any matching child exists.
 
 ### Cardinality Hooks
 
-These hooks combine querying with count constraints and validation.
+Find and retrieve matching children while also enforcing count constraints.
 
 - [`useOptionalChildMatching`](./docs/useOptionalChildMatching.md): `0..1` matching children, returns the child or `null`, throws on duplicates.
 - [`useOptionalChildByType`](./docs/useOptionalChildByType.md): `0..1` matching children by type, returns the child or `null`, throws on duplicates.

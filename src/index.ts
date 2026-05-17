@@ -5,6 +5,8 @@ export { default as useHasChildByType } from "./useHasChildByType";
 export { default as useBoundedChildrenByType } from "./useBoundedChildrenByType";
 export { default as useBoundedChildrenMatching } from "./useBoundedChildrenMatching";
 export { default as useChildrenByType } from "./useChildrenByType";
+export { default as useChildrenCountByType } from "./useChildrenCountByType";
+export { default as useChildrenCountMatching } from "./useChildrenCountMatching";
 export { default as useChildrenMatching } from "./useChildrenMatching";
 export { default as useExactChildrenByType } from "./useExactChildrenByType";
 export { default as useExactChildrenMatching } from "./useExactChildrenMatching";
