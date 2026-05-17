@@ -16,8 +16,9 @@ Find and retrieve matching children without enforcing count constraints.
 
 ### Existence Hooks
 
-Answer whether a matching child exists without.
+Answer whether a matching child exists without returning child references.
 
+- [`useHasChildByType`](./docs/useHasChildByType.md): whether any matching child by type exists.
 - [`useHasChildMatching`](./docs/useHasChildMatching.md): whether any matching child exists.
 
 ### Cardinality Hooks

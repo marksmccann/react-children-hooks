@@ -1,6 +1,7 @@
 export { default as useChildByType } from "./useChildByType";
 export { default as useCallbackChild } from "./useCallbackChild";
 export { default as useChildMatching } from "./useChildMatching";
+export { default as useHasChildByType } from "./useHasChildByType";
 export { default as useBoundedChildrenByType } from "./useBoundedChildrenByType";
 export { default as useBoundedChildrenMatching } from "./useBoundedChildrenMatching";
 export { default as useChildrenByType } from "./useChildrenByType";
