@@ -1,17 +1,17 @@
-# `useUniqueChildMatching`
+# `useOnlyChildMatching`
 
-Returns the only child element that satisfies the provided predicate, or throws when the match is not unique.
+Returns the only child element that satisfies the provided predicate, or throws when the match count is not exactly one.
 
 ## Signature
 
 ```ts
-function useUniqueChildMatching<T extends React.ReactElement>(
+function useOnlyChildMatching<T extends React.ReactElement>(
     children: React.ReactNode,
     predicate: (element: React.ReactElement) => element is T,
     options?: ValidationOptions
 ): T;
 
-function useUniqueChildMatching(
+function useOnlyChildMatching(
     children: React.ReactNode,
     predicate: (element: React.ReactElement) => boolean,
     options?: ValidationOptions
@@ -33,10 +33,10 @@ The only child element that satisfies the provided predicate.
 ## Usage
 
 ```tsx
-import { useUniqueChildMatching } from "react-children-hooks";
+import { useOnlyChildMatching } from "react-children-hooks";
 
 function Dialog({ children }: { children: React.ReactNode }) {
-    const trigger = useUniqueChildMatching(
+    const trigger = useOnlyChildMatching(
         children,
         (element) => element.props.slot === "trigger",
         { traceCode: "TC002", childName: "DialogTrigger" }

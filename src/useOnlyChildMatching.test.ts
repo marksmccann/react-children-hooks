@@ -9,7 +9,7 @@ import {
 import { describe, expect, it } from "vitest";
 
 import reporter from "./reporter";
-import useUniqueChildMatching from "./useUniqueChildMatching";
+import useOnlyChildMatching from "./useOnlyChildMatching";
 
 function ExampleComponent({
     children,
@@ -24,7 +24,7 @@ function isButtonElement(
     return element.type === "button";
 }
 
-describe("useUniqueChildMatching", () => {
+describe("useOnlyChildMatching", () => {
     it("returns the only matching direct child when exactly one match is found", () => {
         const children = [
             createElement("span", { key: "span-1" }),
@@ -33,7 +33,7 @@ describe("useUniqueChildMatching", () => {
         ];
 
         const { result } = renderHook(() =>
-            useUniqueChildMatching(
+            useOnlyChildMatching(
                 children,
                 (element) => element.type === "button"
             )
@@ -53,7 +53,7 @@ describe("useUniqueChildMatching", () => {
         ];
 
         const { result } = renderHook(() =>
-            useUniqueChildMatching(children, isButtonElement)
+            useOnlyChildMatching(children, isButtonElement)
         );
 
         expect(result.current.props.type).toBe("submit");
@@ -69,7 +69,7 @@ describe("useUniqueChildMatching", () => {
         ];
 
         const { result } = renderHook(() =>
-            useUniqueChildMatching(
+            useOnlyChildMatching(
                 children,
                 (element) => element.type === ExampleComponent,
                 { childName: "ExampleComponent" }
@@ -84,13 +84,13 @@ describe("useUniqueChildMatching", () => {
 
         expect(() =>
             renderHook(() =>
-                useUniqueChildMatching(
+                useOnlyChildMatching(
                     children,
                     (element) => element.type === "button"
                 )
             )
         ).toThrow(
-            reporter.message("UNIQUE_CHILD_MATCHING_PREDICATE_FAILED", {
+            reporter.message("ONLY_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 0,
@@ -107,13 +107,13 @@ describe("useUniqueChildMatching", () => {
 
         expect(() =>
             renderHook(() =>
-                useUniqueChildMatching(
+                useOnlyChildMatching(
                     children,
                     (element) => element.type === "button"
                 )
             )
         ).toThrow(
-            reporter.message("UNIQUE_CHILD_MATCHING_PREDICATE_FAILED", {
+            reporter.message("ONLY_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 2,
@@ -130,7 +130,7 @@ describe("useUniqueChildMatching", () => {
 
         expect(() =>
             renderHook(() =>
-                useUniqueChildMatching(
+                useOnlyChildMatching(
                     children,
                     (element) => element.type === "button",
                     {
@@ -140,7 +140,7 @@ describe("useUniqueChildMatching", () => {
                 )
             )
         ).toThrow(
-            reporter.message("UNIQUE_CHILD_MATCHING_PREDICATE_FAILED", {
+            reporter.message("ONLY_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_TRIGGER_UNIQUE] ",
                 childNameSegment: " for DialogTrigger",
                 actualCount: 2,
@@ -160,7 +160,7 @@ describe("useUniqueChildMatching", () => {
         ];
 
         const { result } = renderHook(() =>
-            useUniqueChildMatching(
+            useOnlyChildMatching(
                 children,
                 (element) => element.type === "button",
                 { childName: "DialogTrigger" }
@@ -171,7 +171,7 @@ describe("useUniqueChildMatching", () => {
         expect(result.current.key).toBe(".$direct-button-1");
     });
 
-    it("returns a nested unique match when depth excludes direct children", () => {
+    it("returns a nested only match when depth excludes direct children", () => {
         const children = [
             createElement("button", { key: "direct-button" }),
             createElement(Fragment, {
@@ -181,7 +181,7 @@ describe("useUniqueChildMatching", () => {
         ];
 
         const { result } = renderHook(() =>
-            useUniqueChildMatching(
+            useOnlyChildMatching(
                 children,
                 (element) => element.type === "button",
                 { depth: 1, maximumDepth: 1, childName: "DialogTrigger" }
@@ -194,7 +194,7 @@ describe("useUniqueChildMatching", () => {
     it("throws the public reporter error when depth is invalid", () => {
         expect(() =>
             renderHook(() =>
-                useUniqueChildMatching(
+                useOnlyChildMatching(
                     null,
                     (element) => element.type === "button",
                     { depth: -1 }

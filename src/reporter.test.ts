@@ -29,29 +29,29 @@ describe("reporter", () => {
         );
     });
 
-    it("resolves unique-child validation messages without an internal code suffix", () => {
+    it("resolves only-child validation messages without an internal code suffix", () => {
         expect(
-            reporter.message("UNIQUE_CHILD_MATCHING_PREDICATE_FAILED", {
+            reporter.message("ONLY_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 2,
                 actualCountPluralSuffix: "ren"
             })
         ).toBe(
-            "Unique child validation failed because 2 direct children satisfied the provided predicate; expected exactly 1."
+            "Only child validation failed because 2 direct children satisfied the provided predicate; expected exactly 1."
         );
     });
 
-    it("throws formatted unique-child validation messages from fail", () => {
+    it("throws formatted only-child validation messages from fail", () => {
         expect(() =>
-            reporter.fail("UNIQUE_CHILD_MATCHING_PREDICATE_FAILED", {
+            reporter.fail("ONLY_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_TRIGGER_UNIQUE] ",
                 childNameSegment: " for DialogTrigger",
                 actualCount: 0,
                 actualCountPluralSuffix: "ren"
             })
         ).toThrow(
-            "[DIALOG_TRIGGER_UNIQUE] Unique child validation failed for DialogTrigger because 0 direct children satisfied the provided predicate; expected exactly 1."
+            "[DIALOG_TRIGGER_UNIQUE] Only child validation failed for DialogTrigger because 0 direct children satisfied the provided predicate; expected exactly 1."
         );
     });
 

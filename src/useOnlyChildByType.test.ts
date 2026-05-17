@@ -3,13 +3,13 @@ import { createElement, Fragment, type PropsWithChildren } from "react";
 import { describe, expect, it } from "vitest";
 
 import reporter from "./reporter";
-import useUniqueChildByType from "./useUniqueChildByType";
+import useOnlyChildByType from "./useOnlyChildByType";
 
 function ExampleComponent({ children }: PropsWithChildren) {
     return createElement("section", null, children);
 }
 
-describe("useUniqueChildByType", () => {
+describe("useOnlyChildByType", () => {
     it("returns the only direct child element that matches an intrinsic element type", () => {
         const children = [
             createElement("span", { key: "span-1" }),
@@ -18,7 +18,7 @@ describe("useUniqueChildByType", () => {
         ];
 
         const { result } = renderHook(() =>
-            useUniqueChildByType(children, "button")
+            useOnlyChildByType(children, "button")
         );
 
         expect(result.current.type).toBe("button");
@@ -32,7 +32,7 @@ describe("useUniqueChildByType", () => {
         ];
 
         const { result } = renderHook(() =>
-            useUniqueChildByType(children, ExampleComponent)
+            useOnlyChildByType(children, ExampleComponent)
         );
 
         expect(result.current.type).toBe(ExampleComponent);
@@ -46,9 +46,9 @@ describe("useUniqueChildByType", () => {
         ];
 
         expect(() =>
-            renderHook(() => useUniqueChildByType(children, "button"))
+            renderHook(() => useOnlyChildByType(children, "button"))
         ).toThrow(
-            reporter.message("UNIQUE_CHILD_MATCHING_PREDICATE_FAILED", {
+            reporter.message("ONLY_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 0,
@@ -65,13 +65,13 @@ describe("useUniqueChildByType", () => {
 
         expect(() =>
             renderHook(() =>
-                useUniqueChildByType(children, "button", {
+                useOnlyChildByType(children, "button", {
                     traceCode: "DIALOG_TRIGGER_UNIQUE",
                     childName: "DialogTrigger"
                 })
             )
         ).toThrow(
-            reporter.message("UNIQUE_CHILD_MATCHING_PREDICATE_FAILED", {
+            reporter.message("ONLY_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "[DIALOG_TRIGGER_UNIQUE] ",
                 childNameSegment: " for DialogTrigger",
                 actualCount: 2,
@@ -91,12 +91,12 @@ describe("useUniqueChildByType", () => {
 
         expect(() =>
             renderHook(() =>
-                useUniqueChildByType(children, "button", {
+                useOnlyChildByType(children, "button", {
                     childName: "DialogTrigger"
                 })
             )
         ).toThrow(
-            reporter.message("UNIQUE_CHILD_MATCHING_PREDICATE_FAILED", {
+            reporter.message("ONLY_CHILD_MATCHING_PREDICATE_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: " for DialogTrigger",
                 actualCount: 0,
@@ -105,7 +105,7 @@ describe("useUniqueChildByType", () => {
         );
     });
 
-    it("returns a nested unique match when depth excludes direct children", () => {
+    it("returns a nested only match when depth excludes direct children", () => {
         const children = [
             createElement("button", { key: "direct-button" }),
             createElement(Fragment, {
@@ -115,7 +115,7 @@ describe("useUniqueChildByType", () => {
         ];
 
         const { result } = renderHook(() =>
-            useUniqueChildByType(children, "button", {
+            useOnlyChildByType(children, "button", {
                 depth: 1,
                 maximumDepth: 1,
                 childName: "DialogTrigger"

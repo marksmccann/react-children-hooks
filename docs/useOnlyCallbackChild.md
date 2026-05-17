@@ -1,11 +1,11 @@
-# `useUniqueCallbackChild`
+# `useOnlyCallbackChild`
 
-Returns the only direct callback child from the provided children value, or throws when the match is not unique.
+Returns the only direct callback child from the provided children value, or throws when the match count is not exactly one.
 
 ## Signature
 
 ```ts
-function useUniqueCallbackChild<
+function useOnlyCallbackChild<
     TArguments extends unknown[] = [],
     TResult = React.ReactNode
 >(
@@ -29,7 +29,7 @@ The only direct callback child from the provided children value.
 
 ```tsx
 import type { CallbackChildren } from "react-children-hooks";
-import { useUniqueCallbackChild } from "react-children-hooks";
+import { useOnlyCallbackChild } from "react-children-hooks";
 
 function Toggle({
     children,
@@ -38,7 +38,7 @@ function Toggle({
     children: CallbackChildren<[boolean], React.ReactNode>;
     isOpen: boolean;
 }) {
-    const render = useUniqueCallbackChild<[boolean]>(children, {
+    const render = useOnlyCallbackChild<[boolean]>(children, {
         traceCode: "TC011",
         childName: "ToggleRenderChild"
     });

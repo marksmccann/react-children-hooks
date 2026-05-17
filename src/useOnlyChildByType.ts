@@ -2,22 +2,22 @@ import type { ElementType, ReactNode } from "react";
 
 import isElementOfType from "./isElementOfType";
 import type { ElementOfType, ValidationOptions } from "./types";
-import useUniqueChildMatching from "./useUniqueChildMatching";
+import useOnlyChildMatching from "./useOnlyChildMatching";
 
 /**
- * Returns the only direct child element whose React element type exactly matches the provided type, or throws when the match is not unique.
+ * Returns the only direct child element whose React element type exactly matches the provided type, or throws when the match count is not exactly one.
  *
  * @param children The React children value to inspect.
  * @param type The element or component type to match against each direct child element.
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The only direct child element whose type matches the provided element type.
  */
-export default function useUniqueChildByType<T extends ElementType>(
+export default function useOnlyChildByType<T extends ElementType>(
     children: ReactNode,
     type: T,
     options?: ValidationOptions
 ): ElementOfType<T> {
-    return useUniqueChildMatching(
+    return useOnlyChildMatching(
         children,
         (element): element is ElementOfType<T> =>
             isElementOfType(element, type),

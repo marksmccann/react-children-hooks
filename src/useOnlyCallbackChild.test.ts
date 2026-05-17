@@ -3,14 +3,14 @@ import { createElement, Fragment, type ReactNode } from "react";
 import { describe, expect, it } from "vitest";
 
 import reporter from "./reporter";
-import useUniqueCallbackChild from "./useUniqueCallbackChild";
+import useOnlyCallbackChild from "./useOnlyCallbackChild";
 
-describe("useUniqueCallbackChild", () => {
+describe("useOnlyCallbackChild", () => {
     it("returns the only direct callback child when exactly one is present", () => {
         const child = (isOpen: boolean) => (isOpen ? "Open" : "Closed");
 
         const { result } = renderHook(() =>
-            useUniqueCallbackChild<[boolean], string>(child)
+            useOnlyCallbackChild<[boolean], string>(child)
         );
 
         expect(result.current).toBe(child);
@@ -26,7 +26,7 @@ describe("useUniqueCallbackChild", () => {
         ] as const;
 
         const { result } = renderHook(() =>
-            useUniqueCallbackChild<[number], string>(children)
+            useOnlyCallbackChild<[number], string>(children)
         );
 
         expect(result.current).toBe(child);
@@ -37,9 +37,9 @@ describe("useUniqueCallbackChild", () => {
         const children = [createElement("span", { key: "span-1" }), "label"];
 
         expect(() =>
-            renderHook(() => useUniqueCallbackChild<[number], string>(children))
+            renderHook(() => useOnlyCallbackChild<[number], string>(children))
         ).toThrow(
-            reporter.message("UNIQUE_CALLBACK_CHILD_FAILED", {
+            reporter.message("ONLY_CALLBACK_CHILD_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 0
@@ -54,9 +54,9 @@ describe("useUniqueCallbackChild", () => {
         ] as const;
 
         expect(() =>
-            renderHook(() => useUniqueCallbackChild<[number], string>(children))
+            renderHook(() => useOnlyCallbackChild<[number], string>(children))
         ).toThrow(
-            reporter.message("UNIQUE_CALLBACK_CHILD_FAILED", {
+            reporter.message("ONLY_CALLBACK_CHILD_FAILED", {
                 traceCodePrefix: "",
                 childNameSegment: "",
                 actualCount: 2
@@ -72,13 +72,13 @@ describe("useUniqueCallbackChild", () => {
 
         expect(() =>
             renderHook(() =>
-                useUniqueCallbackChild<[number], string>(children, {
+                useOnlyCallbackChild<[number], string>(children, {
                     traceCode: "TOGGLE_RENDER_CHILD_UNIQUE",
                     childName: "ToggleRenderChild"
                 })
             )
         ).toThrow(
-            reporter.message("UNIQUE_CALLBACK_CHILD_FAILED", {
+            reporter.message("ONLY_CALLBACK_CHILD_FAILED", {
                 traceCodePrefix: "[TOGGLE_RENDER_CHILD_UNIQUE] ",
                 childNameSegment: " for ToggleRenderChild",
                 actualCount: 2
@@ -98,7 +98,7 @@ describe("useUniqueCallbackChild", () => {
         ] as const;
 
         const { result } = renderHook(() =>
-            useUniqueCallbackChild<[string], string>(children)
+            useOnlyCallbackChild<[string], string>(children)
         );
 
         expect(result.current).toBe(child);

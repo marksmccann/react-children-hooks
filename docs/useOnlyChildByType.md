@@ -1,11 +1,11 @@
-# `useUniqueChildByType`
+# `useOnlyChildByType`
 
-Returns the only child element whose React element type exactly matches the provided type, or throws when the match is not unique.
+Returns the only child element whose React element type exactly matches the provided type, or throws when the match count is not exactly one.
 
 ## Signature
 
 ```ts
-function useUniqueChildByType<T extends React.ElementType>(
+function useOnlyChildByType<T extends React.ElementType>(
     children: React.ReactNode,
     type: T,
     options?: ValidationOptions
@@ -27,10 +27,10 @@ The only child element whose type matches the provided element type.
 ## Usage
 
 ```tsx
-import { useUniqueChildByType } from "react-children-hooks";
+import { useOnlyChildByType } from "react-children-hooks";
 
 function Dialog({ children }: { children: React.ReactNode }) {
-    const trigger = useUniqueChildByType(children, "button", {
+    const trigger = useOnlyChildByType(children, "button", {
         traceCode: "TC017",
         childName: "DialogTrigger"
     });

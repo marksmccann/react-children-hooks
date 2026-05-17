@@ -5,24 +5,24 @@ import type { ValidationOptions } from "./types";
 import useChildrenMatching from "./useChildrenMatching";
 
 /**
- * Returns the only direct child element that satisfies the provided predicate, or throws when the match is not unique.
+ * Returns the only direct child element that satisfies the provided predicate, or throws when the match count is not exactly one.
  *
  * @param children The React children value to inspect.
  * @param predicate A predicate that is called with each direct child element to determine whether it matches.
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The only direct child element that satisfies the provided predicate.
  */
-function useUniqueChildMatching<T extends ReactElement>(
+function useOnlyChildMatching<T extends ReactElement>(
     children: ReactNode,
     predicate: (element: ReactElement) => element is T,
     options?: ValidationOptions
 ): T;
-function useUniqueChildMatching(
+function useOnlyChildMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     options?: ValidationOptions
 ): ReactElement;
-function useUniqueChildMatching(
+function useOnlyChildMatching(
     children: ReactNode,
     predicate: (element: ReactElement) => boolean,
     options?: ValidationOptions
@@ -33,7 +33,7 @@ function useUniqueChildMatching(
         return matchingChildren[0] as ReactElement;
     }
 
-    return reporter.fail("UNIQUE_CHILD_MATCHING_PREDICATE_FAILED", {
+    return reporter.fail("ONLY_CHILD_MATCHING_PREDICATE_FAILED", {
         traceCodePrefix: options?.traceCode ? `[${options.traceCode}] ` : "",
         childNameSegment: options?.childName ? ` for ${options.childName}` : "",
         actualCount: matchingChildren.length,
@@ -41,4 +41,4 @@ function useUniqueChildMatching(
     });
 }
 
-export default useUniqueChildMatching;
+export default useOnlyChildMatching;

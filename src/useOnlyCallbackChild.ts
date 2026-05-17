@@ -9,13 +9,13 @@ import type {
 } from "./types";
 
 /**
- * Returns the only direct callback child from the provided children value, or throws when the match is not unique.
+ * Returns the only direct callback child from the provided children value, or throws when the match count is not exactly one.
  *
  * @param children The direct children value to inspect.
  * @param options Optional reporting metadata used to derive the thrown validation message.
  * @returns The only direct callback child from the provided children value.
  */
-export default function useUniqueCallbackChild<
+export default function useOnlyCallbackChild<
     TArguments extends unknown[] = [],
     TResult = ReactNode
 >(
@@ -31,7 +31,7 @@ export default function useUniqueCallbackChild<
         return callbackChildren[0] as CallbackChild<TArguments, TResult>;
     }
 
-    return reporter.fail("UNIQUE_CALLBACK_CHILD_FAILED", {
+    return reporter.fail("ONLY_CALLBACK_CHILD_FAILED", {
         traceCodePrefix: options?.traceCode ? `[${options.traceCode}] ` : "",
         childNameSegment: options?.childName ? ` for ${options.childName}` : "",
         actualCount: callbackChildren.length

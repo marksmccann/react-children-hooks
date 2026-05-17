@@ -18,7 +18,7 @@ export { default as useOptionalChildMatching } from "./useOptionalChildMatching"
 export { default as useRequiredChildByType } from "./useRequiredChildByType";
 export { default as useRequiredCallbackChild } from "./useRequiredCallbackChild";
 export { default as useRequiredChildMatching } from "./useRequiredChildMatching";
-export { default as useUniqueCallbackChild } from "./useUniqueCallbackChild";
-export { default as useUniqueChildByType } from "./useUniqueChildByType";
-export { default as useUniqueChildMatching } from "./useUniqueChildMatching";
+export { default as useOnlyCallbackChild } from "./useOnlyCallbackChild";
+export { default as useOnlyChildByType } from "./useOnlyChildByType";
+export { default as useOnlyChildMatching } from "./useOnlyChildMatching";
 export type * from "./types";
