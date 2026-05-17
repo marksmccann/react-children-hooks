@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6.0 (2026-05-17)
+
+- feat: add exclusive child hooks 236b0e3
+- feat: add quantity hooks for matching children 6eb15d9
+- feat: add useChildrenExcept hook 6875d9c
+- feat: add useHasChildByType hook 981aac1
+- refactor: rename unique hooks to only 02db754
+- docs: add shared type references 8902928
+
 ## 0.5.0 (2026-05-16)
 
 - feat: expand callback hooks and trim public api 645a2ae
