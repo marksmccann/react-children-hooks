@@ -38,6 +38,7 @@
 ## Codebase Conventions
 
 - Follow the existing TypeScript style in `src/`: named exports, explicit React type imports, and concise JSDoc on public hooks and utilities.
+- Add a JSDoc block comment with tags to every function, including local utilities.
 - In `src/`, prefer one default export per file.
 - Name each `src/` file after its default export.
 - Exceptions:

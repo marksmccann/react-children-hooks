@@ -12,6 +12,7 @@ Find and retrieve matching children.
 - [`useChildByType`](./docs/useChildByType.md): first matching child by type, or `null`.
 - [`useChildMatching`](./docs/useChildMatching.md): first matching child, or `null`.
 - [`useChildrenByType`](./docs/useChildrenByType.md): all matching children by type.
+- [`useChildrenExcept`](./docs/useChildrenExcept.md): all inspected children except specific child elements.
 - [`useChildrenMatching`](./docs/useChildrenMatching.md): all matching children.
 
 ### Quantity Hooks
