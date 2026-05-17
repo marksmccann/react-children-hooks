@@ -6,6 +6,8 @@ const validationMessages = {
         "{{ traceCodePrefix }}Optional child validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected at most 1.",
     ONLY_CHILD_MATCHING_PREDICATE_FAILED:
         "{{ traceCodePrefix }}Only child validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected exactly 1.",
+    EXCLUSIVE_CHILD_MATCHING_PREDICATE_FAILED:
+        "{{ traceCodePrefix }}Exclusive child validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} were inspected and {{ matchingCount }} matched the provided predicate; expected exactly 1 direct child and for it to match.",
     REQUIRED_CHILD_MATCHING_PREDICATE_FAILED:
         "{{ traceCodePrefix }}Required child validation failed{{ childNameSegment }} because no direct child satisfied the provided predicate.",
     REQUIRED_CALLBACK_CHILD_FAILED:
@@ -14,6 +16,8 @@ const validationMessages = {
         "{{ traceCodePrefix }}Optional callback child validation failed{{ childNameSegment }} because {{ actualCount }} direct callback children were found; expected at most 1.",
     ONLY_CALLBACK_CHILD_FAILED:
         "{{ traceCodePrefix }}Only callback child validation failed{{ childNameSegment }} because {{ actualCount }} direct callback children were found; expected exactly 1.",
+    EXCLUSIVE_CALLBACK_CHILD_FAILED:
+        "{{ traceCodePrefix }}Exclusive callback child validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} were inspected and {{ callbackCount }} callback child{{ callbackCountPluralSuffix }} were found; expected exactly 1 direct callback child and no other children.",
     MINIMUM_CHILDREN_MATCHING_PREDICATE_FAILED:
         "{{ traceCodePrefix }}Minimum children validation failed{{ childNameSegment }} because only {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected at least {{ minimumCount }}.",
     MAXIMUM_CHILDREN_MATCHING_PREDICATE_FAILED:

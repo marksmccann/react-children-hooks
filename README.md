@@ -49,6 +49,9 @@ Find and retrieve matching children while also enforcing count constraints.
 - [`useExactChildrenByType`](./docs/useExactChildrenByType.md): exactly `n` matching children by type required, returns all matches.
 - [`useBoundedChildrenMatching`](./docs/useBoundedChildrenMatching.md): between `minimum` and `maximum` matching children required, returns all matches.
 - [`useBoundedChildrenByType`](./docs/useBoundedChildrenByType.md): between `minimum` and `maximum` matching children by type required, returns all matches.
+- [`useExclusiveChildMatching`](./docs/useExclusiveChildMatching.md): exactly one inspected child element required, and it must match.
+- [`useExclusiveChildByType`](./docs/useExclusiveChildByType.md): exactly one inspected child element by type required.
+- [`useExclusiveCallbackChild`](./docs/useExclusiveCallbackChild.md): exactly one direct child required, and it must be a callback child.
 
 ### Types
 

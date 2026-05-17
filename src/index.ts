@@ -10,6 +10,9 @@ export { default as useChildrenCountMatching } from "./useChildrenCountMatching"
 export { default as useChildrenMatching } from "./useChildrenMatching";
 export { default as useExactChildrenByType } from "./useExactChildrenByType";
 export { default as useExactChildrenMatching } from "./useExactChildrenMatching";
+export { default as useExclusiveCallbackChild } from "./useExclusiveCallbackChild";
+export { default as useExclusiveChildByType } from "./useExclusiveChildByType";
+export { default as useExclusiveChildMatching } from "./useExclusiveChildMatching";
 export { default as useHasChildMatching } from "./useHasChildMatching";
 export { default as useMaximumChildrenByType } from "./useMaximumChildrenByType";
 export { default as useMaximumChildrenMatching } from "./useMaximumChildrenMatching";
