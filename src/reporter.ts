@@ -28,23 +28,53 @@ const validationMessages = {
         "{{ traceCodePrefix }}Bounded children validation failed{{ childNameSegment }} because {{ actualCount }} direct child{{ actualCountPluralSuffix }} satisfied the provided predicate; expected between {{ minimumCount }} and {{ maximumCount }} inclusive."
 } as const;
 
+/** Internal diagnostics reporter messages used by the warning-oriented APIs */
+const diagnosticsMessages = {
+    DEPRECATED_CHILD_BY_TYPE_WARNING:
+        "{{ traceCodePrefix }}Deprecated child warning{{ childNameSegment }}: {{ deprecationMessage }}",
+    DEPRECATED_CHILD_MATCHING_WARNING:
+        "{{ traceCodePrefix }}Deprecated child warning{{ childNameSegment }}: {{ deprecationMessage }}"
+} as const;
+
 /** Public-facing reporter messages for this library */
 const publicMessages = {
-    RCH001: '[RCH001] Traversal option "depth" must be a non-negative integer.',
-    RCH002: '[RCH002] Traversal option "maximumDepth" must be a non-negative integer.',
-    RCH003: '[RCH003] Traversal option "depth" cannot be greater than "maximumDepth".'
+    RCH001: 'Traversal option "depth" must be a non-negative integer.',
+    RCH002: 'Traversal option "maximumDepth" must be a non-negative integer.',
+    RCH003: 'Traversal option "depth" cannot be greater than "maximumDepth".'
+} as const;
+
+/** Internal reporter messages that should be formatted without a public code prefix */
+const internalMessages = {
+    ...validationMessages,
+    ...diagnosticsMessages
 } as const;
 
 /** All reporter messages for this library */
 const messages = {
-    ...validationMessages,
+    ...internalMessages,
     ...publicMessages
 } as const;
 
+/**
+ * Creates a runtime reporter configured for this package.
+ *
+ * @returns A runtime reporter instance with package-specific message formatting.
+ */
+function createRuntimeReporter() {
+    return createReporter(
+        process.env.NODE_ENV === "production"
+            ? ({} as typeof messages)
+            : messages,
+        {
+            formatMessage: (message, code) => {
+                if (code in internalMessages) return message;
+                return `[${code}] ${message}`;
+            }
+        }
+    );
+}
+
 /** The runtime reporter for react-children-hooks */
-const reporter = createReporter(
-    process.env.NODE_ENV === "production" ? ({} as typeof messages) : messages,
-    { formatMessage: (message) => message }
-);
+const reporter = createRuntimeReporter();
 
 export default reporter;

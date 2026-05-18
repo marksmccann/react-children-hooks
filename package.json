@@ -87,6 +87,6 @@
         "vitest": "^3.1.4"
     },
     "dependencies": {
-        "runtime-reporter": "^0.9.1"
+        "runtime-reporter": "^0.10.0"
     }
 }

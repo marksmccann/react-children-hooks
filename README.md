@@ -29,6 +29,13 @@ Answer whether a child exists.
 - [`useHasChildByType`](./docs/useHasChildByType.md): whether any matching child by type exists.
 - [`useHasChildMatching`](./docs/useHasChildMatching.md): whether any matching child exists.
 
+### Diagnostics Hooks
+
+Detect child usage patterns and emit diagnostics when needed.
+
+- [`useDeprecatedChildByType`](./docs/useDeprecatedChildByType.md): whether any matching child by type exists, and warns when that type is deprecated.
+- [`useDeprecatedChildMatching`](./docs/useDeprecatedChildMatching.md): whether any matching child exists, and warns when that usage is deprecated.
+
 ### Cardinality Hooks
 
 Find and retrieve matching children while also enforcing count constraints.
@@ -59,6 +66,7 @@ Find and retrieve matching children while also enforcing count constraints.
 - [`CallbackChild`](./docs/types.md#callbackchild)
 - [`CallbackChildren`](./docs/types.md#callbackchildren)
 - [`ChildrenCountBounds`](./docs/types.md#childrencountbounds)
+- [`DeprecationOptions`](./docs/types.md#deprecationoptions)
 - [`ElementOfType`](./docs/types.md#elementoftype)
 - [`QueryOptions`](./docs/types.md#queryoptions)
 - [`TraversalOptions`](./docs/types.md#traversaloptions)

@@ -69,9 +69,9 @@ export type CallbackChildren<
     | readonly CallbackChildren<TArguments, TResult>[];
 
 /**
- * Optional reporting metadata used by the validation hooks to derive thrown validation messages.
+ * Optional reporting metadata shared by the validation and diagnostics hooks.
  */
-type ValidationMessageOptions = {
+type MessageOptions = {
     /**
      * An optional consumer-defined trace code that is prefixed to the thrown validation message.
      */
@@ -85,4 +85,15 @@ type ValidationMessageOptions = {
 /**
  * Optional reporting and traversal metadata used by the validation hooks.
  */
-export type ValidationOptions = ValidationMessageOptions & TraversalOptions;
+export type ValidationOptions = MessageOptions & TraversalOptions;
+
+/**
+ * Optional reporting and traversal metadata used by the deprecation diagnostics hooks.
+ */
+export type DeprecationOptions = MessageOptions &
+    TraversalOptions & {
+        /**
+         * The deprecation guidance shown when a matching child is detected.
+         */
+        message: string;
+    };

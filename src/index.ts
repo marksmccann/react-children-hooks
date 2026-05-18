@@ -9,6 +9,8 @@ export { default as useChildrenCountByType } from "./useChildrenCountByType";
 export { default as useChildrenCountMatching } from "./useChildrenCountMatching";
 export { default as useChildrenExcept } from "./useChildrenExcept";
 export { default as useChildrenMatching } from "./useChildrenMatching";
+export { default as useDeprecatedChildByType } from "./useDeprecatedChildByType";
+export { default as useDeprecatedChildMatching } from "./useDeprecatedChildMatching";
 export { default as useExactChildrenByType } from "./useExactChildrenByType";
 export { default as useExactChildrenMatching } from "./useExactChildrenMatching";
 export { default as useExclusiveCallbackChild } from "./useExclusiveCallbackChild";

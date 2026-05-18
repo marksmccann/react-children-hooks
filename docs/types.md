@@ -99,3 +99,25 @@ type ValidationOptions = {
 | `childName`    | `string` | No       | An optional human-readable child name that is included in the thrown validation message.       |
 | `depth`        | `number` | No       | The minimum inclusive child depth to include in results, where `0` represents direct children. |
 | `maximumDepth` | `number` | No       | The maximum inclusive child depth to include in results, where `0` represents direct children. |
+
+## `DeprecationOptions`
+
+Optional reporting and traversal metadata used by the deprecation diagnostics hooks.
+
+```ts
+type DeprecationOptions = {
+    traceCode?: string;
+    childName?: string;
+    depth?: number;
+    maximumDepth?: number;
+    message: string;
+};
+```
+
+| Property       | Type     | Required | Description                                                                                    |
+| -------------- | -------- | -------- | ---------------------------------------------------------------------------------------------- |
+| `traceCode`    | `string` | No       | An optional consumer-defined trace code that is prefixed to the warning message.               |
+| `childName`    | `string` | No       | An optional human-readable child name that is included in the warning message.                 |
+| `depth`        | `number` | No       | The minimum inclusive child depth to include in results, where `0` represents direct children. |
+| `maximumDepth` | `number` | No       | The maximum inclusive child depth to include in results, where `0` represents direct children. |
+| `message`      | `string` | Yes      | The deprecation guidance shown when a matching child is detected.                              |

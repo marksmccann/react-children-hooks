@@ -24,6 +24,7 @@
 - Run linting: `npm run lint`
 - Run TypeScript checks: `npm run typecheck`
 - Format the repo: `npm run format`
+- Create a commit: `npm run commit`
 
 ## Validation
 
@@ -82,3 +83,4 @@
 - Do not edit generated output in `dist/`.
 - Do not manually edit `CHANGELOG.md` for routine feature work or maintenance changes unless the user explicitly asks for it.
 - Do not add new tooling or dependencies unless they are necessary for the requested change.
+- When creating a commit, use `npm run commit` instead of invoking `git commit` directly.
