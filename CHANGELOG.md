@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0 (2026-05-18)
+
+- feat(diagnostics): add deprecated child diagnostics hooks f2b9e8a
+
 ## 0.6.0 (2026-05-17)
 
 - feat: add exclusive child hooks 236b0e3
