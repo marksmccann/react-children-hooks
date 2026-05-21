@@ -2,6 +2,8 @@
 
 `react-children-hooks` is a TypeScript-first React library for inspecting, traversing, querying, and validating `props.children`.
 
+Build safer compound-component APIs with typed child querying, bounded traversal, and runtime validation.
+
 ## Why?
 
 React is right to be cautious about child inspection APIs. Arbitrary traversal of `props.children` can make components harder to understand, easier to misuse, more fragile to structural changes, and more expensive than necessary when too much of the tree is inspected. This package is not trying to argue otherwise.
@@ -70,7 +72,7 @@ export function StrictCard({ children }: { children: React.ReactNode }) {
 
     return (
         <div className="strict-card">
-            {/* Use `React.cloneElement` to safely apply additional props on a child */}
+            {/* Use `React.cloneElement` to apply additional props to a child */}
             {React.cloneElement(header, { id: "header" })}
             <main className="strict-card-content">{contents}</main>
         </div>
