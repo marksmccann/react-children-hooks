@@ -1,5 +1,9 @@
 # Changelog
 
+## <small>0.7.1 (2026-05-21)</small>
+
+- docs(readme): add llms metadata and expand package docs 540a225
+
 ## 0.7.0 (2026-05-18)
 
 - feat(diagnostics): add deprecated child diagnostics hooks f2b9e8a

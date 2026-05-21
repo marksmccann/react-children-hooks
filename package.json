@@ -1,6 +1,6 @@
 {
     "name": "react-children-hooks",
-    "version": "0.7.0",
+    "version": "0.7.1",
     "description": "React hooks for inspecting, traversing, querying, and validating props.children.",
     "keywords": [
         "react",
