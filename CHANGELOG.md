@@ -1,5 +1,9 @@
 # Changelog
 
+## <small>0.7.2 (2026-05-21)</small>
+
+- docs(readme): refine the package introduction and API overview 7ea49cc
+
 ## <small>0.7.1 (2026-05-21)</small>
 
 - docs(readme): add llms metadata and expand package docs 540a225
