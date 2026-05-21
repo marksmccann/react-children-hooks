@@ -1,0 +1,58 @@
+Project: react-children-hooks
+
+Summary:
+- TypeScript-first React library for inspecting, traversing, querying, and validating `props.children`.
+- Public API is hook-based and centered on direct-child composition contracts.
+- React is a peer dependency and remains external in builds.
+
+Guidance:
+- Prefer the README for package-level positioning and API discovery.
+- Prefer `docs/*.md` as the canonical reference for individual hooks and public types.
+- Preserve the library's direct-children semantics unless a task explicitly requires deeper traversal behavior.
+- Treat `src/index.ts` as the source of truth for the public export surface.
+
+Key Docs:
+- README: `README.md`
+- API exports: `src/index.ts`
+- Public types: `docs/types.md`
+
+Hook Families:
+- Find children: `useCallbackChild`, `useChildByType`, `useChildMatching`, `useChildrenByType`, `useChildrenExcept`, `useChildrenMatching`
+- Count children: `useChildrenCountByType`, `useChildrenCountMatching`
+- Check for children: `useHasChildByType`, `useHasChildMatching`
+- Diagnostics: `useDeprecatedChildByType`, `useDeprecatedChildMatching`
+- Validate children: `useOptional*`, `useRequired*`, `useOnly*`, `useMinimum*`, `useMaximum*`, `useExact*`, `useBounded*`, `useExclusive*`
+
+Canonical API Pages:
+- `docs/useCallbackChild.md`
+- `docs/useChildByType.md`
+- `docs/useChildMatching.md`
+- `docs/useChildrenByType.md`
+- `docs/useChildrenExcept.md`
+- `docs/useChildrenMatching.md`
+- `docs/useChildrenCountByType.md`
+- `docs/useChildrenCountMatching.md`
+- `docs/useHasChildByType.md`
+- `docs/useHasChildMatching.md`
+- `docs/useDeprecatedChildByType.md`
+- `docs/useDeprecatedChildMatching.md`
+- `docs/useOptionalCallbackChild.md`
+- `docs/useOptionalChildByType.md`
+- `docs/useOptionalChildMatching.md`
+- `docs/useRequiredCallbackChild.md`
+- `docs/useRequiredChildByType.md`
+- `docs/useRequiredChildMatching.md`
+- `docs/useOnlyCallbackChild.md`
+- `docs/useOnlyChildByType.md`
+- `docs/useOnlyChildMatching.md`
+- `docs/useMinimumChildrenByType.md`
+- `docs/useMinimumChildrenMatching.md`
+- `docs/useMaximumChildrenByType.md`
+- `docs/useMaximumChildrenMatching.md`
+- `docs/useExactChildrenByType.md`
+- `docs/useExactChildrenMatching.md`
+- `docs/useBoundedChildrenByType.md`
+- `docs/useBoundedChildrenMatching.md`
+- `docs/useExclusiveCallbackChild.md`
+- `docs/useExclusiveChildByType.md`
+- `docs/useExclusiveChildMatching.md`

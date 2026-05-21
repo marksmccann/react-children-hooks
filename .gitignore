@@ -5,3 +5,4 @@ coverage
 *.log
 *.code-workspace
 TODO.txt
+.npm-cache

@@ -67,13 +67,16 @@
 ## Documentation Conventions
 
 - Keep README and `docs/*.md` terminology aligned with the implementation.
+- Keep `llms.txt` aligned with the current public API, hook families, and canonical documentation links.
 - Do not create standalone docs pages for individual public API types unless the user explicitly asks for them.
 - When adding a new hook or utility, add:
     - the implementation in `src/`
     - tests in `src/`
     - exports in `src/index.ts`
     - API docs in `docs/`
+    - `llms.txt` updates if the public API map or canonical doc links changed
     - a README reference if it belongs in the public API list
+- When removing, renaming, or materially changing a public hook or utility, update `llms.txt` so its API summary and doc pointers remain accurate.
 - Do not manually update `CHANGELOG.md` when adding a new feature. Changelog entries are generated through the conventional-commit release workflow.
 
 ## Change Guidance
