@@ -1,5 +1,9 @@
 # Changelog
 
+## <small>0.7.3 (2026-05-21)</small>
+
+- docs(readme): clarify performance guidance in the README 8c785fe
+
 ## <small>0.7.2 (2026-05-21)</small>
 
 - docs(readme): refine the package introduction and API overview 7ea49cc
