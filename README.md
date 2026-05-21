@@ -4,9 +4,11 @@
 
 ## Why?
 
-React is right to be cautious about child inspection APIs. Arbitrary traversal of `props.children` can make components harder to understand, easier to misuse, and more fragile to refactors. This package is not trying to argue otherwise. There are, however, cases where child composition is the right choice and can lead to elegant, expressive APIs, particularly when the composition contract is intentional, constrained, and well-defined.
+React is right to be cautious about child inspection APIs. Arbitrary traversal of `props.children` can make components harder to understand, easier to misuse, more fragile to structural changes, and more expensive than necessary when too much of the tree is inspected. This package is not trying to argue otherwise.
 
-In those cases, the question is not whether to inspect children at all, but how to do it in a way that is safe, readable, and ergonomic at both runtime and in TypeScript. This package is designed to make this kind of API shape easier to build and safer to use:
+There are, however, cases where child composition is the right choice and can lead to elegant, expressive APIs, especially when the composition contract is intentional, constrained, and well-defined. In those cases, the question is not whether to inspect children at all, but how to do it in a way that is safe, readable, and ergonomic at both runtime and in TypeScript.
+
+This package is designed with those concerns in mind. It inspects direct children only by default, makes deeper traversal opt-in and bounded, and memoizes element-based results from children, the predicate, and the provided options. The goal is to make this kind of API easier to build and safer to use:
 
 ```tsx
 <Tabs>
@@ -36,6 +38,52 @@ In those cases, the question is not whether to inspect children at all, but how 
 - the child contract is so open-ended that validation would be guesswork
 - a plain prop, data object, array, or render function would be simpler and clearer
 - you are looking for a reason to overuse child inspection where React composition should remain loose
+
+## Installation
+
+```bash
+npm install react-children-hooks
+```
+
+## Quick Start
+
+Here's a basic example of how you can enforce a strict, type-safe compound component layout contract using `react-children-hooks`:
+
+```tsx
+import React from "react";
+import { useOnlyChildByType, useChildrenByType } from "react-children-hooks";
+
+// 1. Define the subcomponents
+export const CardHeader = (props: React.HTMLAttributes<HTMLDivElement>) => (
+    <div {...props} />
+);
+export const CardContent = ({ children }: { children: React.ReactNode }) => (
+    <>{children}</>
+);
+
+// 2. Enforce the contract in the parent component
+export function StrictCard({ children }: { children: React.ReactNode }) {
+    // Enforces exactly ONE header, throwing a clear diagnostic if missing or duplicated
+    const header = useOnlyChildByType(children, CardHeader);
+    // Extracts all content blocks
+    const contents = useChildrenByType(children, CardContent);
+
+    return (
+        <div className="strict-card">
+            {/* Use `React.cloneElement` to safely apply additional props on a child */}
+            {React.cloneElement(header, { id: "header" })}
+            <main className="strict-card-content">{contents}</main>
+        </div>
+    );
+}
+
+// 3. Consumer usage
+<StrictCard>
+    <CardHeader>My Title</CardHeader>
+    <CardContent>Block 1</CardContent>
+    <CardContent>Block 2</CardContent>
+</StrictCard>;
+```
 
 ## Features & Core Concepts
 
@@ -137,23 +185,43 @@ useDeprecatedChildMatching(children, isLegacyAction, {
 
 ### Validate Children
 
-- [`useOptionalChildMatching`](./docs/useOptionalChildMatching.md): `0..1` matching children, returns the child or `null`, throws on duplicates.
-- [`useOptionalChildByType`](./docs/useOptionalChildByType.md): `0..1` matching children by type, returns the child or `null`, throws on duplicates.
-- [`useOptionalCallbackChild`](./docs/useOptionalCallbackChild.md): `0..1` direct callback children, returns the callback or `null`, throws on duplicates.
-- [`useRequiredChildMatching`](./docs/useRequiredChildMatching.md): `1+` matching children required, returns the first match.
-- [`useRequiredChildByType`](./docs/useRequiredChildByType.md): `1+` matching children by type required, returns the first match.
-- [`useRequiredCallbackChild`](./docs/useRequiredCallbackChild.md): `1+` direct callback children required, returns the first callback.
-- [`useOnlyChildMatching`](./docs/useOnlyChildMatching.md): exactly `1` matching child required, returns that match.
-- [`useOnlyChildByType`](./docs/useOnlyChildByType.md): exactly `1` matching child by type required, returns that match.
-- [`useOnlyCallbackChild`](./docs/useOnlyCallbackChild.md): exactly `1` direct callback child required, returns that callback.
-- [`useMinimumChildrenMatching`](./docs/useMinimumChildrenMatching.md): at least `n` matching children required, returns all matches.
-- [`useMinimumChildrenByType`](./docs/useMinimumChildrenByType.md): at least `n` matching children by type required, returns all matches.
-- [`useMaximumChildrenMatching`](./docs/useMaximumChildrenMatching.md): at most `n` matching children allowed, returns all matches.
-- [`useMaximumChildrenByType`](./docs/useMaximumChildrenByType.md): at most `n` matching children by type allowed, returns all matches.
-- [`useExactChildrenMatching`](./docs/useExactChildrenMatching.md): exactly `n` matching children required, returns all matches.
-- [`useExactChildrenByType`](./docs/useExactChildrenByType.md): exactly `n` matching children by type required, returns all matches.
-- [`useBoundedChildrenMatching`](./docs/useBoundedChildrenMatching.md): between `minimum` and `maximum` matching children required, returns all matches.
-- [`useBoundedChildrenByType`](./docs/useBoundedChildrenByType.md): between `minimum` and `maximum` matching children by type required, returns all matches.
-- [`useExclusiveChildMatching`](./docs/useExclusiveChildMatching.md): exactly one inspected child element required, and it must match.
-- [`useExclusiveChildByType`](./docs/useExclusiveChildByType.md): exactly one inspected child element by type required.
-- [`useExclusiveCallbackChild`](./docs/useExclusiveCallbackChild.md): exactly one direct child required, and it must be a callback child.
+**Zero or One (`0..1`)**
+
+- [`useOptionalChildMatching`](./docs/useOptionalChildMatching.md): returns the matching child or `null`, and throws on duplicates.
+- [`useOptionalChildByType`](./docs/useOptionalChildByType.md): returns the matching child by type or `null`, and throws on duplicates.
+- [`useOptionalCallbackChild`](./docs/useOptionalCallbackChild.md): returns the direct callback child or `null`, and throws on duplicates.
+
+**One or More (`1+`)**
+
+- [`useRequiredChildMatching`](./docs/useRequiredChildMatching.md): requires at least one matching child and returns the first match.
+- [`useRequiredChildByType`](./docs/useRequiredChildByType.md): requires at least one matching child by type and returns the first match.
+- [`useRequiredCallbackChild`](./docs/useRequiredCallbackChild.md): requires at least one direct callback child and returns the first callback.
+
+**Exactly One (`1`)**
+
+- [`useOnlyChildMatching`](./docs/useOnlyChildMatching.md): requires exactly one matching child and returns that match.
+- [`useOnlyChildByType`](./docs/useOnlyChildByType.md): requires exactly one matching child by type and returns that match.
+- [`useOnlyCallbackChild`](./docs/useOnlyCallbackChild.md): requires exactly one direct callback child and returns that callback.
+- [`useExclusiveChildMatching`](./docs/useExclusiveChildMatching.md): requires exactly one inspected child element, and it must match.
+- [`useExclusiveChildByType`](./docs/useExclusiveChildByType.md): requires exactly one inspected child element by type.
+- [`useExclusiveCallbackChild`](./docs/useExclusiveCallbackChild.md): requires exactly one direct child, and it must be a callback child.
+
+**At Least `n`**
+
+- [`useMinimumChildrenMatching`](./docs/useMinimumChildrenMatching.md): requires at least `n` matching children and returns all matches.
+- [`useMinimumChildrenByType`](./docs/useMinimumChildrenByType.md): requires at least `n` matching children by type and returns all matches.
+
+**At Most `n`**
+
+- [`useMaximumChildrenMatching`](./docs/useMaximumChildrenMatching.md): allows at most `n` matching children and returns all matches.
+- [`useMaximumChildrenByType`](./docs/useMaximumChildrenByType.md): allows at most `n` matching children by type and returns all matches.
+
+**Exactly `n`**
+
+- [`useExactChildrenMatching`](./docs/useExactChildrenMatching.md): requires exactly `n` matching children and returns all matches.
+- [`useExactChildrenByType`](./docs/useExactChildrenByType.md): requires exactly `n` matching children by type and returns all matches.
+
+**Between `minimum` and `maximum`**
+
+- [`useBoundedChildrenMatching`](./docs/useBoundedChildrenMatching.md): requires matching children to stay within an inclusive range and returns all matches.
+- [`useBoundedChildrenByType`](./docs/useBoundedChildrenByType.md): requires matching children by type to stay within an inclusive range and returns all matches.
